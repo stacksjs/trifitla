@@ -12,8 +12,8 @@ import { response, route } from '@stacksjs/router'
  * @see https://docs.stacksjs.com/routing
  */
 
-// Your custom routes go here:
-route.get('/', () => response.text('hello world'))
+// Your custom routes go here. Nothing yet: the landing page is served by STX
+// from `resources/views/index.stx`, so `/` must stay unclaimed here.
 
 // `/coming-soon` is served as an STX view from
 // `storage/framework/defaults/resources/views/coming-soon.stx`. The
