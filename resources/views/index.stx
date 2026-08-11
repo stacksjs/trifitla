@@ -897,10 +897,12 @@ const included = [
       .testing p { margin-top: 0.3rem; color: var(--muted); font-size: 0.9375rem; max-width: 48ch; }
 
       @media (min-width: 900px) {
-        /* The prose column is always the wider one, whichever side it sits on. */
-        .split { grid-template-columns: 0.95fr 1.05fr; }
+        /* The prose column is always the wider one, whichever side it sits on,
+          and the photograph fills the row rather than floating in it. */
+        .split { grid-template-columns: 0.95fr 1.05fr; align-items: stretch; }
         .split--reverse { grid-template-columns: 1.05fr 0.95fr; }
         .split--reverse .split-media { order: 2; }
+        .split-media { aspect-ratio: auto; min-height: 27rem; }
       }
 
       /* ── Membership ───────────────────────────────────────────────── */
