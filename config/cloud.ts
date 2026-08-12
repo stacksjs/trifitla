@@ -122,13 +122,15 @@ export const tsCloud: TsCloudConfig = {
       redirect: 'https://trifitla.stacksjs.com',
     },
 
-    // The `www.` variants are declared explicitly because `buddy deploy`'s DNS
-    // reconcile publishes an A record for `www.<domain>` on EVERY site domain,
-    // while the gateway's autoWww only routes `www` for a two-label apex. On a
-    // three-label host that combination leaves a record with no route and no
-    // certificate: the name resolves and then fails TLS verification, which is
-    // worse for a visitor than not existing. Declaring them turns the records
-    // the deploy insists on creating into real, certificated redirects.
+    // The `www.` variants are kept because people type them, not because they
+    // are required. They started as a workaround: `buddy deploy`'s DNS reconcile
+    // used to publish an A record for `www.<domain>` on EVERY site domain, while
+    // the gateway's autoWww only routes `www` for a two-label apex — so a
+    // three-label host ended up with a record that had no route and no
+    // certificate, resolving and then failing TLS. Fixed in stacks 0.70.367
+    // (commit 30730d8a63), which this app now runs, so nothing would recreate
+    // them if these two entries were deleted. Declared, they are real
+    // certificated redirects; deleted, the names simply stop resolving.
     wwwMain: {
       domain: 'www.trifitla.stacksjs.com',
       redirect: 'https://trifitla.stacksjs.com',
