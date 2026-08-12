@@ -41,6 +41,27 @@ jobs:
       # no-op when pantry already provided one.
       - name: Ensure Bun
         uses: oven-sh/setup-bun@v2
+        continue-on-error: true
+
+      # Getting a bun onto the runner is the flakiest part of this pipeline:
+      # the pantry action and setup-bun have each failed with `socket hang up`
+      # on separate runs. Neither is trusted alone — this retries the official
+      # installer until one of the three has produced a working bun.
+      - name: Ensure Bun (fallback)
+        run: |
+          if command -v bun >/dev/null 2>&1; then
+            echo "bun already on PATH: $(bun --version)"
+            exit 0
+          fi
+          for attempt in 1 2 3; do
+            echo "installing bun (attempt $attempt)"
+            if curl -fsSL --retry 3 --retry-delay 5 --retry-all-errors https://bun.sh/install | bash; then
+              break
+            fi
+            sleep $((attempt * 10))
+          done
+          echo "$HOME/.bun/bin" >> "$GITHUB_PATH"
+          "$HOME/.bun/bin/bun" --version
 
       - name: Use cached node_modules
         uses: actions/cache@v4
@@ -80,6 +101,27 @@ jobs:
       # no-op when pantry already provided one.
       - name: Ensure Bun
         uses: oven-sh/setup-bun@v2
+        continue-on-error: true
+
+      # Getting a bun onto the runner is the flakiest part of this pipeline:
+      # the pantry action and setup-bun have each failed with `socket hang up`
+      # on separate runs. Neither is trusted alone — this retries the official
+      # installer until one of the three has produced a working bun.
+      - name: Ensure Bun (fallback)
+        run: |
+          if command -v bun >/dev/null 2>&1; then
+            echo "bun already on PATH: $(bun --version)"
+            exit 0
+          fi
+          for attempt in 1 2 3; do
+            echo "installing bun (attempt $attempt)"
+            if curl -fsSL --retry 3 --retry-delay 5 --retry-all-errors https://bun.sh/install | bash; then
+              break
+            fi
+            sleep $((attempt * 10))
+          done
+          echo "$HOME/.bun/bin" >> "$GITHUB_PATH"
+          "$HOME/.bun/bin/bun" --version
 
       - name: Use cached node_modules
         uses: actions/cache@v4
@@ -122,6 +164,27 @@ jobs:
       # no-op when pantry already provided one.
       - name: Ensure Bun
         uses: oven-sh/setup-bun@v2
+        continue-on-error: true
+
+      # Getting a bun onto the runner is the flakiest part of this pipeline:
+      # the pantry action and setup-bun have each failed with `socket hang up`
+      # on separate runs. Neither is trusted alone — this retries the official
+      # installer until one of the three has produced a working bun.
+      - name: Ensure Bun (fallback)
+        run: |
+          if command -v bun >/dev/null 2>&1; then
+            echo "bun already on PATH: $(bun --version)"
+            exit 0
+          fi
+          for attempt in 1 2 3; do
+            echo "installing bun (attempt $attempt)"
+            if curl -fsSL --retry 3 --retry-delay 5 --retry-all-errors https://bun.sh/install | bash; then
+              break
+            fi
+            sleep $((attempt * 10))
+          done
+          echo "$HOME/.bun/bin" >> "$GITHUB_PATH"
+          "$HOME/.bun/bin/bun" --version
 
       - name: Use cached node_modules
         uses: actions/cache@v4
@@ -172,6 +235,27 @@ jobs:
       # pantry already provided one.
       - name: Ensure Bun
         uses: oven-sh/setup-bun@v2
+        continue-on-error: true
+
+      # Getting a bun onto the runner is the flakiest part of this pipeline:
+      # the pantry action and setup-bun have each failed with `socket hang up`
+      # on separate runs. Neither is trusted alone — this retries the official
+      # installer until one of the three has produced a working bun.
+      - name: Ensure Bun (fallback)
+        run: |
+          if command -v bun >/dev/null 2>&1; then
+            echo "bun already on PATH: $(bun --version)"
+            exit 0
+          fi
+          for attempt in 1 2 3; do
+            echo "installing bun (attempt $attempt)"
+            if curl -fsSL --retry 3 --retry-delay 5 --retry-all-errors https://bun.sh/install | bash; then
+              break
+            fi
+            sleep $((attempt * 10))
+          done
+          echo "$HOME/.bun/bin" >> "$GITHUB_PATH"
+          "$HOME/.bun/bin/bun" --version
 
       - name: Use cached node_modules
         uses: actions/cache@v4
