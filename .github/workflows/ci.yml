@@ -31,8 +31,16 @@ jobs:
 
       - name: Setup Pantry
         uses: pantry-pm/pantry/packages/action@485c7b102fe14f8af00b57441a13dc3daa1505e7 # v0.10.39
+        continue-on-error: true
         with:
           install: 'false'
+
+      # The pantry action WARNS instead of failing when its bun download hits a
+      # socket hang up, so a job sails past a broken setup and dies later with
+      # `bun: command not found`. setup-bun guarantees a bun on PATH and is a
+      # no-op when pantry already provided one.
+      - name: Ensure Bun
+        uses: oven-sh/setup-bun@v2
 
       - name: Use cached node_modules
         uses: actions/cache@v4
@@ -62,8 +70,16 @@ jobs:
 
       - name: Setup Pantry
         uses: pantry-pm/pantry/packages/action@485c7b102fe14f8af00b57441a13dc3daa1505e7 # v0.10.39
+        continue-on-error: true
         with:
           install: 'false'
+
+      # The pantry action WARNS instead of failing when its bun download hits a
+      # socket hang up, so a job sails past a broken setup and dies later with
+      # `bun: command not found`. setup-bun guarantees a bun on PATH and is a
+      # no-op when pantry already provided one.
+      - name: Ensure Bun
+        uses: oven-sh/setup-bun@v2
 
       - name: Use cached node_modules
         uses: actions/cache@v4
@@ -96,8 +112,16 @@ jobs:
 
       - name: Setup Pantry
         uses: pantry-pm/pantry/packages/action@485c7b102fe14f8af00b57441a13dc3daa1505e7 # v0.10.39
+        continue-on-error: true
         with:
           install: 'false'
+
+      # The pantry action WARNS instead of failing when its bun download hits a
+      # socket hang up, so a job sails past a broken setup and dies later with
+      # `bun: command not found`. setup-bun guarantees a bun on PATH and is a
+      # no-op when pantry already provided one.
+      - name: Ensure Bun
+        uses: oven-sh/setup-bun@v2
 
       - name: Use cached node_modules
         uses: actions/cache@v4
