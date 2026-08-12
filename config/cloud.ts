@@ -112,6 +112,33 @@ export const tsCloud: TsCloudConfig = {
       },
     },
 
+    // Short alias. `trifitla` is canonical everywhere — the repo, the brand, the
+    // og:url and the certificate — so this 301s rather than serving a second
+    // copy, which would split the two hosts in search results. To make `trifit`
+    // canonical instead, swap the `redirect` here for the domain on `main` and
+    // point this one back the other way.
+    trifitAlias: {
+      domain: 'trifit.stacksjs.com',
+      redirect: 'https://trifitla.stacksjs.com',
+    },
+
+    // The `www.` variants are declared explicitly because `buddy deploy`'s DNS
+    // reconcile publishes an A record for `www.<domain>` on EVERY site domain,
+    // while the gateway's autoWww only routes `www` for a two-label apex. On a
+    // three-label host that combination leaves a record with no route and no
+    // certificate: the name resolves and then fails TLS verification, which is
+    // worse for a visitor than not existing. Declaring them turns the records
+    // the deploy insists on creating into real, certificated redirects.
+    wwwMain: {
+      domain: 'www.trifitla.stacksjs.com',
+      redirect: 'https://trifitla.stacksjs.com',
+    },
+
+    wwwTrifitAlias: {
+      domain: 'www.trifit.stacksjs.com',
+      redirect: 'https://trifitla.stacksjs.com',
+    },
+
     // API (bun-router). Deliberately no `domain`/`path`: the rpx gateway skips
     // domain-less sites, so this stays loopback-only and is reached only
     // through the app's same-origin /api proxy.

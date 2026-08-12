@@ -1,0 +1,8 @@
+# This is an unofficial design preview of trifitla.com, not a TRIFIT LA
+# property. It must not be indexed: a second copy of the club's own copy,
+# prices and hours competing with the real site in search results would be
+# worse than useless to anyone looking for the gym.
+#
+# The page's <link rel="canonical"> already points at https://trifitla.com/.
+User-agent: *
+Disallow: /
