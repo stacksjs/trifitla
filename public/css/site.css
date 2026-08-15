@@ -549,7 +549,11 @@ p { margin: 0; }
   scroll-padding-left: max(var(--gutter), calc((100% - var(--shell)) / 2 + var(--gutter)));
   padding-bottom: 0.5rem;
   overflow-x: auto;
-  scroll-snap-type: x mandatory;
+  /* Proximity, not mandatory. The cards scale their image on hover, and a
+    mandatory container re-snaps on any layout change inside it — which slides
+    the card out from under the cursor, drops the hover, un-scales the image,
+    and snaps again. Proximity leaves the scroll position alone. */
+  scroll-snap-type: x proximity;
   scrollbar-width: thin;
   overscroll-behavior-x: contain;
 }
@@ -622,7 +626,6 @@ p { margin: 0; }
 
 @media (min-width: 720px) {
   .rail { grid-auto-columns: minmax(250px, 1fr); }
-  .rail { scroll-snap-type: x proximity; }
 }
 
 /* ── Coaching: photograph and text, two columns ───────────────── */
@@ -901,6 +904,15 @@ p { margin: 0; }
   to { opacity: 1; transform: none; }
 }
 
+/* Fades only. See `.rise` below for why the scroll-linked reveal must not
+  move anything. */
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* The hero runs once on load, over a fixed 0.7s, so it may translate: it
+  settles before anyone can point at it. */
 .hero-animate > * {
   animation: rise-in 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
@@ -908,8 +920,20 @@ p { margin: 0; }
 .hero-animate > *:nth-child(2) { animation-delay: 0.07s; }
 .hero-animate > *:nth-child(3) { animation-delay: 0.14s; }
 
+/*
+ * The section reveal is scroll-linked, and that changes what it is allowed
+ * to animate. With `animation-timeline: view()` the animated value is a live
+ * function of scroll position, so a translate here does not settle — the
+ * element's box tracks the scroll for the whole entry range.
+ *
+ * Most of these elements are, or contain, links. A hit box that moves under
+ * a stationary cursor produces a hover that is entered and left on every
+ * frame: the pointer cursor flickers against the arrow, and :hover styles
+ * strobe. So this animates opacity, which does not affect layout or
+ * hit-testing, and leaves translation to the one-shot hero animation above.
+ */
 .rise {
-  animation: rise-in 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation: fade-in 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
   animation-timeline: view();
   animation-range: entry 0% entry 40%;
 }
