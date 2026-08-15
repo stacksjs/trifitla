@@ -1,0 +1,53 @@
+{{--
+  Shared footer. Takes `club`, `hours`, `footerColumns`, and `legalLinks`.
+--}}
+<footer class="footer">
+  <div class="shell">
+    <div class="footer-grid">
+      <div>
+        <a data-stx-link class="brand" href="/" aria-label="TRIFIT LA, home">
+          <img src="/images/trifit/TRIFIT_LOGOS_white_horizontal.png" alt="TRIFIT LA" width="132" height="25">
+        </a>
+        <address>
+          {{ club.street }}<br>
+          {{ club.city }}<br>
+          <a href="{{ club.phoneHref }}">{{ club.phone }}</a><br>
+          <a href="mailto:{{ club.email }}">{{ club.email }}</a>
+        </address>
+      </div>
+
+      @foreach (footerColumns as column)
+        <div>
+          <h4>{{ column.title }}</h4>
+          <div class="footer-links">
+            @foreach (column.links as link)
+              <a data-stx-link href="{{ link.url }}">{{ link.label }}</a>
+            @endforeach
+          </div>
+        </div>
+      @endforeach
+
+      <div>
+        <h4>Hours</h4>
+        <div class="footer-links">
+          @foreach (hours as row)
+            <span>{{ row.short }}, {{ row.time }}</span>
+          @endforeach
+        </div>
+        <h4 class="mt-xl">Members</h4>
+        <div class="footer-links">
+          <a href="{{ club.memberPortal }}" rel="noopener">Member portal login</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>&copy; 2026 TRIFIT LA. Family owned in Santa Monica since {{ club.since }}.</span>
+      <span class="footer-legal">
+        @foreach (legalLinks as link)
+          <a data-stx-link href="{{ link.url }}">{{ link.label }}</a>
+        @endforeach
+      </span>
+    </div>
+  </div>
+</footer>

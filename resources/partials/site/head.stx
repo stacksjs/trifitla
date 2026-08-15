@@ -1,0 +1,82 @@
+{{--
+  Shared document head.
+
+  Every page passes `title`, `description`, and `path`; `image` and `jsonLd`
+  are optional. The theme script runs before first paint so the page never
+  flashes the wrong theme, and the design system arrives as one cached
+  stylesheet rather than being re-inlined on every page.
+--}}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="{{ description }}">
+<title>{{ title }}</title>
+
+<link rel="canonical" href="{{ siteUrl }}{{ path }}">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#080c0a" media="(prefers-color-scheme: dark)">
+
+<meta property="og:type" content="{{ ogType || 'website' }}">
+<meta property="og:site_name" content="TRIFIT LA">
+<meta property="og:url" content="{{ siteUrl }}{{ path }}">
+<meta property="og:title" content="{{ title }}">
+<meta property="og:description" content="{{ description }}">
+<meta property="og:image" content="{{ siteUrl }}{{ image || '/images/trifit/WEB-55.jpg' }}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ title }}">
+<meta name="twitter:description" content="{{ description }}">
+<meta name="twitter:image" content="{{ siteUrl }}{{ image || '/images/trifit/WEB-55.jpg' }}">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Geist:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="/css/site.css">
+
+@if (jsonLd)
+  <script type="application/ld+json">{!! jsonLd !!}</script>
+@endif
+
+<script>
+  /*
+   * Theme, applied before first paint so the page never flashes the wrong
+   * one. Light is the default: only a visitor who has explicitly chosen dark
+   * gets dark. The `dark` class is kept in sync with the attribute so a
+   * framework-level guard cannot leave the two disagreeing.
+   */
+  ;(function () {
+    const ok = function (t) { return t === 'light' || t === 'dark' }
+
+    // ?theme=dark is an override for previews and screenshots. It never
+    // persists, so it cannot quietly become someone's saved preference.
+    let query = ''
+    try { query = new URLSearchParams(location.search).get('theme') || '' }
+    catch {}
+
+    let saved = ''
+    try { saved = localStorage.getItem('trifit-theme') || '' }
+    catch {}
+
+    const theme = ok(query) ? query : (ok(saved) ? saved : 'light')
+    const root = document.documentElement
+    root.setAttribute('data-theme', theme)
+    root.classList.toggle('dark', theme === 'dark')
+
+    window.trifitTheme = function (next) {
+      if (!ok(next))
+        return
+      try { localStorage.setItem('trifit-theme', next) }
+      catch {}
+      root.setAttribute('data-theme', next)
+      root.classList.toggle('dark', next === 'dark')
+      const btn = document.querySelector('.theme-switch')
+      if (btn) {
+        btn.setAttribute('aria-pressed', String(next === 'dark'))
+        btn.setAttribute('aria-label', next === 'dark' ? 'Switch to light theme' : 'Switch to dark theme')
+      }
+    }
+
+    window.trifitThemeToggle = function () {
+      window.trifitTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark')
+    }
+  })()
+</script>
