@@ -1,0 +1,150 @@
+<script server>
+/*
+ * Blog post. The body is the club's own writing, ported across; everything
+ * around it — the header, the meta line, the neighbours at the foot — is
+ * derived from the shared post index so no fact is stated twice.
+ */
+
+import { articleJsonLd, neighbours, posts } from '../../site/blog'
+import { club, footerColumns, hours, legalLinks, navLinks, siteUrl } from '../../site/club'
+
+const slug = 'the-power-of-recovery'
+const post = posts.find(p => p.slug === slug)
+const { prev, next } = neighbours(slug)
+const path = `/blog/${slug}`
+</script>
+
+@nolayout
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    @include('site/head', {
+      title: `${post.title} - TRIFIT LA`,
+      description: post.excerpt,
+      path,
+      siteUrl,
+      image: post.image,
+      ogType: 'article',
+      jsonLd: articleJsonLd(post, siteUrl),
+    })
+  </head>
+
+  <body>
+    @include('site/nav', { navLinks, current: '/blog' })
+
+    <main>
+      <article>
+        <header class="page-head">
+          <div class="shell">
+            <nav class="crumbs" aria-label="Breadcrumb">
+              <a data-stx-link href="/">Home</a>
+              <span aria-hidden="true">/</span>
+              <a data-stx-link href="/blog">Blog</a>
+              <span aria-hidden="true">/</span>
+              <span>{{ post.topic }}</span>
+            </nav>
+            <span class="eyebrow">{{ post.topic }}</span>
+            <h1>{{ post.title }}</h1>
+            <div class="article-meta">
+              <time datetime="{{ post.date }}">{{ post.dateLabel }}</time>
+              <span>{{ post.minutes }} minute read</span>
+              <span>TRIFIT LA</span>
+            </div>
+          </div>
+        </header>
+
+        <div class="section shell">
+          <figure class="prose-figure post-hero">
+            <img src="{{ post.image }}" alt="{{ post.alt }}" width="1400" height="933" fetchpriority="high" decoding="async">
+          </figure>
+
+          <div class="prose">
+      <p>Whether you're a high-performance athlete, weekend warrior, or just trying to stay consistent with your workouts, one thing remains true: Recovery is where the results happen. At TRIFIT LA, we take your performance seriously – and that means prioritizing recovery just as much as training.</p>
+      <p>From cutting-edge tools to time-tested techniques, here's how our recovery suite helps you bounce back faster, reduce injury risk, and keep showing up as your strongest self.</p>
+      <h2>Why Recovery Matters</h2>
+      <p>Recovery isn't just about feeling better — it's about optimizing your gains, improving mobility, reducing inflammation, and supporting your long-term health. When your body is given the right tools to repair and rebuild, you'll experience:</p>
+      <ul>
+        <li>Reduced muscle soreness</li>
+        <li>Faster return to training</li>
+        <li>Enhanced mental clarity and focus</li>
+        <li>Better sleep quality</li>
+        <li>Increased range of motion</li>
+        <li>Lowered risk of overtraining or injury</li>
+      </ul>
+      <p>At TRIFIT LA, we've built a comprehensive recovery experience designed to support your whole-body wellness.</p>
+      <h3>Sauna: Sweat, Detox &amp; Relax</h3>
+      <p>Our dry sauna uses high heat to stimulate circulation, flush toxins, and promote muscle recovery. It also helps reduce stress levels and supports immune function. Post-workout, a sauna session can aid in relaxing both your body and mind.</p>
+      <p>Benefits of Sauna:</p>
+      <ul>
+        <li>Reduces muscle soreness</li>
+        <li>Boosts circulation</li>
+        <li>Promotes detoxification</li>
+        <li>Enhances recovery hormone production</li>
+      </ul>
+      <h3>Steam Room: Breathe Easy &amp; Unwind</h3>
+      <p>The steam room combines warmth and humidity to open up airways, loosen tight muscles, and improve skin health. It's an ideal complement to intense cardio or strength sessions and supports mental clarity.</p>
+      <p>Benefits of Steam:</p>
+      <ul>
+        <li>Improves respiratory function</li>
+        <li>Relieves joint stiffness</li>
+        <li>Supports skin hydration</li>
+        <li>Enhances relaxation and sleep</li>
+      </ul>
+      <h3>Cold Plunge: Boost Recovery with Contrast Therapy</h3>
+      <p>Our cold plunge offers a quick, invigorating way to reduce inflammation, boost mood, and jumpstart your recovery. Alternating heat and cold (contrast therapy) is a proven method for increasing circulation and decreasing delayed onset muscle soreness (DOMS).</p>
+      <p>Benefits of Cold Plunge:</p>
+      <ul>
+        <li>Reduces inflammation and swelling</li>
+        <li>Speeds up muscle recovery</li>
+        <li>Enhances mental resilience</li>
+        <li>Improves circulation when paired with sauna</li>
+      </ul>
+      <h3>Massage &amp; Tools: Targeted Relief</h3>
+      <p>Recovery doesn't stop at passive therapies. At TRIFIT LA, you can access massage chairs for deep tissue relief, as well as a variety of massage tools like foam rollers, massage guns, and trigger point balls to support self-myofascial release.</p>
+      <p>Benefits of Massage &amp; Tools:</p>
+      <ul>
+        <li>Relieves tight, knotted muscles</li>
+        <li>Improves blood flow and mobility</li>
+        <li>Helps correct imbalances</li>
+        <li>Supports stress reduction</li>
+      </ul>
+          </div>
+
+          <nav class="post-nav" aria-label="More posts">
+            @if (prev)
+              <a data-stx-link href="/blog/{{ prev.slug }}">
+                <span>Older</span>
+                <b>{{ prev.title }}</b>
+              </a>
+            @else
+              <span></span>
+            @endif
+            @if (next)
+              <a data-stx-link class="is-next" href="/blog/{{ next.slug }}">
+                <span>Newer</span>
+                <b>{{ next.title }}</b>
+              </a>
+            @endif
+          </nav>
+        </div>
+      </article>
+
+      <section class="section--tight shell">
+        <div class="closer">
+          <div>
+            <h2>Come and see the club for yourself.</h2>
+          </div>
+          <div>
+            <p>Call ahead for a tour, or try everything for a day with a $39 day pass.</p>
+            <div class="hero-cta">
+              <a data-stx-link class="btn btn--primary" href="/visit-us">Book a tour</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    @include('site/footer', { club, hours, footerColumns, legalLinks })
+  </body>
+</html>

@@ -1,0 +1,164 @@
+<script server>
+/*
+ * Blog post. The body is the club's own writing, ported across; everything
+ * around it — the header, the meta line, the neighbours at the foot — is
+ * derived from the shared post index so no fact is stated twice.
+ */
+
+import { articleJsonLd, neighbours, posts } from '../../site/blog'
+import { club, footerColumns, hours, legalLinks, navLinks, siteUrl } from '../../site/club'
+
+const slug = 'local-gym-vs-big-box-gym'
+const post = posts.find(p => p.slug === slug)
+const { prev, next } = neighbours(slug)
+const path = `/blog/${slug}`
+</script>
+
+@nolayout
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    @include('site/head', {
+      title: `${post.title} - TRIFIT LA`,
+      description: post.excerpt,
+      path,
+      siteUrl,
+      image: post.image,
+      ogType: 'article',
+      jsonLd: articleJsonLd(post, siteUrl),
+    })
+  </head>
+
+  <body>
+    @include('site/nav', { navLinks, current: '/blog' })
+
+    <main>
+      <article>
+        <header class="page-head">
+          <div class="shell">
+            <nav class="crumbs" aria-label="Breadcrumb">
+              <a data-stx-link href="/">Home</a>
+              <span aria-hidden="true">/</span>
+              <a data-stx-link href="/blog">Blog</a>
+              <span aria-hidden="true">/</span>
+              <span>{{ post.topic }}</span>
+            </nav>
+            <span class="eyebrow">{{ post.topic }}</span>
+            <h1>{{ post.title }}</h1>
+            <div class="article-meta">
+              <time datetime="{{ post.date }}">{{ post.dateLabel }}</time>
+              <span>{{ post.minutes }} minute read</span>
+              <span>TRIFIT LA</span>
+            </div>
+          </div>
+        </header>
+
+        <div class="section shell">
+          <figure class="prose-figure post-hero">
+            <img src="{{ post.image }}" alt="{{ post.alt }}" width="1400" height="933" fetchpriority="high" decoding="async">
+          </figure>
+
+          <div class="prose">
+      <p>Choosing the right gym can have a major impact on your results.</p>
+      <p>In Los Angeles, you have no shortage of options. Some people are drawn to larger gyms like John Reed, Equinox, or Bay Club for their size, amenities, and flexibility. Others prefer a more personal experience at a locally owned gym.</p>
+      <p>The truth is, both can be great depending on your goals, personality, and training style.</p>
+      <p>But if your priority is getting results as efficiently as possible, the training environment you choose matters more than most people realize.</p>
+      <h2>What Is a Big Box Gym?</h2>
+      <p>A big box gym is typically a larger fitness facility that offers open gym access, a wide variety of equipment, and, in some cases, extra amenities like locker rooms, recovery areas, pools, or cafes.</p>
+      <p>In the Santa Monica and West Los Angeles area, examples of this style of gym include places like John Reed, Equinox, and Bay Club.</p>
+      <p>These gyms can be a strong fit for people who want flexibility and enjoy training independently.</p>
+      <p>Benefits of a big box gym can include:</p>
+      <ul>
+        <li>Access to a large amount of equipment</li>
+        <li>Flexible workout times</li>
+        <li>Amenities beyond the gym floor</li>
+        <li>A familiar membership model</li>
+      </ul>
+      <h2>What Is a Locally Owned Gym?</h2>
+      <p>A locally owned gym usually offers a more personal and coaching-driven training experience.</p>
+      <p>Instead of feeling like just another member, you're more likely to get guidance, accountability, and a stronger sense of community. For many people, that creates a more consistent and results-focused experience.</p>
+      <p>At a locally owned facility like TRIFIT LA, the emphasis is often on coaching, structure, and building long-term success—not just access to equipment.</p>
+      <p>Benefits of a locally owned gym can include:</p>
+      <ul>
+        <li>More personalized support</li>
+        <li>Greater accountability</li>
+        <li>A stronger sense of community</li>
+        <li>More structure in your workouts</li>
+      </ul>
+      <h2>Key Differences Between a Local Gym and a Big Box Gym</h2>
+      <h2>Which One Is Better for Results?</h2>
+      <p><strong>Short answer:</strong> a locally owned gym often leads to better results for people who want coaching, accountability, and a more personalized experience.</p>
+      <p>That doesn't mean a big box gym is the wrong choice. For experienced gym-goers who already know how to program their workouts and stay consistent on their own, a larger gym can work very well.</p>
+      <p>But for many people, better results come from having a clear plan, support, and a training environment that keeps them engaged.</p>
+      <h2>Who Should Choose a Big Box Gym?</h2>
+      <p>A larger gym may be the right fit if:</p>
+      <ul>
+        <li>You're already confident designing your own workouts</li>
+        <li>You prefer training independently</li>
+        <li>You value amenities and flexible access</li>
+        <li>You're comfortable staying accountable on your own</li>
+      </ul>
+      <h2>Who Should Choose a Locally Owned Gym?</h2>
+      <p>A locally owned gym may be the better choice if:</p>
+      <ul>
+        <li>You want more support and guidance</li>
+        <li>You get better results with accountability</li>
+        <li>You value a stronger community</li>
+        <li>You want a more structured path to progress</li>
+      </ul>
+      <h2>What Makes Some Local Gyms Different</h2>
+      <p>Not all locally owned gyms are the same.</p>
+      <p>While many focus primarily on coaching and community, some combine that personalized experience with the high-end amenities you would typically expect from larger facilities.</p>
+      <p>At TRIFIT LA, members get the best of both worlds—expert coaching, structured training, and a strong community, along with premium amenities like saunas, cold plunge, massage chairs, pool access, and a full class schedule.</p>
+      <p>This combination allows you to train with purpose while also prioritizing recovery and overall wellness.</p>
+      <h2>Why Training Environment Matters</h2>
+      <p>The best gym isn't always the biggest or the one with the most amenities. It's the one that helps you stay consistent, train with purpose, and keep progressing.</p>
+      <p>That's why many people looking for a more personalized fitness experience choose personal training services at TRIFIT LA or join TRIFIT LA classes for added structure and support.</p>
+      <h2>The Impact of Supporting Local</h2>
+      <p>Choosing a locally owned gym doesn't just affect your workouts—it can also have a positive impact on your community.</p>
+      <p>Local businesses often reinvest into the neighborhood, support other small businesses, and create a more connected and personal environment. Instead of being just another membership, you become part of a community that values relationships, consistency, and shared progress.</p>
+      <p>For many people, that sense of connection becomes a key factor in staying motivated and committed long-term.</p>
+      <h2>Final Takeaway</h2>
+      <p>If you're deciding between a locally owned gym and a larger gym like John Reed, Equinox, or Bay Club, the best choice comes down to what helps you get results consistently.</p>
+      <p>If you thrive with independence, a big box gym may be a strong fit. If you want accountability, coaching, community, and premium amenities, a locally owned gym like TRIFIT LA can offer a more complete experience.</p>
+      <p>Explore TRIFIT LA to see how a more personalized training experience can help you reach your goals.</p>
+          </div>
+
+          <nav class="post-nav" aria-label="More posts">
+            @if (prev)
+              <a data-stx-link href="/blog/{{ prev.slug }}">
+                <span>Older</span>
+                <b>{{ prev.title }}</b>
+              </a>
+            @else
+              <span></span>
+            @endif
+            @if (next)
+              <a data-stx-link class="is-next" href="/blog/{{ next.slug }}">
+                <span>Newer</span>
+                <b>{{ next.title }}</b>
+              </a>
+            @endif
+          </nav>
+        </div>
+      </article>
+
+      <section class="section--tight shell">
+        <div class="closer">
+          <div>
+            <h2>Come and see the club for yourself.</h2>
+          </div>
+          <div>
+            <p>Call ahead for a tour, or try everything for a day with a $39 day pass.</p>
+            <div class="hero-cta">
+              <a data-stx-link class="btn btn--primary" href="/visit-us">Book a tour</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    @include('site/footer', { club, hours, footerColumns, legalLinks })
+  </body>
+</html>

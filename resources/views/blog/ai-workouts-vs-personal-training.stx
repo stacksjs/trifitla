@@ -1,0 +1,121 @@
+<script server>
+/*
+ * Blog post. The body is the club's own writing, ported across; everything
+ * around it — the header, the meta line, the neighbours at the foot — is
+ * derived from the shared post index so no fact is stated twice.
+ */
+
+import { articleJsonLd, neighbours, posts } from '../../site/blog'
+import { club, footerColumns, hours, legalLinks, navLinks, siteUrl } from '../../site/club'
+
+const slug = 'ai-workouts-vs-personal-training'
+const post = posts.find(p => p.slug === slug)
+const { prev, next } = neighbours(slug)
+const path = `/blog/${slug}`
+</script>
+
+@nolayout
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    @include('site/head', {
+      title: `${post.title} - TRIFIT LA`,
+      description: post.excerpt,
+      path,
+      siteUrl,
+      image: post.image,
+      ogType: 'article',
+      jsonLd: articleJsonLd(post, siteUrl),
+    })
+  </head>
+
+  <body>
+    @include('site/nav', { navLinks, current: '/blog' })
+
+    <main>
+      <article>
+        <header class="page-head">
+          <div class="shell">
+            <nav class="crumbs" aria-label="Breadcrumb">
+              <a data-stx-link href="/">Home</a>
+              <span aria-hidden="true">/</span>
+              <a data-stx-link href="/blog">Blog</a>
+              <span aria-hidden="true">/</span>
+              <span>{{ post.topic }}</span>
+            </nav>
+            <span class="eyebrow">{{ post.topic }}</span>
+            <h1>{{ post.title }}</h1>
+            <div class="article-meta">
+              <time datetime="{{ post.date }}">{{ post.dateLabel }}</time>
+              <span>{{ post.minutes }} minute read</span>
+              <span>TRIFIT LA</span>
+            </div>
+          </div>
+        </header>
+
+        <div class="section shell">
+          <figure class="prose-figure post-hero">
+            <img src="{{ post.image }}" alt="{{ post.alt }}" width="1400" height="933" fetchpriority="high" decoding="async">
+          </figure>
+
+          <div class="prose">
+      <p>Artificial intelligence is changing the way people approach fitness. From AI-generated workout plans to form feedback apps and personalized programming, technology is making workouts more accessible than ever.</p>
+      <p>But as smart as AI has become, many people are realizing something important: fitness is not just about data. It is also about accountability, motivation, support, and human connection.</p>
+      <p>That is why the real conversation is not simply “AI is good” or “AI is bad.” It is about understanding the difference between AI-powered workouts and in-person coaching, and knowing which one actually helps people stay consistent long term.</p>
+      <p>For many people, AI can be a helpful starting point. But for lasting results, confidence, and real social wellness, the in-person experience still matters.</p>
+      <p>If you are looking for a fitness experience that combines expert guidance with a stronger sense of connection, TRIFIT LA has built its approach around personalized support, community, and a premium training environment.</p>
+      <h2>What AI-Powered Workouts Do Well</h2>
+      <p>AI fitness tools can be useful for structure and convenience. They can help generate workout plans, suggest progressions, track performance, and give users a sense of direction when they do not know where to begin.</p>
+      <p>That convenience matters. For busy professionals, beginners, or anyone trying to squeeze in training around a packed schedule, AI can lower the barrier to entry.</p>
+      <p>But convenience is not the same as coaching.</p>
+      <p>AI cannot fully read your energy, adjust for stress in real time, recognize subtle movement compensations the way an experienced trainer can, or create the kind of accountability that comes from walking into a space where people know your name.</p>
+      <p>That is where in-person training changes the game. At TRIFIT LA Services, members have access to expert coaching designed around real goals, real bodies, and real-life needs. And for those who thrive in a group setting, TRIFIT LA Classes create the kind of energy and momentum that no app can replicate alone.</p>
+      <p>Fitness is not only about getting a plan. It is about following through on that plan consistently. The right environment makes that easier.</p>
+      <h2>Why In-Person Fitness Wins on Social Wellness and Community</h2>
+      <p>The biggest thing AI still cannot replace is community.</p>
+      <p>People are more likely to stay committed when fitness becomes part of a lifestyle instead of a solo task on a screen. Training in a motivating environment, being surrounded by other people working toward goals, and having access to coaches and supportive staff creates a deeper experience than simply following prompts from an app.</p>
+      <p>That is especially true for people who want fitness to support not just performance, but also mental well-being, social connection, and long-term consistency.</p>
+      <p>At TRIFIT LA, fitness goes beyond reps and metrics. Members can access a wide variety of amenities and training options through membership benefits, explore restorative options through recovery services, and take the first step by visiting the club to find the right fit.</p>
+      <p>AI may help organize a workout. But real people create accountability, belonging, and the kind of social wellness that keeps you coming back.</p>
+      <p>The future of fitness is not just smarter programming. It is better human connection.</p>
+      <p>If you want more than an algorithm, TRIFIT LA offers a place to train, recover, connect, and be part of a real community.</p>
+          </div>
+
+          <nav class="post-nav" aria-label="More posts">
+            @if (prev)
+              <a data-stx-link href="/blog/{{ prev.slug }}">
+                <span>Older</span>
+                <b>{{ prev.title }}</b>
+              </a>
+            @else
+              <span></span>
+            @endif
+            @if (next)
+              <a data-stx-link class="is-next" href="/blog/{{ next.slug }}">
+                <span>Newer</span>
+                <b>{{ next.title }}</b>
+              </a>
+            @endif
+          </nav>
+        </div>
+      </article>
+
+      <section class="section--tight shell">
+        <div class="closer">
+          <div>
+            <h2>Come and see the club for yourself.</h2>
+          </div>
+          <div>
+            <p>Call ahead for a tour, or try everything for a day with a $39 day pass.</p>
+            <div class="hero-cta">
+              <a data-stx-link class="btn btn--primary" href="/visit-us">Book a tour</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    @include('site/footer', { club, hours, footerColumns, legalLinks })
+  </body>
+</html>

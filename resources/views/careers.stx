@@ -1,0 +1,176 @@
+<script server>
+/*
+ * Careers. Two open roles, described as the club describes them, plus the
+ * honest pitch for working at an independent gym rather than a chain.
+ */
+
+import { club, clubJsonLd, footerColumns, hours, legalLinks, navLinks, siteUrl } from '../site/club'
+
+const path = '/careers'
+const title = 'Careers - TRIFIT LA'
+const description = 'Work at Santa Monica\'s largest independent, family-owned health club. We accept resumes on a rolling basis for assistant general manager and front desk / member services roles.'
+
+const roles = [
+  {
+    slug: 'assistant-general-manager',
+    title: 'Assistant general manager',
+    type: 'Full time, on site',
+    summary: 'As part of our management team you will play a key leadership role in daily operations, member experience, and team coordination. This suits someone with strong people skills, a sharp eye for detail, and a genuine interest in fitness and community. You will work closely with leadership to keep TRIFIT LA running at a high level, on the floor and behind the scenes.',
+    traits: [
+      'Leadership and team-building mindset',
+      'Operational and customer service experience',
+      'Familiarity with fitness or wellness environments',
+      'Proactive, adaptable, and solutions-oriented',
+    ],
+  },
+  {
+    slug: 'front-desk-member-services',
+    title: 'Front desk / member services',
+    type: 'Full or part time, on site',
+    summary: 'As the first face our members see, you set the tone for the whole TRIFIT LA experience. We are looking for someone energetic, professional, and personable to run front desk operations, greet members, handle check-ins and inquiries, and keep the place feeling welcoming. You will be a key part of our community-focused culture.',
+    traits: [
+      'Strong communication and people skills',
+      'Detail-oriented and organised',
+      'Reliable, punctual, and team-minded',
+      'Able to multitask in a fast-paced environment',
+      'A passion for health, fitness, or wellness is a big plus',
+    ],
+  },
+]
+</script>
+
+@nolayout
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    @include('site/head', {
+      title,
+      description,
+      path,
+      siteUrl,
+      image: '/images/trifit/be-humble.jpg',
+      jsonLd: clubJsonLd(),
+    })
+  </head>
+
+  <body>
+    @include('site/nav', { navLinks, current: '/about' })
+
+    <main>
+      <section class="page-head">
+        <div class="shell">
+          <nav class="crumbs" aria-label="Breadcrumb">
+            <a data-stx-link href="/">Home</a>
+            <span aria-hidden="true">/</span>
+            <a data-stx-link href="/about">About us</a>
+            <span aria-hidden="true">/</span>
+            <span>Careers</span>
+          </nav>
+          <span class="eyebrow">Rolling applications</span>
+          <h1>Work somewhere the owners know your <em>name</em>.</h1>
+          <p>We are accepting resumes on a rolling basis. One of our trainers started on this front desk, got certified while working here, and now teaches classes — that route is open, and it is not a story we made up for a careers page.</p>
+          <div class="hero-cta">
+            <a class="btn btn--primary" href="mailto:{{ club.email }}">Send us a resume</a>
+            <a data-stx-link class="btn btn--ghost" href="/about#team">Meet the team</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Roles ─────────────────────────────────────────────────── -->
+      <section class="section shell" aria-labelledby="roles-heading">
+        <div class="section-head rise">
+          <h2 id="roles-heading">Open roles</h2>
+          <p>Two right now. If neither fits and you still want to work here, send something anyway — we read them.</p>
+        </div>
+
+        <div class="grid grid--2">
+          @foreach (roles as role)
+            <article class="card rise" id="{{ role.slug }}">
+              <div class="card-body">
+                <h3>{{ role.title }}</h3>
+                <div class="card-meta">
+                  <span>{{ role.type }}</span>
+                </div>
+                <p>{{ role.summary }}</p>
+                <h4 class="card-subhead">Key traits we are looking for</h4>
+                <ul class="checks mt-sm">
+                  @foreach (role.traits as trait)
+                    <li>
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5 9.5 18 20 6.5" /></svg>
+                      <span>{{ trait }}</span>
+                    </li>
+                  @endforeach
+                </ul>
+                <div class="card-foot">
+                  <a class="btn btn--primary btn--sm" href="mailto:{{ club.email }}?subject={{ role.title }}">Apply for this role</a>
+                </div>
+              </div>
+            </article>
+          @endforeach
+        </div>
+
+        <div class="callout rise">
+          <div>
+            <h3>How to apply</h3>
+            <p>Email {{ club.email }} with the role title as your subject line, and include a cover letter and a resume. If you would rather call first, the front desk is on {{ club.phone }}.</p>
+          </div>
+          <div>
+            <a class="btn btn--ghost" href="{{ club.phoneHref }}">Call the club</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Why here ──────────────────────────────────────────────── -->
+      <section class="section band" aria-labelledby="why-heading">
+        <div class="shell">
+          <div class="split split--reverse">
+            <div class="split-media rise">
+              <img src="/images/trifit/be-humble.jpg" alt="The front desk and training floor at TRIFIT LA, with the Be Humble Stay Hungry mural" width="1400" height="933" loading="lazy" decoding="async">
+            </div>
+            <div class="rise">
+              <div class="section-head">
+                <h2 id="why-heading">What it is like here</h2>
+                <p>Independent, family owned, {{ new Date().getFullYear() - club.since }} years in one neighbourhood.</p>
+              </div>
+              <ul class="checks">
+                <li>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5 9.5 18 20 6.5" /></svg>
+                  <span>The owners are in the building. Decisions get made in days, not quarters.</span>
+                </li>
+                <li>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5 9.5 18 20 6.5" /></svg>
+                  <span>No sales quotas dressed up as member care.</span>
+                </li>
+                <li>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5 9.5 18 20 6.5" /></svg>
+                  <span>Members who have been coming for years and will know your name within a fortnight.</span>
+                </li>
+                <li>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5 9.5 18 20 6.5" /></svg>
+                  <span>A team that includes exercise physiologists, USAT All-American coaches, and ERYT-500 yoga instructors, and that is happy to teach you things.</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section--tight shell">
+        <div class="closer rise">
+          <div>
+            <h2>Think you are the right fit?</h2>
+          </div>
+          <div>
+            <p>Cover letter and resume to {{ club.email }}, with the role in the subject line.</p>
+            <div class="hero-cta">
+              <a class="btn btn--primary" href="mailto:{{ club.email }}">Get in touch</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    @include('site/footer', { club, hours, footerColumns, legalLinks })
+  </body>
+</html>

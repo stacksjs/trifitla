@@ -1,0 +1,124 @@
+<script server>
+/*
+ * Benefits and amenities.
+ *
+ * Everything in the building, and the three things outside it, each with the
+ * photograph of the actual room. The recovery suite gets equal billing with
+ * the weight floor because that is how the club is actually used.
+ */
+
+import { club, clubJsonLd, footerColumns, hours, included, legalLinks, navLinks, siteUrl } from '../site/club'
+import { amenityGroups } from '../site/membership'
+
+const path = '/benefits'
+const title = 'Benefits and amenities - TRIFIT LA'
+const description = 'Everything inside 29,000 square feet in Santa Monica: 25-yard indoor lap pool, squash courts, cycling, boxing, TRX and yoga studios, cold plunge, sauna, steam room, recovery pods, and free parking.'
+
+const amenityCount = amenityGroups.reduce((n, g) => n + g.items.length, 0)
+</script>
+
+@nolayout
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    @include('site/head', {
+      title,
+      description,
+      path,
+      siteUrl,
+      image: '/images/trifit/trifit-indoors-Pools.jpg',
+      jsonLd: clubJsonLd(),
+    })
+  </head>
+
+  <body>
+    @include('site/nav', { navLinks, current: path })
+
+    <main>
+      <section class="page-head">
+        <div class="shell">
+          <nav class="crumbs" aria-label="Breadcrumb">
+            <a data-stx-link href="/">Home</a>
+            <span aria-hidden="true">/</span>
+            <span>Benefits</span>
+          </nav>
+          <span class="eyebrow">{{ club.squareFeet }} square feet</span>
+          <h1>A club, not a <em>gym floor</em>.</h1>
+          <p>Swim, hit a ball, lift, and recover without leaving the building or taking out a second membership. {{ amenityCount }} spaces and amenities, all of them included.</p>
+          <div class="hero-cta">
+            <a data-stx-link class="btn btn--primary" href="/visit-us">Book a tour</a>
+            <a data-stx-link class="btn btn--ghost" href="/membership">Membership plans</a>
+          </div>
+        </div>
+      </section>
+
+      @foreach (amenityGroups as group)
+        <section class="section {{ group.id === 'recovery' ? 'band' : '' }}" id="{{ group.id }}" aria-labelledby="{{ group.id }}-heading">
+          <div class="shell">
+            <div class="section-head rise">
+              <h2 id="{{ group.id }}-heading">{{ group.name }}</h2>
+              <p>{{ group.lede }}</p>
+            </div>
+
+            <div class="grid grid--3">
+              @foreach (group.items as item)
+                <article class="card rise">
+                  <div class="card-media">
+                    <img src="{{ item.image }}" alt="{{ item.alt }}" width="1200" height="750" loading="lazy" decoding="async">
+                  </div>
+                  <div class="card-body">
+                    <h3>{{ item.name }}</h3>
+                    <p>{{ item.text }}</p>
+                  </div>
+                </article>
+              @endforeach
+            </div>
+          </div>
+        </section>
+      @endforeach
+
+      <!-- ── The rest of it ────────────────────────────────────────── -->
+      <section class="section shell" aria-labelledby="extras-heading">
+        <div class="split">
+          <div class="split-media rise">
+            <img src="/images/trifit/retail-store.jpg" alt="The retail store at TRIFIT LA" width="1400" height="1050" loading="lazy" decoding="async">
+          </div>
+          <div class="rise">
+            <div class="section-head">
+              <h2 id="extras-heading">And the small things</h2>
+              <p>The parts nobody puts on a pricing page, which are the parts you notice every single visit.</p>
+            </div>
+            <ul class="checks">
+              @foreach (included as item)
+                <li>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5 9.5 18 20 6.5" /></svg>
+                  <span>{{ item }}</span>
+                </li>
+              @endforeach
+            </ul>
+            <div class="hero-cta">
+              <a data-stx-link class="btn btn--ghost" href="/classes">See the class schedule</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section--tight shell">
+        <div class="closer rise">
+          <div>
+            <h2>All of it, on every plan.</h2>
+          </div>
+          <div>
+            <p>From $189 a month, or $39 for a day if you would rather try it first.</p>
+            <div class="hero-cta">
+              <a data-stx-link class="btn btn--primary" href="/membership">See plans</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    @include('site/footer', { club, hours, footerColumns, legalLinks })
+  </body>
+</html>

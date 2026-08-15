@@ -1,0 +1,166 @@
+<script server>
+/*
+ * Blog post. The body is the club's own writing, ported across; everything
+ * around it — the header, the meta line, the neighbours at the foot — is
+ * derived from the shared post index so no fact is stated twice.
+ */
+
+import { articleJsonLd, neighbours, posts } from '../../site/blog'
+import { club, footerColumns, hours, legalLinks, navLinks, siteUrl } from '../../site/club'
+
+const slug = 'gym-anxiety-is-real-heres-how-to-get-over-it'
+const post = posts.find(p => p.slug === slug)
+const { prev, next } = neighbours(slug)
+const path = `/blog/${slug}`
+</script>
+
+@nolayout
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    @include('site/head', {
+      title: `${post.title} - TRIFIT LA`,
+      description: post.excerpt,
+      path,
+      siteUrl,
+      image: post.image,
+      ogType: 'article',
+      jsonLd: articleJsonLd(post, siteUrl),
+    })
+  </head>
+
+  <body>
+    @include('site/nav', { navLinks, current: '/blog' })
+
+    <main>
+      <article>
+        <header class="page-head">
+          <div class="shell">
+            <nav class="crumbs" aria-label="Breadcrumb">
+              <a data-stx-link href="/">Home</a>
+              <span aria-hidden="true">/</span>
+              <a data-stx-link href="/blog">Blog</a>
+              <span aria-hidden="true">/</span>
+              <span>{{ post.topic }}</span>
+            </nav>
+            <span class="eyebrow">{{ post.topic }}</span>
+            <h1>{{ post.title }}</h1>
+            <div class="article-meta">
+              <time datetime="{{ post.date }}">{{ post.dateLabel }}</time>
+              <span>{{ post.minutes }} minute read</span>
+              <span>TRIFIT LA</span>
+            </div>
+          </div>
+        </header>
+
+        <div class="section shell">
+          <figure class="prose-figure post-hero">
+            <img src="{{ post.image }}" alt="{{ post.alt }}" width="1400" height="933" fetchpriority="high" decoding="async">
+          </figure>
+
+          <div class="prose">
+      <p>For a lot of people, walking into a gym does not feel motivating. It feels intimidating.</p>
+      <p>Maybe you feel like everyone knows what they're doing except you. Maybe you're worried people are watching you. Maybe you've wanted to start for a while, but every time you think about stepping into a gym, your stress level goes up.</p>
+      <p>If that sounds familiar, you're not weird, lazy, or “just overthinking it.” Gym anxiety is real, and it stops a lot of people from starting a routine that could actually make them feel better physically and mentally.</p>
+      <p><strong>The good news is this:</strong> you do not need to become a hardcore gym person overnight. You do not need to know every machine, lift heavy weights, or pretend to be confident when you're not. You just need a realistic way to start.</p>
+      <p>At TRIFIT LA, we work with people at all different fitness levels, including people who feel uncomfortable, out of place, or overwhelmed in traditional gym environments. If you've ever felt like fitness spaces were built for everyone except you, this article is for you.</p>
+      <h2>What Gym Anxiety Actually Looks Like</h2>
+      <p>Gym anxiety is not always obvious. Sometimes it looks like canceling a workout at the last minute. Sometimes it looks like spending 20 minutes in the parking lot trying to talk yourself into going inside. Sometimes it looks like sticking only to the treadmill because the weight area feels too intimidating.</p>
+      <p>It can sound like:</p>
+      <ul>
+        <li>“I don't want people to look at me.”</li>
+        <li>“I have no idea what I'm doing.”</li>
+        <li>“Everyone else is so far ahead of me.”</li>
+        <li>“I'm probably doing this wrong.”</li>
+        <li>“I'll start when I'm in better shape.”</li>
+      </ul>
+      <p>That last one is especially common, and also one of the biggest traps. A lot of people think they need to get fitter before they deserve to be in the gym. That is completely backwards. The gym is one of the places you go to build confidence, not a place you earn access to after already having it.</p>
+      <h2>Why It Feels So Intense</h2>
+      <p>Most gym anxiety comes from a mix of uncertainty, self-consciousness, and pressure. You're in an unfamiliar environment, surrounded by people who seem comfortable, and there's often an unspoken fear of being judged.</p>
+      <p>Add social media to the mix, and it gets worse. A lot of fitness content makes it seem like everyone has a perfect routine, knows exactly what they're doing, and loves every second of it. Real life is usually much messier than that.</p>
+      <p><strong>Here's the truth:</strong> most people are way more focused on themselves than they are on you. And the people who do know what they're doing? Most of them started out confused too.</p>
+      <h2>How to Get Over Gym Anxiety Without Feeling Stupid</h2>
+      <h3>1. Stop trying to “look like you belong”</h3>
+      <p>You do not need to perform confidence. You do not need the perfect outfit, the perfect playlist, or the perfect routine. You belong in a gym because you decided to show up. That's enough.</p>
+      <h3>2. Go in with a simple plan</h3>
+      <p>One of the biggest reasons people feel anxious is because they walk in without knowing what to do. Decision overload kicks in fast.</p>
+      <p>Keep it simple. Before you go, choose 3 to 5 things you're going to do. For example:</p>
+      <ul>
+        <li>5-minute warm-up walk</li>
+        <li>Goblet squats</li>
+        <li>Dumbbell bench press</li>
+        <li>Seated row</li>
+        <li>10-minute incline walk</li>
+      </ul>
+      <p>You do not need a perfect workout. You need a plan simple enough to follow.</p>
+      <h3>3. Give yourself permission to keep it short</h3>
+      <p>You do not need to spend 90 minutes at the gym to make it count. A focused 30- to 45-minute session is more than enough, especially when you're building confidence.</p>
+      <p>Taking the pressure off helps you stay consistent. Consistency builds comfort.</p>
+      <h3>4. Go during less busy hours</h3>
+      <p>If possible, avoid peak times at first. A quieter gym can make a huge difference when you're already feeling overstimulated. Mid-morning, early afternoon, or later evening often feel more manageable than the after-work rush.</p>
+      <h3>5. Focus on one small win per visit</h3>
+      <p>Do not judge the whole experience by whether you had the “perfect” workout. A win can be:</p>
+      <ul>
+        <li>Walking in without turning around</li>
+        <li>Trying one new machine</li>
+        <li>Finishing your planned workout</li>
+        <li>Staying 10 minutes longer than last time</li>
+      </ul>
+      <p>Confidence usually does not arrive all at once. It builds through proof.</p>
+      <h3>6. Remember that everyone starts somewhere</h3>
+      <p>No one came out of the womb knowing how to set up a cable machine or structure a strength program. Every experienced person you see was once brand new. Being a beginner is not embarrassing. It's normal.</p>
+      <h2>You Don't Have to Figure It Out Alone</h2>
+      <p>For some people, gym anxiety fades once they get a few workouts under their belt. For others, the hardest part is not the workout itself. It's the uncertainty.</p>
+      <p>That's where coaching can help.</p>
+      <p>Working with a trainer can take away the guesswork, the awkwardness, and the pressure of trying to piece everything together on your own. Instead of wondering what to do, whether your form is right, or if your plan is even working, you get structure, support, and a clear next step.</p>
+      <p>At TRIFIT LA, our goal is not to make you feel judged, behind, or out of place. Our goal is to help you feel stronger, more confident, and more comfortable in your body and in your routine.</p>
+      <p>If you're looking for a more structured and personalized approach, explore our training programs designed to meet you where you're at—whether you're brand new to the gym or getting back into a routine.</p>
+      <p>Not sure where to start? You can also book a consultation and we'll walk you through a simple, realistic plan tailored to your goals and comfort level.</p>
+      <h2>Build Confidence Faster with the Right Environment</h2>
+      <p>One of the most overlooked parts of overcoming gym anxiety is your environment. Not all gyms feel the same, and not all coaching styles are the same.</p>
+      <p>At TRIFIT LA, we focus on creating a private, supportive space where you can train without the pressure, crowds, or intimidation that often come with traditional gyms. You can learn more about our approach on our About page.</p>
+      <h2>Final Thoughts</h2>
+      <p>If gym anxiety has been holding you back, you are not alone, and you are not stuck. The answer is not to shame yourself into being more confident. The answer is to make fitness feel more approachable, more structured, and less overwhelming.</p>
+      <p>Start small. Keep it simple. Let consistency do the heavy lifting.</p>
+      <p>And if you want support, TRIFIT LA is here to help.</p>
+      <p>Ready to feel more confident in the gym? Book your consultation here and take the first step toward a routine that actually feels good.</p>
+          </div>
+
+          <nav class="post-nav" aria-label="More posts">
+            @if (prev)
+              <a data-stx-link href="/blog/{{ prev.slug }}">
+                <span>Older</span>
+                <b>{{ prev.title }}</b>
+              </a>
+            @else
+              <span></span>
+            @endif
+            @if (next)
+              <a data-stx-link class="is-next" href="/blog/{{ next.slug }}">
+                <span>Newer</span>
+                <b>{{ next.title }}</b>
+              </a>
+            @endif
+          </nav>
+        </div>
+      </article>
+
+      <section class="section--tight shell">
+        <div class="closer">
+          <div>
+            <h2>Come and see the club for yourself.</h2>
+          </div>
+          <div>
+            <p>Call ahead for a tour, or try everything for a day with a $39 day pass.</p>
+            <div class="hero-cta">
+              <a data-stx-link class="btn btn--primary" href="/visit-us">Book a tour</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    @include('site/footer', { club, hours, footerColumns, legalLinks })
+  </body>
+</html>

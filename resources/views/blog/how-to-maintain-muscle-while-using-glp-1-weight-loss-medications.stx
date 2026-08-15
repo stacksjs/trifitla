@@ -1,0 +1,174 @@
+<script server>
+/*
+ * Blog post. The body is the club's own writing, ported across; everything
+ * around it — the header, the meta line, the neighbours at the foot — is
+ * derived from the shared post index so no fact is stated twice.
+ */
+
+import { articleJsonLd, neighbours, posts } from '../../site/blog'
+import { club, footerColumns, hours, legalLinks, navLinks, siteUrl } from '../../site/club'
+
+const slug = 'how-to-maintain-muscle-while-using-glp-1-weight-loss-medications'
+const post = posts.find(p => p.slug === slug)
+const { prev, next } = neighbours(slug)
+const path = `/blog/${slug}`
+</script>
+
+@nolayout
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    @include('site/head', {
+      title: `${post.title} - TRIFIT LA`,
+      description: post.excerpt,
+      path,
+      siteUrl,
+      image: post.image,
+      ogType: 'article',
+      jsonLd: articleJsonLd(post, siteUrl),
+    })
+  </head>
+
+  <body>
+    @include('site/nav', { navLinks, current: '/blog' })
+
+    <main>
+      <article>
+        <header class="page-head">
+          <div class="shell">
+            <nav class="crumbs" aria-label="Breadcrumb">
+              <a data-stx-link href="/">Home</a>
+              <span aria-hidden="true">/</span>
+              <a data-stx-link href="/blog">Blog</a>
+              <span aria-hidden="true">/</span>
+              <span>{{ post.topic }}</span>
+            </nav>
+            <span class="eyebrow">{{ post.topic }}</span>
+            <h1>{{ post.title }}</h1>
+            <div class="article-meta">
+              <time datetime="{{ post.date }}">{{ post.dateLabel }}</time>
+              <span>{{ post.minutes }} minute read</span>
+              <span>TRIFIT LA</span>
+            </div>
+          </div>
+        </header>
+
+        <div class="section shell">
+          <figure class="prose-figure post-hero">
+            <img src="{{ post.image }}" alt="{{ post.alt }}" width="1400" height="933" fetchpriority="high" decoding="async">
+          </figure>
+
+          <div class="prose">
+      <p>GLP-1 weight loss medications such as Ozempic, Wegovy, Mounjaro, and Zepbound have become increasingly popular for people looking to lose weight. While these medications may support weight loss, many people also want to make sure they are losing fat while maintaining strength, muscle, energy, and long-term fitness.</p>
+      <p>At TRIFIT LA, we do not provide medical advice or guidance on medications. That is a conversation between you and your healthcare provider. What we can speak to is the importance of building a smart, sustainable fitness routine while your body is changing.</p>
+      <p><strong>Disclaimer:</strong> This article is for general educational purposes only and is not medical advice. Always speak with your physician or qualified healthcare provider before starting a new fitness or nutrition routine, especially if you are taking medication or managing a medical condition.</p>
+      <h2>Why Muscle Maintenance Matters During Weight Loss</h2>
+      <p>When someone loses weight quickly, the goal is usually to reduce body fat while preserving as much lean muscle as possible. Muscle plays an important role in strength, posture, metabolism, joint support, balance, and overall quality of life.</p>
+      <p>For many people, the number on the scale is not the full story. A successful transformation should also consider how you feel, how you move, how strong you are, and whether your habits are sustainable long term.</p>
+      <p>This is where strength training, daily movement, proper recovery, and consistent coaching can make a major difference.</p>
+      <h2>The Best Types of Exercise to Support Muscle While Losing Weight</h2>
+      <p>If you are using a GLP-1 medication and have been cleared to exercise by your healthcare provider, your workout routine should focus on consistency, strength, recovery, and gradual progression.</p>
+      <h3>1. Prioritize Strength Training</h3>
+      <p>Strength training is one of the most important tools for maintaining muscle during weight loss. This does not mean you need to lift extremely heavy or train like a bodybuilder. It means your muscles need regular resistance and challenge.</p>
+      <p>A balanced strength program may include exercises such as:</p>
+      <ul>
+        <li>Squats or leg press variations</li>
+        <li>Hip hinges such as deadlifts or Romanian deadlifts</li>
+        <li>Rows and pulling exercises</li>
+        <li>Push-ups, chest presses, or shoulder presses</li>
+        <li>Core stability movements</li>
+        <li>Loaded carries and functional strength exercises</li>
+      </ul>
+      <p>The goal is to train the major muscle groups of the body in a safe and controlled way. For many people, two to four strength sessions per week can be a strong foundation, depending on experience, schedule, recovery, and fitness level.</p>
+      <h3>2. Add Low-Impact Cardio</h3>
+      <p>Cardio can support heart health, endurance, energy, and overall calorie balance. However, when someone is already eating less or losing weight, excessive cardio may not always be the best first priority.</p>
+      <p>Low-impact options are often a smart place to start, including:</p>
+      <ul>
+        <li>Walking</li>
+        <li>Cycling</li>
+        <li>Incline treadmill work</li>
+        <li>Swimming</li>
+        <li>Elliptical training</li>
+      </ul>
+      <p>The best cardio plan is one you can repeat consistently without feeling drained, overly sore, or burned out.</p>
+      <h3>3. Do Not Skip Mobility and Recovery</h3>
+      <p>As your body changes, mobility and recovery become even more important. Stretching, mobility work, foam rolling, breathwork, and rest days can help support better movement quality and reduce the likelihood of overtraining.</p>
+      <p>A strong fitness routine is not just about doing more. It is about doing the right amount consistently.</p>
+      <h2>Common Mistakes to Avoid</h2>
+      <p>When people start losing weight, it can be tempting to focus only on the scale. But if your goal is to look better, feel stronger, and maintain long-term results, there are a few common mistakes to avoid.</p>
+      <h3>Mistake 1: Only Doing Cardio</h3>
+      <p>Cardio is useful, but it should not replace strength training. Muscle needs resistance to be maintained.</p>
+      <h3>Mistake 2: Training Too Hard Too Soon</h3>
+      <p>If your appetite, energy, or recovery feels different, your training may need to be adjusted. More is not always better.</p>
+      <h3>Mistake 3: Ignoring Protein and Nutrition</h3>
+      <p>TRIFIT LA does not prescribe medical nutrition plans, but in general, many active people benefit from paying attention to protein, hydration, and meal quality during weight loss. For specific nutrition guidance, speak with a registered dietitian or qualified healthcare provider.</p>
+      <h3>Mistake 4: Not Having a Plan</h3>
+      <p>Random workouts can help you sweat, but structured training helps you progress. A smart program should match your current fitness level, goals, recovery, and lifestyle.</p>
+      <h2>How TRIFIT LA Can Support Your Fitness Goals</h2>
+      <p>At TRIFIT LA, our approach is centered around sustainable fitness, strength, movement quality, and long-term consistency. We help clients build customized training routines that support their goals without relying on extreme workouts or quick fixes.</p>
+      <p>If you are currently losing weight and want to maintain muscle, improve strength, and feel more confident in your body, a structured fitness plan can help you stay on track.</p>
+      <p>Our coaches can help you focus on:</p>
+      <ul>
+        <li>Strength training</li>
+        <li>Body composition goals</li>
+        <li>Mobility and recovery</li>
+        <li>Accountability</li>
+        <li>Safe progression</li>
+        <li>Long-term lifestyle habits</li>
+      </ul>
+      <p>Whether you are new to fitness or getting back into a routine, the goal is not just weight loss. The goal is to build a stronger, healthier, more capable body.</p>
+      <h2>Frequently Asked Questions</h2>
+      <h3>Can I exercise while taking a GLP-1 weight loss medication?</h3>
+      <p>Many people do exercise while taking GLP-1 medications, but you should always speak with your healthcare provider before starting or changing your fitness routine.</p>
+      <h3>What type of exercise is best for maintaining muscle?</h3>
+      <p>Strength training is typically the most important form of exercise for maintaining muscle during weight loss. This can include resistance machines, free weights, bodyweight exercises, cables, and functional training.</p>
+      <h3>How often should I strength train?</h3>
+      <p>The right frequency depends on your fitness level, schedule, and recovery. Many people do well with two to four strength training sessions per week.</p>
+      <h3>Should I do cardio too?</h3>
+      <p>Yes, cardio can be helpful for heart health, endurance, and overall fitness. The key is to balance cardio with strength training and recovery.</p>
+      <h3>What should I do if I feel low energy during workouts?</h3>
+      <p>If you feel dizzy, unusually fatigued, lightheaded, or unwell during exercise, stop and speak with your healthcare provider. Your workout intensity, timing, hydration, or nutrition may need to be adjusted.</p>
+      <h2>Final Thoughts</h2>
+      <p>GLP-1 medications may support weight loss, but fitness still plays a major role in how your body looks, feels, and performs. By focusing on strength training, smart cardio, mobility, and recovery, you can work toward maintaining muscle and building sustainable habits.</p>
+      <p>If you are in Los Angeles and want support building a safe, personalized fitness routine, TRIFIT LA can help you create a plan designed around strength, consistency, and long-term results.</p>
+      <p>Ready to build strength while working toward your goals? Contact TRIFIT LA to learn more about personal training and customized fitness programs in Los Angeles.</p>
+          </div>
+
+          <nav class="post-nav" aria-label="More posts">
+            @if (prev)
+              <a data-stx-link href="/blog/{{ prev.slug }}">
+                <span>Older</span>
+                <b>{{ prev.title }}</b>
+              </a>
+            @else
+              <span></span>
+            @endif
+            @if (next)
+              <a data-stx-link class="is-next" href="/blog/{{ next.slug }}">
+                <span>Newer</span>
+                <b>{{ next.title }}</b>
+              </a>
+            @endif
+          </nav>
+        </div>
+      </article>
+
+      <section class="section--tight shell">
+        <div class="closer">
+          <div>
+            <h2>Come and see the club for yourself.</h2>
+          </div>
+          <div>
+            <p>Call ahead for a tour, or try everything for a day with a $39 day pass.</p>
+            <div class="hero-cta">
+              <a data-stx-link class="btn btn--primary" href="/visit-us">Book a tour</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    @include('site/footer', { club, hours, footerColumns, legalLinks })
+  </body>
+</html>

@@ -1,0 +1,164 @@
+<script server>
+/*
+ * Classes.
+ *
+ * The club it replaces put a PDF behind a link and a "load more" button in
+ * front of a calendar. This page prints the whole week, with the room and
+ * the coach for every session, and gives each class type a photograph that
+ * shows that class rather than a stock gym floor.
+ */
+
+import { classTypes, schedule, weeklySessionCount } from '../site/classes'
+import { club, clubJsonLd, footerColumns, hours, legalLinks, navLinks, siteUrl } from '../site/club'
+
+const path = '/classes'
+const title = 'Classes - TRIFIT LA'
+const description = `Sixteen class types and ${weeklySessionCount} coached sessions a week in Santa Monica, from HIIT and cycling to Masters swim, Iyengar yoga, breathwork, and the Friday ocean swim. Unlimited with every membership.`
+
+const rooms = [...new Set(schedule.flatMap(day => day.slots.map(slot => slot.where)))].sort()
+</script>
+
+@nolayout
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    @include('site/head', {
+      title,
+      description,
+      path,
+      siteUrl,
+      image: '/images/trifit/HIIT.jpg',
+      jsonLd: clubJsonLd(),
+    })
+  </head>
+
+  <body>
+    @include('site/nav', { navLinks, current: path })
+
+    <main>
+      <section class="page-head">
+        <div class="shell">
+          <nav class="crumbs" aria-label="Breadcrumb">
+            <a data-stx-link href="/">Home</a>
+            <span aria-hidden="true">/</span>
+            <span>Classes</span>
+          </nav>
+          <span class="eyebrow">{{ weeklySessionCount }} sessions a week</span>
+          <h1>Sixteen classes. <em>One</em> schedule.</h1>
+          <p>Indoors and out, from 6 am starts to evening sessions, every one of them included in every membership. No class credits, no per-session charge, no app to fight with.</p>
+          <div class="hero-cta">
+            <a class="btn btn--primary" href="#schedule">See this week</a>
+            <a data-stx-link class="btn btn--ghost" href="/membership">Membership plans</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── The catalogue ─────────────────────────────────────────── -->
+      <section class="section shell" aria-labelledby="catalogue-heading">
+        <div class="section-head rise">
+          <h2 id="catalogue-heading">What we run</h2>
+          <p>Every class is drop-in. A handful cap by space; those tickets go out at the front desk 30 minutes before the class starts.</p>
+        </div>
+
+        <div class="grid grid--3">
+          @foreach (classTypes as item)
+            <article class="card rise" id="{{ item.slug }}">
+              <div class="card-media">
+                <img src="{{ item.image }}" alt="{{ item.alt }}" width="1200" height="750" loading="lazy" decoding="async">
+              </div>
+              <div class="card-body">
+                <h3>{{ item.name }}</h3>
+                <div class="card-meta">
+                  <span>{{ item.where }}</span>
+                  <span>{{ item.length }}</span>
+                </div>
+                <p>{{ item.description }}</p>
+              </div>
+            </article>
+          @endforeach
+        </div>
+      </section>
+
+      <!-- ── The week ──────────────────────────────────────────────── -->
+      <section class="section band" id="schedule" aria-labelledby="schedule-heading">
+        <div class="shell">
+          <div class="section-head rise">
+            <h2 id="schedule-heading">This week, in full</h2>
+            <p>{{ weeklySessionCount }} coached sessions across {{ rooms.length }} spaces. Times and coaches are the ones on the club calendar; the front desk will always know about a last-minute swap.</p>
+          </div>
+
+          <div class="schedule">
+            @foreach (schedule as day)
+              <section class="day rise" aria-labelledby="day-{{ day.day }}">
+                <h3 id="day-{{ day.day }}">{{ day.day }}</h3>
+                @foreach (day.slots as slot)
+                  <div class="slot">
+                    <div class="slot-time">{{ slot.time }}</div>
+                    <div class="slot-name">{{ slot.name }}</div>
+                    <div class="slot-where">{{ slot.where }}</div>
+                    <div class="slot-who">{{ slot.who ? slot.who : 'Open play' }}</div>
+                  </div>
+                @endforeach
+              </section>
+            @endforeach
+          </div>
+
+          <div class="callout rise">
+            <div>
+              <h3>Reservations</h3>
+              <p>Classes are drop-in and need no booking. A pool lane, a swim workout place, a squash court, or the tennis court can be reserved through the member portal: pool and squash up to seven days ahead, tennis three days ahead.</p>
+            </div>
+            <div>
+              <a class="btn btn--primary" href="{{ club.memberPortal }}" rel="noopener">Member portal</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Outdoors ──────────────────────────────────────────────── -->
+      <section class="section shell" aria-labelledby="outdoors-heading">
+        <div class="split split--reverse">
+          <div class="split-media rise">
+            <img src="/images/trifit/ocean-swim-group.jpg" alt="Swimmers wading into the surf at dawn for the TRIFIT LA ocean swim" width="1400" height="933" loading="lazy" decoding="async">
+          </div>
+          <div class="rise">
+            <div class="section-head">
+              <h2 id="outdoors-heading">Two of the best sessions are outside.</h2>
+              <p>Santa Monica is the other half of the club, and neither of these costs anything.</p>
+            </div>
+            <div class="testing">
+              <div>
+                <h3>Ocean swim, Fridays at 6:30 am</h3>
+                <p>May through September, hosted with the LA Tri Club at Lifeguard Tower 26. A coached buoyed course with a lifeguard on the beach and spotters in the water. Free to members and to the public.</p>
+              </div>
+              <div>
+                <h3>Run workout, Tuesdays at 7:30 am</h3>
+                <p>Coached runs with Bernard at Will Rogers State Park. Interval work and run technique, for beginners and seasoned runners alike. Warm-up starts sharp beside the polo field.</p>
+              </div>
+            </div>
+            <div class="hero-cta">
+              <a data-stx-link class="btn btn--ghost" href="/events">All events</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section--tight shell">
+        <div class="closer rise">
+          <div>
+            <h2>Unlimited classes come with every membership.</h2>
+          </div>
+          <div>
+            <p>Month to month with a 60-day minimum. Or try the club for a day for $39.</p>
+            <div class="hero-cta">
+              <a data-stx-link class="btn btn--primary" href="/membership">See plans</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    @include('site/footer', { club, hours, footerColumns, legalLinks })
+  </body>
+</html>

@@ -1,0 +1,154 @@
+<script server>
+/*
+ * Blog post. The body is the club's own writing, ported across; everything
+ * around it — the header, the meta line, the neighbours at the foot — is
+ * derived from the shared post index so no fact is stated twice.
+ */
+
+import { articleJsonLd, neighbours, posts } from '../../site/blog'
+import { club, footerColumns, hours, legalLinks, navLinks, siteUrl } from '../../site/club'
+
+const slug = 'personal-training-vs-group-fitness'
+const post = posts.find(p => p.slug === slug)
+const { prev, next } = neighbours(slug)
+const path = `/blog/${slug}`
+</script>
+
+@nolayout
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    @include('site/head', {
+      title: `${post.title} - TRIFIT LA`,
+      description: post.excerpt,
+      path,
+      siteUrl,
+      image: post.image,
+      ogType: 'article',
+      jsonLd: articleJsonLd(post, siteUrl),
+    })
+  </head>
+
+  <body>
+    @include('site/nav', { navLinks, current: '/blog' })
+
+    <main>
+      <article>
+        <header class="page-head">
+          <div class="shell">
+            <nav class="crumbs" aria-label="Breadcrumb">
+              <a data-stx-link href="/">Home</a>
+              <span aria-hidden="true">/</span>
+              <a data-stx-link href="/blog">Blog</a>
+              <span aria-hidden="true">/</span>
+              <span>{{ post.topic }}</span>
+            </nav>
+            <span class="eyebrow">{{ post.topic }}</span>
+            <h1>{{ post.title }}</h1>
+            <div class="article-meta">
+              <time datetime="{{ post.date }}">{{ post.dateLabel }}</time>
+              <span>{{ post.minutes }} minute read</span>
+              <span>TRIFIT LA</span>
+            </div>
+          </div>
+        </header>
+
+        <div class="section shell">
+          <figure class="prose-figure post-hero">
+            <img src="{{ post.image }}" alt="{{ post.alt }}" width="1400" height="933" fetchpriority="high" decoding="async">
+          </figure>
+
+          <div class="prose">
+      <p>If you're trying to get in the best shape of your life, you've probably asked yourself: should I hire a personal trainer or join group fitness classes?</p>
+      <p>The answer isn't one-size-fits-all—but understanding the differences can save you time, money, and frustration.</p>
+      <h2>What Is Personal Training?</h2>
+      <p>Personal training is a customized fitness experience designed specifically for your body, goals, and lifestyle.</p>
+      <p>At TRIFIT LA personal training, sessions include:</p>
+      <ul>
+        <li>Customized workout plans</li>
+        <li>One-on-one coaching</li>
+        <li>Form correction and injury prevention</li>
+        <li>Progress tracking and accountability</li>
+      </ul>
+      <p><strong>Best for:</strong> People who want fast, targeted results</p>
+      <h2>What Is Group Fitness?</h2>
+      <p>Group fitness includes classes like HIIT, strength circuits, and conditioning workouts done in a group setting.</p>
+      <p>At TRIFIT LA group fitness classes, you get:</p>
+      <ul>
+        <li>High energy and motivation</li>
+        <li>Lower cost per session</li>
+        <li>Community atmosphere</li>
+      </ul>
+      <p><strong>Best for:</strong> People who want fun, consistency, and structure</p>
+      <h2>Personal Training vs Group Fitness: Key Differences</h2>
+      <h2>Which One Gets Better Results?</h2>
+      <p><strong>Short answer:</strong> Personal training delivers faster and more consistent results.</p>
+      <p>Working with a personal trainer in Santa Monica ensures:</p>
+      <ul>
+        <li>Every workout is tailored</li>
+        <li>You avoid wasted effort</li>
+        <li>You reduce injury risk</li>
+        <li>You stay accountable</li>
+      </ul>
+      <p>However, group fitness works extremely well for consistency and motivation, especially if you struggle to stick to a routine. The Best Option (Most People Overlook This) The real secret?</p>
+      <p>Combining both.</p>
+      <p>At TRIFIT LA, many clients combine personal training with group fitness classes to maximize results.</p>
+      <ul>
+        <li>2–3 personal training sessions per week</li>
+        <li>Group classes for conditioning and community</li>
+      </ul>
+      <p>This hybrid approach leads to:</p>
+      <ul>
+        <li>Faster fat loss</li>
+        <li>Better strength gains</li>
+        <li>Higher long-term adherence</li>
+      </ul>
+      <h2>Final Verdict</h2>
+      <ul>
+        <li>Want maximum efficiency and results? → Personal Training</li>
+        <li>Want fun and consistency? → Group Fitness</li>
+        <li>Want the best of both worlds? → Combine them</li>
+      </ul>
+      <h2>Ready to Get Started?</h2>
+      <p>If you're ready to see real results, explore TRIFIT LA and book your first session.</p>
+      <p>Start your transformation today.</p>
+          </div>
+
+          <nav class="post-nav" aria-label="More posts">
+            @if (prev)
+              <a data-stx-link href="/blog/{{ prev.slug }}">
+                <span>Older</span>
+                <b>{{ prev.title }}</b>
+              </a>
+            @else
+              <span></span>
+            @endif
+            @if (next)
+              <a data-stx-link class="is-next" href="/blog/{{ next.slug }}">
+                <span>Newer</span>
+                <b>{{ next.title }}</b>
+              </a>
+            @endif
+          </nav>
+        </div>
+      </article>
+
+      <section class="section--tight shell">
+        <div class="closer">
+          <div>
+            <h2>Come and see the club for yourself.</h2>
+          </div>
+          <div>
+            <p>Call ahead for a tour, or try everything for a day with a $39 day pass.</p>
+            <div class="hero-cta">
+              <a data-stx-link class="btn btn--primary" href="/visit-us">Book a tour</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    @include('site/footer', { club, hours, footerColumns, legalLinks })
+  </body>
+</html>

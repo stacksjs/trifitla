@@ -1,0 +1,130 @@
+<script server>
+/*
+ * Blog post. The body is the club's own writing, ported across; everything
+ * around it — the header, the meta line, the neighbours at the foot — is
+ * derived from the shared post index so no fact is stated twice.
+ */
+
+import { articleJsonLd, neighbours, posts } from '../../site/blog'
+import { club, footerColumns, hours, legalLinks, navLinks, siteUrl } from '../../site/club'
+
+const slug = 'new-year-new-goals-2026-workout-motivation-guide'
+const post = posts.find(p => p.slug === slug)
+const { prev, next } = neighbours(slug)
+const path = `/blog/${slug}`
+</script>
+
+@nolayout
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    @include('site/head', {
+      title: `${post.title} - TRIFIT LA`,
+      description: post.excerpt,
+      path,
+      siteUrl,
+      image: post.image,
+      ogType: 'article',
+      jsonLd: articleJsonLd(post, siteUrl),
+    })
+  </head>
+
+  <body>
+    @include('site/nav', { navLinks, current: '/blog' })
+
+    <main>
+      <article>
+        <header class="page-head">
+          <div class="shell">
+            <nav class="crumbs" aria-label="Breadcrumb">
+              <a data-stx-link href="/">Home</a>
+              <span aria-hidden="true">/</span>
+              <a data-stx-link href="/blog">Blog</a>
+              <span aria-hidden="true">/</span>
+              <span>{{ post.topic }}</span>
+            </nav>
+            <span class="eyebrow">{{ post.topic }}</span>
+            <h1>{{ post.title }}</h1>
+            <div class="article-meta">
+              <time datetime="{{ post.date }}">{{ post.dateLabel }}</time>
+              <span>{{ post.minutes }} minute read</span>
+              <span>TRIFIT LA</span>
+            </div>
+          </div>
+        </header>
+
+        <div class="section shell">
+          <figure class="prose-figure post-hero">
+            <img src="{{ post.image }}" alt="{{ post.alt }}" width="1400" height="933" fetchpriority="high" decoding="async">
+          </figure>
+
+          <div class="prose">
+      <p>Happy New Year! A new calendar year brings a fresh opportunity to reset your fitness goals, ignite your motivation, and make real progress toward the strongest, healthiest version of yourself. Whether you're a longtime TRIFIT LA member or just starting your fitness journey this January, now is the perfect time to recommit to your health and transform intention into action.</p>
+      <h2>Why January Is the Best Time to Make Fitness Count</h2>
+      <p>The start of a new year naturally inspires reflection and goal setting. Psychologically, we're more motivated to embrace healthier habits when surrounded by the momentum of others doing the same. At TRIFIT LA, we've seen countless members turn early‑year energy into lasting success. The key? Leverage that momentum with consistency, guidance, and community support.</p>
+      <h2>Set SMART Fitness Goals That Stick</h2>
+      <p>Not all goals are created equal. To give your fitness intentions a real chance of becoming reality, make them SMART:</p>
+      <ul>
+        <li><strong>Specific:</strong> Know exactly what you're aiming for (e.g., run a 5K, increase strength, improve mobility).</li>
+        <li><strong>Measurable:</strong> Track progress with numbers, times, weights, or reps.</li>
+        <li><strong>Achievable:</strong> Set goals that challenge you but are realistic.</li>
+        <li><strong>Relevant:</strong> Choose goals aligned with your lifestyle and priorities.</li>
+        <li><strong>Time‑Bound:</strong> Give yourself a deadline or milestone.</li>
+      </ul>
+      <p>When you define your goals clearly, your workouts suddenly have purpose—and that makes it easier to stay motivated week after week.</p>
+      <h2>Build a Balanced Workout Routine</h2>
+      <p>A successful fitness routine includes variety. At TRIFIT LA, you'll find a range of classes and training options to suit every goal:</p>
+      <ul>
+        <li><strong>Strength &amp; Conditioning:</strong> Build power, endurance, and lean muscle with dynamic circuit‑style workouts. (See classes)</li>
+        <li><strong>Functional Training:</strong> Improve mobility, core strength, and everyday movement patterns.</li>
+        <li><strong>TRX &amp; Group Fitness:</strong> Enhance total‑body stability and balance with suspension‑based and group energy sessions. (See classes)</li>
+        <li><strong>Cardio &amp; Recovery:</strong> Mix in cycling, swimming, or active recovery to keep your workouts sustainable and fun.</li>
+      </ul>
+      <p>Balancing strength, conditioning, mobility, and recovery helps you make gains without burning out—and keeps you motivated because you always have variety.</p>
+      <h2>Fuel Your Motivation With Community</h2>
+      <p>One of the biggest predictors of long‑term fitness success is community support. At TRIFIT LA, we pride ourselves on being more than just a gym—we're a community where members encourage one another, celebrate wins, and stay accountable. When your workout is something you *look forward to* with people who care, motivation becomes easier to sustain.</p>
+      <h2>Plan Reminders &amp; Track Your Wins</h2>
+      <p>Don't wait for motivation to magically appear—schedule it. Add workouts to your calendar like important appointments. Check progress weekly and celebrate small wins (extra reps, heavier weights, improved technique). These tangible milestones keep your motivation alive long after January ends.</p>
+      <h2>Your Next Step</h2>
+      <p>Ready to turn your New Year goals into real results? Join TRIFIT LA and take advantage of expert coaching, diverse classes, and a supportive fitness community in Santa Monica, California. Whether your goal is strength, endurance, mobility, or overall wellness, we'll help you build a plan that works for you.</p>
+      <p>Start Your Fitness Journey in 2026</p>
+          </div>
+
+          <nav class="post-nav" aria-label="More posts">
+            @if (prev)
+              <a data-stx-link href="/blog/{{ prev.slug }}">
+                <span>Older</span>
+                <b>{{ prev.title }}</b>
+              </a>
+            @else
+              <span></span>
+            @endif
+            @if (next)
+              <a data-stx-link class="is-next" href="/blog/{{ next.slug }}">
+                <span>Newer</span>
+                <b>{{ next.title }}</b>
+              </a>
+            @endif
+          </nav>
+        </div>
+      </article>
+
+      <section class="section--tight shell">
+        <div class="closer">
+          <div>
+            <h2>Come and see the club for yourself.</h2>
+          </div>
+          <div>
+            <p>Call ahead for a tour, or try everything for a day with a $39 day pass.</p>
+            <div class="hero-cta">
+              <a data-stx-link class="btn btn--primary" href="/visit-us">Book a tour</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    @include('site/footer', { club, hours, footerColumns, legalLinks })
+  </body>
+</html>

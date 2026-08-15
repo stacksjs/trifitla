@@ -1,0 +1,127 @@
+<script server>
+/*
+ * Blog index. The lead post gets the wide treatment; the rest run as a
+ * three-up grid. Topics are derived from the posts themselves rather than
+ * maintained as a second list that can drift out of step.
+ */
+
+import { postsByDate } from '../site/blog'
+import { club, footerColumns, hours, legalLinks, navLinks, siteUrl } from '../site/club'
+
+const path = '/blog'
+const title = 'Blog - TRIFIT LA'
+const description = 'Training, recovery, testing, and club news from the coaches and exercise scientists at TRIFIT LA in Santa Monica.'
+
+const [lead, ...rest] = postsByDate
+const topics = [...new Set(postsByDate.map(p => p.topic))]
+</script>
+
+@nolayout
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    @include('site/head', {
+      title,
+      description,
+      path,
+      siteUrl,
+      image: lead.image,
+    })
+  </head>
+
+  <body>
+    @include('site/nav', { navLinks, current: path })
+
+    <main>
+      <section class="page-head">
+        <div class="shell">
+          <nav class="crumbs" aria-label="Breadcrumb">
+            <a data-stx-link href="/">Home</a>
+            <span aria-hidden="true">/</span>
+            <span>Blog</span>
+          </nav>
+          <span class="eyebrow">{{ postsByDate.length }} posts</span>
+          <h1>Notes from the <em>club</em>.</h1>
+          <p>Training, recovery, testing, and the occasional argument with a fitness trend. Written by the coaches and exercise scientists who work here.</p>
+          <div class="also mt-lg">
+            @foreach (topics as topic)
+              <span class="chip">{{ topic }}</span>
+            @endforeach
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Lead post ─────────────────────────────────────────────── -->
+      <section class="section shell" aria-labelledby="lead-heading">
+        <h2 id="lead-heading" class="sr-only">Latest post</h2>
+        <a data-stx-link class="split split--reverse rise lead-post" href="/blog/{{ lead.slug }}">
+          <div class="split-media">
+            <img src="{{ lead.image }}" alt="{{ lead.alt }}" width="1400" height="933" fetchpriority="high" decoding="async">
+          </div>
+          <div>
+            <div class="card-meta is-lead">
+              <span>{{ lead.topic }}</span>
+              <span>{{ lead.minutes }} min read</span>
+            </div>
+            <h3 class="lead-post-title">{{ lead.title }}</h3>
+            <p class="lead-post-excerpt">{{ lead.excerpt }}</p>
+            <div class="article-meta">
+              <time datetime="{{ lead.date }}">{{ lead.dateLabel }}</time>
+            </div>
+            <div class="hero-cta">
+              <span class="btn btn--ghost">Read the post</span>
+            </div>
+          </div>
+        </a>
+      </section>
+
+      <!-- ── Everything else ───────────────────────────────────────── -->
+      <section class="section band" aria-labelledby="archive-heading">
+        <div class="shell">
+          <div class="section-head rise">
+            <h2 id="archive-heading">More from TRIFIT LA</h2>
+            <p>Everything we have published, newest first.</p>
+          </div>
+
+          <div class="grid grid--3">
+            @foreach (rest as post)
+              <a data-stx-link class="card rise" href="/blog/{{ post.slug }}">
+                <div class="card-media">
+                  <img src="{{ post.image }}" alt="{{ post.alt }}" width="1200" height="750" loading="lazy" decoding="async">
+                </div>
+                <div class="card-body">
+                  <div class="card-meta is-lead">
+                    <span>{{ post.topic }}</span>
+                    <span>{{ post.minutes }} min</span>
+                  </div>
+                  <h3 class="mt-sm">{{ post.title }}</h3>
+                  <p>{{ post.excerpt }}</p>
+                  <div class="card-foot">
+                    <time class="slot-where" datetime="{{ post.date }}">{{ post.dateLabel }}</time>
+                  </div>
+                </div>
+              </a>
+            @endforeach
+          </div>
+        </div>
+      </section>
+
+      <section class="section--tight shell">
+        <div class="closer rise">
+          <div>
+            <h2>Reading about it is the easy part.</h2>
+          </div>
+          <div>
+            <p>Come in for a tour, or try the whole club for a day for $39.</p>
+            <div class="hero-cta">
+              <a data-stx-link class="btn btn--primary" href="/visit-us">Visit us</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    @include('site/footer', { club, hours, footerColumns, legalLinks })
+  </body>
+</html>

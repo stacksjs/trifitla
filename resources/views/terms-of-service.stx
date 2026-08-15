@@ -1,0 +1,373 @@
+<script server>
+/*
+ * Terms of service, reproduced from the club's own published policy. The text is
+ * carried across as written: a legal document paraphrased is a legal document
+ * broken.
+ */
+
+import { club, footerColumns, hours, legalLinks, navLinks, siteUrl } from '../site/club'
+
+const path = '/terms-of-service'
+const title = 'Terms of service - TRIFIT LA'
+const description = "The rules, cancellation rights, and terms that apply to a TRIFIT LA membership. The agreement you sign at the club is the operative document; this page reproduces its terms."
+</script>
+
+@nolayout
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    @include('site/head', { title, description, path, siteUrl })
+  </head>
+
+  <body>
+    @include('site/nav', { navLinks, current: path })
+
+    <main>
+      <section class="page-head">
+        <div class="shell">
+          <nav class="crumbs" aria-label="Breadcrumb">
+            <a data-stx-link href="/">Home</a>
+            <span aria-hidden="true">/</span>
+            <span>Terms of service</span>
+          </nav>
+          <span class="eyebrow">Membership agreement</span>
+          <h1>Terms of service</h1>
+          <p>{{ description }}</p>
+        </div>
+      </section>
+
+      <section class="section shell">
+        <div class="prose">
+      <p>CANCELLATION POLICIES</p>
+      <ul>
+        <li>Consumer's Right of Rescission: A. If this contract for health studio services requires payment of one thousand five hundred dollars ($1,500) to two thousand dollars ($2,000), inclusive, including initiation fees or initial membership fees, by the person receiving the services or the use of the facility, the person shall have the right to cancel the contract within 20 days after the contract is executed. B. If this contract for health studio services requires payment of two thousand one dollars ($2,001) to two thousand five hundred dollars ($2,500), inclusive, including initiation fees or initial membership fees, by the person receiving the services or the use of the facility, the person shall have the right to cancel the contract within 30 days after the contract is executed. C. If a contract for health studio services requires payment of two thousand five hundred one dollars ($2,501) or more, including initiation fees or initial membership fees, by the person receiving the services or the use of the facility, the person shall have the right to cancel the contract within 45 days after the contract is executed.</li>
+        <li>If, by reason of death or disability, the person agreeing to receive services is unable to receive all services for which they have contracted, they and their estate shall be relieved from the obligation of making payment for services other than those received prior to death or the onset of disability, and that if they have prepaid any sum for services, so much of such sum as is allocable to services they have not taken shall be promptly refunded to them or their representative. For the purposes of this section, “disability” means a condition that precludes the buyer from physically using the facilities and the condition is verified by a physician.</li>
+        <li>If the person agreeing to receive health studio services moves further than 25 miles from the health studio and is unable to transfer the contract to a comparable facility, such person shall be relieved from the obligation of making payment for services other than those received prior to the move, and if such person has prepaid any sum for health studio services, so much of such sum as is allocable to services they have not taken shall be promptly refunded. Such person may be charged a predetermined fee not exceeding one hundred dollars ($100), or, if more than half the life of the contract has expired, such person may be charged a predetermined fee not exceeding fifty dollars ($50).</li>
+        <li>Your membership is non-transferable and cannot be canceled without the notice required in this agreement unless one of the above exceptions applies.</li>
+      </ul>
+      <p>Warning: Use of steroids to increase strength or growth can cause serious health problems. Steroids can keep teenagers from growing to their full height; they can also cause heart disease, stroke, and damaged liver function. Men and women using steroids may develop fertility problems, personality changes, and acne. Men can also experience premature balding and development of breast tissue. These health hazards are in addition to the civil and criminal penalties for the unauthorized sale, use, or exchange of anabolic steroids.</p>
+      <p>TRIFIT is a 29,000 square foot fully equipped fitness facility offering complimentary valet parking, towel service, full locker room amenities, indoor cycling, yoga, circuit training, swimming, TRX, boxing, HIIT, ROW, squash, and tennis, sauna and steam, performance testing (metabolic/VO2 max), and outdoor workouts including track runs and ocean swims.</p>
+      <p>TRIFIT is located at 2425 Colorado Ave. Suite B100, Santa Monica, CA 90404. The tennis courts are at 2500 Broadway. Parking is free with the purchase of a parking access badge.</p>
+      <h2>1. RULES AND REGULATIONS</h2>
+      <p>I agree to abide by all the membership rules, regulations, and schedules of TRIFIT, including those that are written, posted at the club, or issued orally; and those which may be amended from time to time at the sole discretion of TRIFIT.</p>
+      <h2>2. PAYMENT FOR MEMBERSHIPS, GOODS &amp; SERVICES</h2>
+      <p>If I have signed a monthly recurring membership agreement, I authorize TRIFIT to deduct my monthly membership dues from my bank account or my credit card on the 1st of every month.</p>
+      <p>If I have signed a 12-month or paid-in-full agreement, I understand that my membership will automatically continue as a monthly membership at TRIFIT's standard Community monthly rate once my contractual obligation date has been fulfilled.</p>
+      <p>If my membership is subsidized by my employer or a third party, I am solely responsible for my membership dues at TRIFIT's standard Community Monthly rate, and my card on file will be charged should this subsidy ever cease.</p>
+      <p>I am also solely financially responsible for all food, merchandise, and ancillary services that I purchase from TRIFIT that are not covered as part of my membership.</p>
+      <p>This authorization is to remain effective along with the terms and conditions of this Membership Agreement. I have the right to stop payment on an automatic debit by notifying my bank. However, this does not void my agreement with TRIFIT to fulfill my payment agreement, and by canceling my automatic debit, I acknowledge my obligation to pay dues and fees by some other method.</p>
+      <h2>3. PAYROLL DEDUCTION AUTHORIZATION</h2>
+      <p>If my membership is part of a corporate agreement between TRIFIT and my employer, I (employee) hereby authorize my current employer to deduct from my wages, on an after-tax basis, the rate negotiated between TRIFIT and my employer, to cover my monthly membership fees at TRIFIT.</p>
+      <p>TRIFIT does not prorate corporate membership fees. Any corporate membership beginning in one given month will be billed in full on the following month's invoice for both months.</p>
+      <p>Additionally, I understand there will be an annual Amenities Fee deducted every January until my membership is no longer active.</p>
+      <p>I acknowledge that the monies collected by my employer are non-refundable and that my employer has pre-paid my membership on a monthly basis. Any refunds or credits resulting from my membership will be due to my employer, and I will have no interest in such refunds or credits.</p>
+      <p>If I terminate or discontinue employment, I forfeit all rights to my discounted membership.</p>
+      <p>I understand I can cancel my membership per TRIFIT's Voluntary Resignation policy after the first 60 days of membership is completed.</p>
+      <p>This authorization shall continue in full force and effect for the entire duration of my membership term with TRIFIT, including any and all renewals made by my employer. This authorization, together with the TRIFIT Membership Agreement, shall govern for the entire term.</p>
+      <h2>4. CORPORATE MEMBERSHIPS</h2>
+      <p>If my membership is part of a corporate agreement between TRIFIT and a third party, the terms and conditions of this agreement shall remain in effect.</p>
+      <p>Monthly corporate rates determined between TRIFIT and the third party may change from time to time at the sole discretion of TRIFIT. All rate changes will be emailed to all current members and HR representatives of the third party.</p>
+      <p>Should any agreement or subsidy arrangement between TRIFIT and my employer cease, I am solely responsible for TRIFIT's membership dues at the standard Community Monthly rate, which will be billed to the credit card I have on file at TRIFIT.</p>
+      <h2>5. ATTIRE</h2>
+      <p>Proper attire is required at TRIFIT.</p>
+      <ul>
+        <li>Athletic shirts, shoes, and shorts are required in all public, recreational, court, and fitness areas.</li>
+        <li>Swimsuit and swim cap are required in the pool.</li>
+        <li>Swimsuit or clean, breathable clothing is required in the co-ed sauna.</li>
+        <li>Members and guests are required to shower before entering the pool or sauna.</li>
+      </ul>
+      <h2>6. CELL PHONES AND MOBILE DEVICES</h2>
+      <ul>
+        <li>Talking on cell phones is prohibited on the gym floor.</li>
+        <li>Headphones must be worn when listening to music or other audio programming so as not to distract others.</li>
+        <li>Speakers and external sound systems are not permitted in the gym, pool, or court areas.</li>
+        <li>Photography and videography, including video calling, are not permitted in locker rooms, restrooms, or changing areas.</li>
+      </ul>
+      <h2>7. HOURS OF OPERATION</h2>
+      <ul>
+        <li>Monday – Thursday: 6:00 AM – 9:00 PM</li>
+        <li>Friday: 6:00 AM – 8:00 PM</li>
+        <li>Saturday &amp; Sunday: 7:00 AM – 5:00 PM</li>
+      </ul>
+      <p>TRIFIT will observe certain holidays, which at the sole discretion of TRIFIT, will be established and posted.</p>
+      <p>During holiday periods, TRIFIT may be closed or open with reduced hours. Hours may also change for other special events or circumstances with or without prior notice.</p>
+      <p>All efforts will be made to announce such changes as early as reasonably possible.</p>
+      <h2>8. HEALTH WARRANTY</h2>
+      <p>I represent that I am in good health and without disease or disability or any other ailment that would prevent me from engaging in any type of exercise that could cause increased risk of injury or adverse health effects from the use of TRIFIT facilities or participation in TRIFIT activities.</p>
+      <p>I warrant that, through my own experience and physician's advice, I have no physical condition and take no prescribed medication that would prevent me from exercising without medical supervision.</p>
+      <h2>9. GUEST PASSES</h2>
+      <p>TRIFIT reserves the right to limit the number of times any one guest can use TRIFIT and reserves the right to prevent any guest from using the club.</p>
+      <p>Guests must sign a liability waiver and present a photo ID upon entering.</p>
+      <p>Guests utilizing the club are required to adhere to all rules, regulations, and liability releases.</p>
+      <p>TRIFIT reserves the right to terminate or suspend guest privileges at any time and for any reason.</p>
+      <h2>10. MEMBER/BUYER OBLIGATION</h2>
+      <p>Buyer shall not be relieved of Buyer's obligation to make membership payments to TRIFIT because of the member's failure to utilize TRIFIT facilities.</p>
+      <p>Buyer shall not freeze or cancel membership prior to the obligation date stated in the membership agreement.</p>
+      <h2>11. ENTIRE AGREEMENT</h2>
+      <p>This contract may only be modified in writing executed by a managing partner of TRIFIT.</p>
+      <p>Employees are not authorized to make any independent agreements with Member/Buyer.</p>
+      <p>Except for the rules and regulations posted and issued orally, this contract constitutes the entire agreement between the Member/Buyer and supersedes any other oral or written agreement.</p>
+      <h2>12. COMPLIMENTARY ITEMS</h2>
+      <p>Any good or service that is distributed to a TRIFIT member that is in good standing has no cash value.</p>
+      <p>Complimentary goods and services become null and void upon termination and/or expiration of membership.</p>
+      <h2>13. FREEZING MEMBERSHIPS</h2>
+      <p>After the first 60 days of membership is completed, members with a month-to-month agreement may request to freeze their membership for a minimum of 1 calendar month and a maximum of 3 calendar months per calendar year.</p>
+      <ul>
+        <li>The freeze must begin on the 1st of the month and end on the last day of a calendar month.</li>
+        <li>Partial and mid-month freezes are not available.</li>
+        <li>Members may request to freeze by contacting TRIFIT via email by the 25th of the month in order for the freeze to take effect in the next billing cycle.</li>
+        <li>A $25.00 fee will be assessed each month in lieu of the regular monthly rate while on freeze.</li>
+        <li>Please submit your freeze request via our website at trifitla.com/freeze-request or by emailing contact@trifitla.com. Confirmation of receipt and processing will be sent via email reply. If no reply is received by month-end, please follow up by phone or email to confirm receipt of your request.</li>
+      </ul>
+      <p>When this freeze period expires, billing will automatically resume at the member's former monthly rate, or, if a rate change has since been observed, at the new current monthly membership rate.</p>
+      <p>If a member does not wish to continue membership at the conclusion of the freeze period, the member must submit a cancellation request per TRIFIT's Voluntary Resignation policy and remain active for at least one bill cycle following the end of the freeze period.</p>
+      <p>Prepaid and Paid-in-full members are not eligible to freeze until their prepaid term and/or promotional period has ended and the payment plan has rolled over to month-to-month.</p>
+      <h2>14. VOLUNTARY RESIGNATION</h2>
+      <p>This agreement may be canceled at any time, after completing the first 60 days of membership. Upon submitting a cancellation, member will be required to make one final payment for the following month's invoice. Cancellations are submitted online via MyiClub Member Portal. All remaining Scheduled Payments and any other outstanding balance will be charged in full prior to the cancellation being processed. If you need any assistance processing your membership cancellation request, please call 310-829-2227 or email contact@trifitla.com.</p>
+      <h2>15. INVOLUNTARY RESIGNATION</h2>
+      <p>TRIFIT has the right to terminate the membership and privileges of any member for failure to comply with any of the rules and regulations adopted by TRIFIT.</p>
+      <p>The terminated member shall remain liable for all dues and other indebtedness incurred prior to the termination of the membership.</p>
+      <h2>16. NATURE OF MEMBERSHIPS</h2>
+      <p>Memberships may not be assigned, are non-transferable, and non-resalable.</p>
+      <p>Monthly recurring memberships may not be canceled without 30-day advance notice, with the following exceptions:</p>
+      <ul>
+        <li>Confirmation of a move further than 25 miles from TRIFIT</li>
+        <li>Disability</li>
+        <li>Death</li>
+      </ul>
+      <p>All Paid-in-full memberships are non-refundable, with the following exceptions:</p>
+      <ul>
+        <li>Confirmation of a move further than 25 miles from TRIFIT</li>
+        <li>Disability</li>
+        <li>Death</li>
+      </ul>
+      <p>Documentation of such circumstances can be submitted to ABC Fitness Solutions for review.</p>
+      <h2>17. MEMBERSHIP PRICES</h2>
+      <p>TRIFIT, at its sole discretion, reserves the right to change membership pricing.</p>
+      <p>All members will be informed via 30-day written notice of any such change in membership prices, during which time members will have the option to cancel.</p>
+      <p>This written notice will be emailed to the last email address the member has on file with TRIFIT.</p>
+      <p>Members are responsible for informing TRIFIT of any changes to mailing address, email address, and other contact information.</p>
+      <h2>18. PAYMENT EXPIRATION AND REFUNDS OF SERVICES</h2>
+      <p>All services, including but not limited to personal training, testing services, massage therapy, nutrition consultations, bike fitting, coaching, and videotape analysis, are pre-paid and non-refundable.</p>
+      <ul>
+        <li>All services will be charged at the time of booking unless cancellation or notice of rescheduling is given at least 24 hours prior to the scheduled appointment.</li>
+        <li>All services purchased as a series have expiration dates. Once a series package expires with sessions unused, sessions will not be reinstated.</li>
+        <li>All charges for sessions that are used but not paid for will be charged to the member's account or credit card on file on the day the session is used.</li>
+      </ul>
+      <p>Use of personal trainers and instructors not employed by TRIFIT is strictly prohibited. Acting as a trainer for other TRIFIT members is also prohibited and may result in membership revocation.</p>
+      <p>Once a membership is terminated or expired for any reason, any remaining sessions have zero cash value.</p>
+      <h2>19. AMENITIES FEE</h2>
+      <ul>
+        <li>All TRIFIT members will be billed a recurring Amenities Fee.</li>
+        <li>This will be automatically charged at the time of sign-up and every 6 months thereafter.</li>
+        <li>This fee is non-refundable and will not be prorated upon membership resignation.</li>
+      </ul>
+      <p>TRIFIT, at its sole discretion, reserves the right to change the Amenities Fee price and billing frequency.</p>
+      <p>Members will be informed via 30-day written notice by email before any changes take effect. Payroll deduction and corporate members may have an alternate billing structure or receive a subsidy for this fee through their corporation.</p>
+      <h2>20. REINSTATEMENT FEE</h2>
+      <p>After resignation, a former member may reinstate membership for a $99 fee, according to all applicable policies, procedures, and rates in place at the time of reinstatement.</p>
+      <h2>21. AGE LIMITATION</h2>
+      <p>Membership at TRIFIT is only open to individuals 14 years of age or older.</p>
+      <ul>
+        <li>Minors (ages 14-18) must register with a parent/guardian.</li>
+        <li>Minors under 16 will not be permitted at TRIFIT without being accompanied by a parent or guardian (18 years or older).</li>
+        <li>Members 16 and older do not need to be accompanied.</li>
+      </ul>
+      <h2>22. REGISTRATION</h2>
+      <ul>
+        <li>Members must check in and present their membership card each time they enter TRIFIT facilities.</li>
+        <li>Members must provide their membership barcode number when checking in at the P1 or P3 level facilities.</li>
+      </ul>
+      <p>Any member knowingly allowing or assisting a non-member or guest in gaining unauthorized entry into TRIFIT facilities without signing in at the front desk and/or paying a Day Pass fee will be subject to membership termination.</p>
+      <p>All guests must sign a liability waiver before entering the facility.</p>
+      <p>Upon signing in as a guest with a paid or complimentary Day Pass, guests are entitled to:</p>
+      <ul>
+        <li>Use the entire facility</li>
+        <li>Attend classes</li>
+        <li>Access the locker rooms during TRIFIT's Hours of Operation on that given day.</li>
+      </ul>
+      <h2>23. DAMAGE</h2>
+      <p>Each member shall be liable to TRIFIT for any damage caused to TRIFIT property by themselves or their guests.</p>
+      <h2>24. INDEPENDENT CONTRACTORS</h2>
+      <p>TRIFIT does not warrant or guarantee the quality of services provided by independent contractors.</p>
+      <p>TRIFIT disclaims all liability arising out of such services.</p>
+      <h2>25. CLASSES</h2>
+      <ul>
+        <li>All classes are subject to rescheduling or cancellation with or without prior notice.</li>
+        <li>Class schedules may change from time to time, and classes may be added, removed, or revised.</li>
+        <li>All efforts will be made to announce such changes as early as reasonably possible.</li>
+        <li>Do not enter a class more than 10 minutes late out of courtesy to both instructors and fellow class members.</li>
+        <li>Some classes may have capacity limits due to limited space or the nature of the class.</li>
+      </ul>
+      <h2>26. LOST &amp; FOUND</h2>
+      <p>TRIFIT is not responsible for items lost, stolen, or left on the premises.</p>
+      <p>Unclaimed items will be stored in Lost &amp; Found for 30 days. After this period, items will be donated to a local charity.</p>
+      <h2>27. NO DROPPING WEIGHTS &amp; DEADLIFT POLICY</h2>
+      <p>TRIFIT has a zero-tolerance policy for dropping heavy weights on the gym floor.</p>
+      <ul>
+        <li>Dropping weights is defined as releasing any weight from more than 6 inches off the ground.</li>
+        <li>Any deadlifting over 200 lbs requires the use of crash pads (stationed in the X-Training and dumbbell areas).</li>
+        <li>All strength training must take place in the X-Training or dumbbell areas.</li>
+        <li>Termination of membership may occur after receiving two warnings for violating this policy.</li>
+      </ul>
+      <h2>28. LOCKERS</h2>
+      <ul>
+        <li>Lockers in the locker rooms are for day-use during workout sessions only.</li>
+        <li>Items may not be stored overnight in day-use lockers.</li>
+        <li>If belongings are left overnight, they will be removed at the end of the business day and placed in Lost &amp; Found.</li>
+        <li>Monthly locker rentals are available for overnight use.</li>
+        <li>Members may discontinue a monthly locker rental by giving advance written notice prior to the 1st of the month.</li>
+        <li>Upon receiving a locker cancellation request, the locker will be canceled for the next billing cycle.</li>
+      </ul>
+      <h2>29. SOCIAL MEDIA</h2>
+      <p>I hereby authorize TRIFIT LLC to include my name in any marketing materials, including newsletters, media kits, social media, advertising, and their respective websites.</p>
+      <p>I also grant express permission for TRIFIT to use photographs of me in newsletters, club websites, social media, promotional materials, and newspaper or media submissions.</p>
+      <h2>30. POOL</h2>
+      <ul>
+        <li>Pool lanes are available on a first-come, first-serve reservation basis and may be reserved up to one (1) week in advance.</li>
+        <li>Reservations can be made online in MyiClub.</li>
+        <li>Pool reservations are limited to one hour per member.</li>
+        <li>If you are unable to keep your reservation, you must cancel as soon as reasonably possible so another member can use the space.</li>
+      </ul>
+      <p>Violation of pool use and/or reservation policies may result in the suspension of reservation privileges for a period determined at TRIFIT's sole discretion.</p>
+      <ul>
+        <li>Members may check in at any time during their reserved time.</li>
+        <li>Use of the pool for any activity other than lap swimming is not permitted when another swimmer is sharing the lane.</li>
+        <li>When there are no other swimmers sharing the lane, other activities such as water aerobics or rehabilitative exercises are permitted as long as they do not interfere with lap swimmers.</li>
+        <li>Swimmers must shower before entering the pool.</li>
+      </ul>
+      <h2>31. SQUASH AND TENNIS COURTS</h2>
+      <ul>
+        <li>Courts are available on a first-come, first-serve reservation basis and may be reserved up to one (1) week in advance.</li>
+        <li>Reservations can be made online in MyiClub.</li>
+        <li>During peak hours (Monday-Friday 4 PM-9 PM, Saturday 9 AM-12 PM), squash reservations are limited to one hour per player.</li>
+        <li>A 10-minute grace period is given to check in for a court, after which time it may be assigned to another member.</li>
+      </ul>
+      <p>Violation of court use and/or reservation policies may result in the suspension of reservation privileges at TRIFIT's sole discretion.</p>
+      <ul>
+        <li>The use of eye protection is strongly recommended for squash.</li>
+        <li>Black-soled shoes are not allowed.</li>
+      </ul>
+      <h2>32. SAUNA AND STEAM ROOMS</h2>
+      <ul>
+        <li>Members and guests are required to shower before entering steam and sauna areas.</li>
+        <li>Swimsuit or clean, breathable athletic clothing is required in the co-ed sauna.</li>
+        <li>DO NOT put water on the rocks in the sauna area, as the heating element will be irreparably damaged.</li>
+        <li>DO NOT place any tissues, paper towels, or other objects in or on the steam sensors, as this will irreparably damage the steam unit.</li>
+        <li>Recommended use of these areas is limited to 15-20 minutes.</li>
+      </ul>
+      <h2>33. COVID ACKNOWLEDGMENT &amp; RELEASE OF LIABILITY</h2>
+      <p>I acknowledge the contagious nature of the Coronavirus/COVID-19 and that the CDC and many other public health authorities recommend practicing social distancing and wearing a mask in any public place.</p>
+      <p>I therefore agree to abide by all health and safety measures governed by CDC, LA County Public Health (LACPH), and TRIFIT LLC.</p>
+      <p>I agree to adhere to all of these measures while at TRIFIT LLC.</p>
+      <p>I further acknowledge that TRIFIT LLC has put in place preventative measures to reduce the spread of the Coronavirus/COVID-19; however, TRIFIT LLC cannot guarantee that I will not become infected with Coronavirus/COVID-19.</p>
+      <p>I understand that the risk of becoming exposed to and/or infected by Coronavirus/COVID-19 may result from the actions, omissions, or negligence of myself and others, including but not limited to gym staff and other gym clients and their families.</p>
+      <p>I voluntarily seek my membership and/or participation at TRIFIT LLC and acknowledge that I am increasing my risk of exposure to Coronavirus/COVID-19 as I would in any other public setting.</p>
+      <p>I acknowledge that I must comply with all set procedures to reduce the spread while attending the gym.</p>
+      <h3>I attest that:</h3>
+      <p>✔ I am not experiencing any symptom of illness, such as:</p>
+      <ul>
+        <li>Cough</li>
+        <li>Shortness of breath or difficulty breathing</li>
+        <li>Fever</li>
+        <li>Chills</li>
+        <li>Repeated shaking with chills</li>
+        <li>Muscle pain</li>
+        <li>Headache</li>
+        <li>Sore throat</li>
+        <li>New loss of taste or smell</li>
+      </ul>
+      <p>✔ I have not traveled internationally within the last 14 days.</p>
+      <p>✔ I have not traveled to a highly impacted area within the United States of America in the last 14 days.</p>
+      <p>✔ I do not believe I have been exposed to someone with a suspected and/or confirmed case of COVID-19.</p>
+      <p>✔ If I have been previously diagnosed, I have been cleared as non-contagious.</p>
+      <p>✔ I have not been diagnosed with COVID-19, and, if I have been previously diagnosed, I have been cleared as non-contagious by state or local public health authorities with two negative tests taken 24 hours apart.</p>
+      <p>✔ I am following all CDC-recommended guidelines as much as possible and limiting my exposure to COVID-19.</p>
+      <p>✔ I agree to self-monitor for signs and symptoms of COVID-19.</p>
+      <p>✔ If I experience symptoms of COVID-19 or receive a positive test result, I will not return to TRIFIT until I have tested negative for COVID-19.</p>
+      <p>✔ If I have had any changes to the above circumstances (e.g., travel, exposure to someone with a suspected or confirmed case, activities that may have increased risk for COVID-19), I agree to follow CDC guidelines to self-quarantine and refrain from attending TRIFIT until I have been deemed non-contagious.</p>
+      <h2>COVID LIABILITY WAIVER</h2>
+      <p>This liability waiver and release extends to the gym together with all owners, partners, shareholders, and employees.</p>
+      <p>I understand that this release includes any claims based on actions, omissions, or negligence of TRIFIT LLC agents, representatives, and shareholders, whether a COVID-19 infection occurs before, after, or during participation in any TRIFIT program.</p>
+      <p>I hereby:</p>
+      <ul>
+        <li>Release</li>
+        <li>Covenant not to sue</li>
+        <li>Agree to hold TRIFIT LLC harmless</li>
+      </ul>
+      <p>from, and waive on behalf of myself, my heirs, and any personal representatives:</p>
+      <ul>
+        <li>Any and all causes of action, claims, demands, damages, costs, expenses, and compensation for damage or loss to myself and/or property</li>
+        <li>Any act, or failure to act, of the gym, or</li>
+        <li>Any claim that may otherwise arise in any way in connection with any services received from TRIFIT LLC.</li>
+      </ul>
+      <p>I understand that this release discharges TRIFIT LLC from any liability or claim that I, my heirs, or any personal representatives may have against the gym with respect to:</p>
+      <ul>
+        <li>Bodily injury</li>
+        <li>Illness</li>
+        <li>Death</li>
+        <li>Medical treatment</li>
+        <li>Property damage</li>
+      </ul>
+      <p>that may arise from, or in connection to, any services received from TRIFIT LLC.</p>
+      <h2>ASSUMPTION OF RISK</h2>
+      <p>I agree to be solely responsible for my own safety and to take every precaution to provide for my own safety and well-being while participating in activities sponsored or conducted by TRIFIT LLC, including:</p>
+      <ul>
+        <li>Inspecting all equipment</li>
+        <li>Making my own assessment as to whether it is safe and free from defects</li>
+      </ul>
+      <p>I further understand that not all outdoor activities are coached or supervised; rather, outdoor training is something that I am doing at my own risk without the supervision of individuals, coaches, or trainers.</p>
+      <p>✔ I assume all activities at my own risk.</p>
+      <p>✔ I have read the above release and waiver of liability and fully understand its contents.</p>
+      <p>✔ I understand that I am giving up substantial rights, including my right to sue.</p>
+      <p>✔ I have read the assumption of risk and fully understand its terms.</p>
+      <p>✔ I acknowledge that I am in agreement freely and voluntarily, and intend this acknowledgment to be a complete and unconditional release of all liability to the greatest extent allowed by the State of California.</p>
+      <h2>MEMBER CONTACT &amp; COMMUNICATION CONSENT</h2>
+      <p>The Member affirms, acknowledges, and attests that their:</p>
+      <ul>
+        <li>Mailing address</li>
+        <li>Telephone number</li>
+        <li>Cellular telephone number</li>
+        <li>E-mail address</li>
+      </ul>
+      <p>provided on the face of this agreement are accurate and were provided voluntarily.</p>
+      <p>✔ Subject to applicable law, the Member agrees that TRIFIT and ABC Fitness Solutions, LLC, including its:</p>
+      <ul>
+        <li>Agents</li>
+        <li>Affiliates</li>
+        <li>Vendors</li>
+        <li>Debt collection agencies</li>
+        <li>Attorneys</li>
+      </ul>
+      <p>may contact the Member at any:</p>
+      <ul>
+        <li>Mailing address</li>
+        <li>Telephone number</li>
+        <li>Cellular telephone number</li>
+        <li>E-mail address</li>
+      </ul>
+      <p>✔ If you reply STOP to opt out of text alerts, the opt-out will apply to text alerts only.</p>
+      <h2>COLLECTION OF PERSONAL INFORMATION</h2>
+      <p>ABC and TRIFIT collect information about you that is provided in conjunction with your purchase of services from TRIFIT and its third-party service providers, including ABC Fitness Solutions.</p>
+      <p>✔ Information provided on your health club membership agreement(s) and personal training agreement(s). ✔ Information about you may also be collected directly from you when you provide it to ABC and TRIFIT. ✔ When you update your account or contact information at the club or online.</p>
+      <p>The full privacy policies are available at:</p>
+      <p>ABC Fitness Privacy Policy TRIFIT Privacy Policy</p>
+      <p>E-SIGN CONSENT: Certain laws and regulations may require TRIFIT and/or ABC Fitness Solutions, LLC to provide Member with written notices and disclosures on paper. With Member's consent, this information may be provided to Member electronically. Member's consent hereto shall apply to each and every disclosure, notice, agreement, statement, terms and condition, and any other information (collectively, the “Documents”) that TRIFIT and/or ABC Fitness Solutions, LLC may provide Member. Member's consent to receive the Documents electronically shall continue until expressly withdrawn by Member. Notwithstanding, Member may request a paper copy of all electronic Documents by contacting TRIFIT and/or ABC Fitness Solutions, LLC, and requesting a paper copy. Member may withdraw its consent at any time by notifying the customer service department of TRIFIT and/or ABC Fitness Solutions, LLC. Upon withdrawing consent, Member shall no longer receive the Documents electronically. Member acknowledges that withdrawing consent may result in additional fees for Member's receipt of the Documents. Member agrees to maintain a valid email address with TRIFIT and/or ABC Fitness Solutions, LLC, and to promptly notify TRIFIT and/or ABC Fitness Solutions, LLC of any changes to Member's email address. If Member has provided another type of electronic contact information, such as a phone number, then Member may change that contact information by contacting the customer service department of TRIFIT and/or ABC Fitness Solutions, LLC. To access, view and receive the Documents electronically, Member agrees and acknowledges that they must have: (i) a computer, mobile device, tablet or smartphone, (ii) a version of internet browser software that is up-to-date and supported by Member's electronic device, (iii) an internet connection, (iv) software that is capable of accurately reading and displaying electronic PDF files, (v) a computer or electronic device operating system capable of supporting the items above, and (vi) a printer or electronic storage device if Member desires to print any electronic Documents. Member acknowledges that they may also need a certain brand or device that can support applications intended for Member's electronic mobile devices, tablets, and smartphones. In the event the required software or hardware is modified in such a way that would create a material risk to Member to access the Documents electronically, then TRIFIT and/or ABC Fitness Solutions, LLC will notify Member following such material modification. By accepting the terms of this Agreement, Member does hereby agree to the terms and conditions of this paragraph and consents to the same. Member does also confirm that Member has the software and hardware described above, that Member has the means necessary to access, view, and receive the Documents electronically, and that Member has provided a valid and active email address to TRIFIT and/or ABC Fitness Solutions, LLC.</p>
+        </div>
+
+        <div class="callout measure">
+          <div>
+            <h3>Questions about this policy?</h3>
+            <p>Call the club on {{ club.phone }} or email {{ club.email }} and we will talk you through it.</p>
+          </div>
+          <div>
+            <a data-stx-link class="btn btn--ghost" href="/contact">Contact us</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    @include('site/footer', { club, hours, footerColumns, legalLinks })
+  </body>
+</html>

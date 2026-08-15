@@ -1,0 +1,129 @@
+<script server>
+/*
+ * Blog post. The body is the club's own writing, ported across; everything
+ * around it — the header, the meta line, the neighbours at the foot — is
+ * derived from the shared post index so no fact is stated twice.
+ */
+
+import { articleJsonLd, neighbours, posts } from '../../site/blog'
+import { club, footerColumns, hours, legalLinks, navLinks, siteUrl } from '../../site/club'
+
+const slug = 'the-power-of-the-seca-medical-body-composition-machine'
+const post = posts.find(p => p.slug === slug)
+const { prev, next } = neighbours(slug)
+const path = `/blog/${slug}`
+</script>
+
+@nolayout
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    @include('site/head', {
+      title: `${post.title} - TRIFIT LA`,
+      description: post.excerpt,
+      path,
+      siteUrl,
+      image: post.image,
+      ogType: 'article',
+      jsonLd: articleJsonLd(post, siteUrl),
+    })
+  </head>
+
+  <body>
+    @include('site/nav', { navLinks, current: '/blog' })
+
+    <main>
+      <article>
+        <header class="page-head">
+          <div class="shell">
+            <nav class="crumbs" aria-label="Breadcrumb">
+              <a data-stx-link href="/">Home</a>
+              <span aria-hidden="true">/</span>
+              <a data-stx-link href="/blog">Blog</a>
+              <span aria-hidden="true">/</span>
+              <span>{{ post.topic }}</span>
+            </nav>
+            <span class="eyebrow">{{ post.topic }}</span>
+            <h1>{{ post.title }}</h1>
+            <div class="article-meta">
+              <time datetime="{{ post.date }}">{{ post.dateLabel }}</time>
+              <span>{{ post.minutes }} minute read</span>
+              <span>TRIFIT LA</span>
+            </div>
+          </div>
+        </header>
+
+        <div class="section shell">
+          <figure class="prose-figure post-hero">
+            <img src="{{ post.image }}" alt="{{ post.alt }}" width="1400" height="933" fetchpriority="high" decoding="async">
+          </figure>
+
+          <div class="prose">
+      <p>At TRIFIT LA, we're committed to providing our members with the most advanced tools to support their health and fitness journey. One of our most powerful resources? The SECA Medical Body Composition Analyzer (mBCA) — a cutting-edge, medically validated device that delivers far more than a traditional scale or fitness tracker.</p>
+      <h2>What Is the SECA mBCA?</h2>
+      <p>The SECA mBCA is a medical-grade body composition analyzer that provides an in-depth snapshot of your health. Unlike basic scales that only tell you your weight or BMI, the SECA mBCA measures a full spectrum of metrics, including:</p>
+      <ul>
+        <li>Fat Mass (FM)</li>
+        <li>Muscle Mass (Skeletal Muscle Mass)</li>
+        <li>Visceral Fat (the fat around your organs)</li>
+        <li>Total Body Water &amp; Segmental Water Distribution</li>
+        <li>Phase Angle (a marker of cellular health)</li>
+        <li>Basal Metabolic Rate (BMR)</li>
+        <li>Segmental analysis (arms, legs, torso)</li>
+      </ul>
+      <h2>Why It's a Game-Changer at TRIFIT LA</h2>
+      <p>Here's how our members are using SECA body comp assessments to optimize their results:</p>
+      <h3>✅ Set Smart Goals</h3>
+      <p>By knowing your true body composition, you can set goals that go beyond “losing weight” — such as building lean muscle, reducing visceral fat, or improving cellular function.</p>
+      <h3>✅ Track Real Progress</h3>
+      <p>Muscle weighs more than fat. So when your weight stays the same but your body fat percentage drops, the SECA machine captures that improvement.</p>
+      <h3>✅ Precision for Personalization</h3>
+      <p>Whether you're working 1-on-1 with a TRIFIT coach or following your own program, the SECA report helps customize your training and nutrition to your exact body metrics.</p>
+      <h3>✅ Trusted by Healthcare Professionals</h3>
+      <p>The SECA mBCA is FDA-approved and used in hospitals, research settings, and clinical environments — so you can trust the data is accurate and meaningful.</p>
+      <h2>How to Get a SECA Body Comp Analysis at TRIFIT LA</h2>
+      <p>All TRIFIT LA members can access the SECA body composition scan as part of their fitness programming. Whether you're starting a new workout plan or checking in on your progress, it's a powerful tool to use regularly.</p>
+      <p>💡 Pro Tip: Schedule scans every 4–6 weeks to see real changes and adjust your plan accordingly.</p>
+      <h2>Ready to Train Smarter?</h2>
+      <p>Stop guessing. Start measuring. Experience the SECA Medical Body Composition Analyzer at TRIFIT LA and take your fitness to a whole new level of precision.</p>
+      <p>📅 Book your body comp scan today at the front desk or contact us!</p>
+          </div>
+
+          <nav class="post-nav" aria-label="More posts">
+            @if (prev)
+              <a data-stx-link href="/blog/{{ prev.slug }}">
+                <span>Older</span>
+                <b>{{ prev.title }}</b>
+              </a>
+            @else
+              <span></span>
+            @endif
+            @if (next)
+              <a data-stx-link class="is-next" href="/blog/{{ next.slug }}">
+                <span>Newer</span>
+                <b>{{ next.title }}</b>
+              </a>
+            @endif
+          </nav>
+        </div>
+      </article>
+
+      <section class="section--tight shell">
+        <div class="closer">
+          <div>
+            <h2>Come and see the club for yourself.</h2>
+          </div>
+          <div>
+            <p>Call ahead for a tour, or try everything for a day with a $39 day pass.</p>
+            <div class="hero-cta">
+              <a data-stx-link class="btn btn--primary" href="/visit-us">Book a tour</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    @include('site/footer', { club, hours, footerColumns, legalLinks })
+  </body>
+</html>

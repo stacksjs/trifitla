@@ -1,0 +1,142 @@
+<script server>
+/*
+ * Blog post. The body is the club's own writing, ported across; everything
+ * around it — the header, the meta line, the neighbours at the foot — is
+ * derived from the shared post index so no fact is stated twice.
+ */
+
+import { articleJsonLd, neighbours, posts } from '../../site/blog'
+import { club, footerColumns, hours, legalLinks, navLinks, siteUrl } from '../../site/club'
+
+const slug = 'vo2-max-the-number-one-indicator-of-health-and-longevity'
+const post = posts.find(p => p.slug === slug)
+const { prev, next } = neighbours(slug)
+const path = `/blog/${slug}`
+</script>
+
+@nolayout
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    @include('site/head', {
+      title: `${post.title} - TRIFIT LA`,
+      description: post.excerpt,
+      path,
+      siteUrl,
+      image: post.image,
+      ogType: 'article',
+      jsonLd: articleJsonLd(post, siteUrl),
+    })
+  </head>
+
+  <body>
+    @include('site/nav', { navLinks, current: '/blog' })
+
+    <main>
+      <article>
+        <header class="page-head">
+          <div class="shell">
+            <nav class="crumbs" aria-label="Breadcrumb">
+              <a data-stx-link href="/">Home</a>
+              <span aria-hidden="true">/</span>
+              <a data-stx-link href="/blog">Blog</a>
+              <span aria-hidden="true">/</span>
+              <span>{{ post.topic }}</span>
+            </nav>
+            <span class="eyebrow">{{ post.topic }}</span>
+            <h1>{{ post.title }}</h1>
+            <div class="article-meta">
+              <time datetime="{{ post.date }}">{{ post.dateLabel }}</time>
+              <span>{{ post.minutes }} minute read</span>
+              <span>TRIFIT LA</span>
+            </div>
+          </div>
+        </header>
+
+        <div class="section shell">
+          <figure class="prose-figure post-hero">
+            <img src="{{ post.image }}" alt="{{ post.alt }}" width="1400" height="933" fetchpriority="high" decoding="async">
+          </figure>
+
+          <div class="prose">
+      <p>At TRIFIT LA, we're all about training smarter—maximizing performance while building a foundation for long-term health. One of the most powerful tools we use to assess that foundation is VO₂ Max—a clinical term with real-world, life-extending value.</p>
+      <p>But what is VO₂ Max, and why do experts like Dr. Peter Attia call it the single most crucial indicator of overall health and longevity?</p>
+      <p>Let's break it down.</p>
+      <h2>What is VO₂ Max?</h2>
+      <p>VO₂ Max stands for Maximal Oxygen Uptake. It measures the maximum amount of oxygen your body can use during intense exercise. It's not just about how strong your muscles are—it's about how efficiently your heart, lungs, and cells deliver and utilize oxygen.</p>
+      <p><strong>In simpler terms:</strong> VO₂ Max tells us how well your body can perform when pushed to its limits.</p>
+      <p>The higher your VO₂ Max, the better your aerobic fitness.</p>
+      <h2>Why VO₂ Max Matters for Your Health</h2>
+      <p>According to Dr. Peter Attia, physician and longevity expert, VO₂ Max is one of the most predictive markers of lifespan and long-term health.</p>
+      <blockquote>🔗 Watch this clip from Dr. Attia on why VO₂ Max is the key metric for health and longevity.</blockquote>
+      <p>In his video, Dr. Attia explains that:</p>
+      <ul>
+        <li>A higher VO₂ Max is associated with lower risk of cardiovascular disease, diabetes, and all-cause mortality.</li>
+        <li>It declines naturally with age, but training can slow or even reverse that decline.</li>
+        <li>You don't have to be an elite athlete to benefit—even minor improvements can have a massive impact on your healthspan.</li>
+      </ul>
+      <h2>How VO₂ Max Impacts Your Daily Life</h2>
+      <p>Improving your VO₂ Max doesn't just help you on race day—it helps you:</p>
+      <p>✅ Continue to be able to do the activities you enjoy late into life ✅ Recover faster between workouts ✅ Support brain health via better oxygen delivery ✅ Build metabolic resilience ✅ Stay active and independent well into your later years</p>
+      <h2>How Is VO₂ Max Measured?</h2>
+      <p>At TRIFIT LA, we offer VO₂ Max testing using metabolic carts and advanced equipment. The test involves:</p>
+      <ul>
+        <li>Wearing a mask to measure oxygen exchange</li>
+        <li>Performing an incremental exercise protocol on a treadmill or bike</li>
+        <li>Receiving a detailed breakdown of your aerobic efficiency, thresholds, and training zones</li>
+      </ul>
+      <p>It's safe, science-backed, and one of the best tools to optimize your fitness programming.</p>
+      <h2>How to Improve Your VO₂ Max</h2>
+      <p>The good news? VO₂ Max is trainable. Here's how we help TRIFIT athletes improve theirs:</p>
+      <ul>
+        <li>Zone 2 Training (low-to-moderate steady-state cardio)</li>
+        <li>Interval Training / HIIT for boosting peak aerobic capacity</li>
+        <li>Strength + Conditioning to support overall energy output</li>
+        <li>Recovery Protocols that allow for better adaptations</li>
+      </ul>
+      <p>It's not about going harder—it's about going smarter.</p>
+      <h2>🎯 Final Thoughts: Your Longevity Blueprint Starts Here</h2>
+      <p>If you're training for a marathon, looking to level up your performance, or simply want to future-proof your health, VO₂ Max should be on your radar.</p>
+      <p>At TRIFIT LA, we don't guess—we test, measure, and guide you based on real data. Whether you're an elite triathlete or just starting your journey, understanding your VO₂ Max is one of the smartest moves you can make for your body, your brain, and your future.</p>
+      <h2>🔗 Interested in getting your VO₂ Max tested?</h2>
+      <p>Book your test with TRIFIT LA today, and let's take the guesswork out of your training.</p>
+          </div>
+
+          <nav class="post-nav" aria-label="More posts">
+            @if (prev)
+              <a data-stx-link href="/blog/{{ prev.slug }}">
+                <span>Older</span>
+                <b>{{ prev.title }}</b>
+              </a>
+            @else
+              <span></span>
+            @endif
+            @if (next)
+              <a data-stx-link class="is-next" href="/blog/{{ next.slug }}">
+                <span>Newer</span>
+                <b>{{ next.title }}</b>
+              </a>
+            @endif
+          </nav>
+        </div>
+      </article>
+
+      <section class="section--tight shell">
+        <div class="closer">
+          <div>
+            <h2>Come and see the club for yourself.</h2>
+          </div>
+          <div>
+            <p>Call ahead for a tour, or try everything for a day with a $39 day pass.</p>
+            <div class="hero-cta">
+              <a data-stx-link class="btn btn--primary" href="/visit-us">Book a tour</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    @include('site/footer', { club, hours, footerColumns, legalLinks })
+  </body>
+</html>

@@ -1,0 +1,223 @@
+<script server>
+/*
+ * Membership.
+ *
+ * Three plans, three ways in that are not a plan, and the fees stated where
+ * you can see them rather than in a footnote. The 60-day minimum, the
+ * initiation fee, the amenities fee, and the parking badge are all on the
+ * card, because finding one of them out later is how people end up angry.
+ */
+
+import { club, clubJsonLd, footerColumns, hours, included, legalLinks, navLinks, siteUrl } from '../site/club'
+import { feeNotes, passes, plans } from '../site/membership'
+
+const path = '/membership'
+const title = 'Membership - TRIFIT LA'
+const description = 'Month-to-month membership from $189 at TRIFIT LA in Santa Monica. Full facility access, unlimited classes, free 3-hour parking. Day passes $39. No annual contract.'
+</script>
+
+@nolayout
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    @include('site/head', {
+      title,
+      description,
+      path,
+      siteUrl,
+      image: '/images/trifit/weight-deck.jpg',
+      jsonLd: clubJsonLd(),
+    })
+  </head>
+
+  <body>
+    @include('site/nav', { navLinks, current: path })
+
+    <main>
+      <section class="page-head">
+        <div class="shell">
+          <nav class="crumbs" aria-label="Breadcrumb">
+            <a data-stx-link href="/">Home</a>
+            <span aria-hidden="true">/</span>
+            <span>Membership</span>
+          </nav>
+          <span class="eyebrow">From $189 a month</span>
+          <h1>Every plan opens the <em>whole</em> club.</h1>
+          <p>Pool, courts, floors, studios, recovery, and unlimited classes. Month to month with a 60-day minimum — there is no year-long contract to sign, and no plan tier that locks you out of a room.</p>
+          <div class="hero-cta">
+            <a class="btn btn--primary" href="#plans">Compare plans</a>
+            <a class="btn btn--ghost" href="#day-pass">Just visiting?</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Plans ─────────────────────────────────────────────────── -->
+      <section class="section shell" id="plans" aria-labelledby="plans-heading">
+        <div class="section-head rise">
+          <h2 id="plans-heading">Choose a plan</h2>
+          <p>The only difference between them is who is paying and how. Everything the club offers is on all three.</p>
+        </div>
+
+        <div class="plans">
+          @foreach (plans as plan)
+            <article class="plan rise {{ plan.featured ? 'plan--featured' : '' }}" id="{{ plan.id }}">
+              <h3>{{ plan.name }}</h3>
+              <div class="plan-price">
+                <b>{{ plan.price }}</b>
+                <span>{{ plan.period }}</span>
+              </div>
+              <p class="plan-note">{{ plan.note }}</p>
+              <ul>
+                @foreach (plan.lines as line)
+                  <li>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5 9.5 18 20 6.5" /></svg>
+                    <span>{{ line }}</span>
+                  </li>
+                @endforeach
+              </ul>
+              <div class="plan-foot">
+                <a data-stx-link class="btn btn--primary btn--sm" href="{{ plan.ctaUrl }}">{{ plan.cta }}</a>
+              </div>
+            </article>
+          @endforeach
+        </div>
+
+        <div class="daypass rise mt-xl">
+          <div>
+            <h3>The small print, up front</h3>
+            <ul class="checks mt-sm">
+              @foreach (feeNotes as note)
+                <li>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 8v5M12 16.5v.5M12 3l9.5 17H2.5L12 3Z" /></svg>
+                  <span>{{ note }}</span>
+                </li>
+              @endforeach
+            </ul>
+          </div>
+          <div>
+            <h3>Cancelling</h3>
+            <p>After your first 60 days, cancel any time through the member portal. One final payment covers the following month's invoice, and the front desk will help if the portal gives you any trouble.</p>
+            <div class="hero-cta">
+              <a data-stx-link class="btn btn--ghost btn--sm" href="/contact#policies">Freeze and cancellation policy</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Passes ────────────────────────────────────────────────── -->
+      <section class="section band" id="day-pass" aria-labelledby="passes-heading">
+        <div class="shell">
+          <div class="section-head rise">
+            <h2 id="passes-heading">Not ready for a membership?</h2>
+            <p>Three ways to use the club without joining it. One of them is free.</p>
+          </div>
+
+          <div class="plans">
+            @foreach (passes as pass)
+              <article class="plan rise">
+                <h3>{{ pass.name }}</h3>
+                <div class="plan-price">
+                  <b>{{ pass.price }}</b>
+                  <span>{{ pass.period }}</span>
+                </div>
+                <ul>
+                  @foreach (pass.lines as line)
+                    <li>
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5 9.5 18 20 6.5" /></svg>
+                      <span>{{ line }}</span>
+                    </li>
+                  @endforeach
+                </ul>
+                <div class="plan-foot">
+                  <a data-stx-link class="btn btn--ghost btn--sm" href="/visit-us">Plan a visit</a>
+                </div>
+              </article>
+            @endforeach
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Included ──────────────────────────────────────────────── -->
+      <section class="section shell" aria-labelledby="included-heading">
+        <div class="split">
+          <div class="split-media rise">
+            <img src="/images/trifit/lobby.jpg" alt="The lobby and front desk at TRIFIT LA" width="1400" height="825" loading="lazy" decoding="async">
+          </div>
+          <div class="rise">
+            <div class="section-head">
+              <h2 id="included-heading">What comes with every membership</h2>
+              <p>Whichever plan you are on, and without an add-on charge.</p>
+            </div>
+            <ul class="checks">
+              @foreach (included as item)
+                <li>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5 9.5 18 20 6.5" /></svg>
+                  <span>{{ item }}</span>
+                </li>
+              @endforeach
+            </ul>
+            <div class="hero-cta">
+              <a data-stx-link class="btn btn--ghost" href="/benefits">See every amenity</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── How to join ───────────────────────────────────────────── -->
+      <section class="section band" aria-labelledby="join-heading">
+        <div class="shell">
+          <div class="section-head rise">
+            <h2 id="join-heading">Joining takes about ten minutes</h2>
+            <p>Online or at the front desk. Bring photo ID on your first visit.</p>
+          </div>
+
+          <div class="steps rise">
+            <div>
+              <h3>Come and look around</h3>
+              <p>Call {{ club.phone }} and we will usually get you a same-day tour. Or buy a $39 day pass and use everything before you decide.</p>
+            </div>
+            <div>
+              <h3>Pick your plan</h3>
+              <p>Community, or the tenant and corporate rate if you work at Colorado Center or your employer is on the list. Bring your employee badge the first time.</p>
+            </div>
+            <div>
+              <h3>Sign up</h3>
+              <p>Month to month, in person or online. Billing is assessed on the 1st for the month ahead.</p>
+            </div>
+            <div>
+              <h3>Start training</h3>
+              <p>Classes are drop-in from day one. Book a pool lane, a squash court, or the tennis court through the member portal.</p>
+            </div>
+          </div>
+
+          <div class="callout rise">
+            <div>
+              <h3>Does your company already have an account?</h3>
+              <p>Corporate direct pay means no initiation fee and a discounted rate billed straight to your employer. Ask us and we will check.</p>
+            </div>
+            <div>
+              <a data-stx-link class="btn btn--primary" href="/contact">Contact us</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section--tight shell">
+        <div class="closer rise">
+          <div>
+            <h2>Train stronger, move better, look your best.</h2>
+          </div>
+          <div>
+            <p>Month to month, with a 60-day minimum. No year-long contract to sign.</p>
+            <div class="hero-cta">
+              <a data-stx-link class="btn btn--primary" href="/visit-us">Join us</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    @include('site/footer', { club, hours, footerColumns, legalLinks })
+  </body>
+</html>

@@ -1,0 +1,216 @@
+<script server>
+/*
+ * About us.
+ *
+ * The single most important fact about this club is that it is not a chain:
+ * it is Santa Monica's largest independent, family-owned health club, run by
+ * two people who are in the building. The page is built around that, with
+ * the founders first and the rest of the team named and pictured — not a
+ * stock photograph of a smiling stranger anywhere on it.
+ */
+
+import { awardYears, club, clubJsonLd, footerColumns, hours, legalLinks, navLinks, siteUrl } from '../site/club'
+import { founders, team } from '../site/team'
+
+const path = '/about'
+const title = 'About us - TRIFIT LA'
+const description = `Santa Monica's largest independent, family-owned health club, run by Gina and Bernard Baski since ${club.since}. Voted Most Loved Gym six times. Meet the team.`
+
+const years = new Date().getFullYear() - club.since
+</script>
+
+@nolayout
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    @include('site/head', {
+      title,
+      description,
+      path,
+      siteUrl,
+      image: '/images/trifit/Trifit_Family.jpg',
+      jsonLd: clubJsonLd(),
+    })
+  </head>
+
+  <body>
+    @include('site/nav', { navLinks, current: path })
+
+    <main>
+      <section class="page-head">
+        <div class="shell">
+          <nav class="crumbs" aria-label="Breadcrumb">
+            <a data-stx-link href="/">Home</a>
+            <span aria-hidden="true">/</span>
+            <span>About us</span>
+          </nav>
+          <span class="eyebrow">Family owned since {{ club.since }}</span>
+          <h1>A <em>family</em> business with a 29,000 square foot gym in it.</h1>
+          <p>TRIFIT LA is Santa Monica's largest independent, family-owned health club. There is no regional manager, no head office in another state, and no quarterly directive about upsells. There are two owners who are usually in the building, and a team of coaches who know your name.</p>
+        </div>
+      </section>
+
+      <!-- ── The family ────────────────────────────────────────────── -->
+      <section class="section shell" aria-labelledby="story-heading">
+        <div class="split split--reverse">
+          <div class="split-media rise">
+            <img
+              src="/images/trifit/Trifit_Family.jpg"
+              alt="Gina and Bernard Baski with their two sons and their Rottweiler, Banksy"
+              width="819"
+              height="937"
+              fetchpriority="high"
+              decoding="async"
+            >
+          </div>
+
+          <div class="rise">
+            <div class="section-head">
+              <h2 id="story-heading">Gina and Bernard, and a Rottweiler called Banksy.</h2>
+              <p>Co-owners Gina and Bernard Baski lead the club with heart, while raising two teenage sons and enjoying life in Los Angeles. That is the whole ownership structure.</p>
+            </div>
+
+            <div class="testing">
+              <div>
+                <h3>{{ years }} years in the neighbourhood</h3>
+                <p>TRIFIT LA has been rooted in Santa Monica since {{ club.since }}. In that time we have created local jobs, hosted some of LA County's largest free outdoor workouts, and backed local fitness clubs, races, and nonprofit organisations.</p>
+              </div>
+              <div>
+                <h3>More than workouts</h3>
+                <p>We set out to deliver a fitness experience designed to inspire, challenge, and connect. That is why the ocean swim is free to the public and the round robin does not need a partner.</p>
+              </div>
+              <div>
+                <h3>Our mission</h3>
+                <p>Helping our members reach their highest potential, both in sport and in life. Community, performance, and purpose — and if that sounds like a slogan, come in and see whether it holds up.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Awards ────────────────────────────────────────────────── -->
+      <section class="awards" aria-labelledby="awards-heading">
+        <div class="shell awards-inner">
+          <h2 id="awards-heading" class="awards-label">Voted Santa Monica's <span>Most Loved Gym</span>, six years running.</h2>
+          <div class="awards-years">
+            @foreach (awardYears as year)
+              <b>{{ year }}</b>
+            @endforeach
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Founders ──────────────────────────────────────────────── -->
+      <section class="section shell" id="team" aria-labelledby="founders-heading">
+        <div class="section-head rise">
+          <h2 id="founders-heading">The founders</h2>
+          <p>A gymnast and competitive swimmer, and fifteen years of Canadian hockey. Between them they have coached at every level from first-timer to Ironman.</p>
+        </div>
+
+        <div class="grid grid--2">
+          @foreach (founders as person)
+            <article class="person rise">
+              <div class="person-media">
+                <img src="{{ person.image }}" alt="{{ person.alt }}" width="560" height="373" loading="lazy" decoding="async">
+              </div>
+              <div class="person-body">
+                <h3>{{ person.name }}</h3>
+                <div class="person-role">{{ person.role }}</div>
+                <p class="person-bio">{{ person.bio }}</p>
+              </div>
+            </article>
+          @endforeach
+        </div>
+      </section>
+
+      <!-- ── The team ──────────────────────────────────────────────── -->
+      <section class="section band" aria-labelledby="team-heading">
+        <div class="shell">
+          <div class="section-head rise">
+            <h2 id="team-heading">Meet the team</h2>
+            <p>Trainers, coaches, and yoga instructors. One of them started on our front desk and got certified while working here, which tells you most of what you need to know about how this place runs.</p>
+          </div>
+
+          <div class="grid grid--3">
+            @foreach (team as person)
+              <article class="person rise">
+                <div class="person-media">
+                  <img src="{{ person.image }}" alt="{{ person.alt }}" width="560" height="373" loading="lazy" decoding="async">
+                </div>
+                <div class="person-body">
+                  <h3>{{ person.name }}</h3>
+                  <div class="person-role">{{ person.role }}</div>
+                  <p class="person-bio">{{ person.bio }}</p>
+                </div>
+              </article>
+            @endforeach
+          </div>
+
+          <div class="callout rise">
+            <div>
+              <h3>We hire on a rolling basis</h3>
+              <p>If you want to work somewhere the owners know your name, we accept resumes year round.</p>
+            </div>
+            <div>
+              <a data-stx-link class="btn btn--primary" href="/careers">See open roles</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Community ─────────────────────────────────────────────── -->
+      <section class="section shell" aria-labelledby="community-heading">
+        <div class="split">
+          <div class="split-media rise">
+            <img src="/images/trifit/family-atmosphere.jpg" alt="Members and coaches together on the floor at TRIFIT LA" width="1400" height="933" loading="lazy" decoding="async">
+          </div>
+          <div class="rise">
+            <div class="section-head">
+              <h2 id="community-heading">What independence actually buys you.</h2>
+              <p>The differences are small individually and add up to the reason people stay for a decade.</p>
+            </div>
+            <ul class="checks">
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5 9.5 18 20 6.5" /></svg>
+                <span>Month-to-month membership with a 60-day minimum. No annual contract to sign.</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5 9.5 18 20 6.5" /></svg>
+                <span>Unlimited classes on every plan, rather than a credit system that runs out.</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5 9.5 18 20 6.5" /></svg>
+                <span>A free weekly ocean swim we run for the whole city, not only for members.</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5 9.5 18 20 6.5" /></svg>
+                <span>Exercise physiologists on staff, and testing run in-house rather than referred out.</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5 9.5 18 20 6.5" /></svg>
+                <span>Decisions made by the two people who own the place, usually the same week you ask.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section--tight shell">
+        <div class="closer rise">
+          <div>
+            <h2>Come and meet us. Genuinely.</h2>
+          </div>
+          <div>
+            <p>Call ahead and Gina or Bernard will very often be the one showing you around.</p>
+            <div class="hero-cta">
+              <a data-stx-link class="btn btn--primary" href="/visit-us">Book a tour</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    @include('site/footer', { club, hours, footerColumns, legalLinks })
+  </body>
+</html>

@@ -1,0 +1,250 @@
+<script server>
+/*
+ * Privacy policy, reproduced from the club's own published policy. The text is
+ * carried across as written: a legal document paraphrased is a legal document
+ * broken.
+ */
+
+import { club, footerColumns, hours, legalLinks, navLinks, siteUrl } from '../site/club'
+
+const path = '/privacy-policy'
+const title = 'Privacy policy - TRIFIT LA'
+const description = "How Trifit LLC collects, uses, discloses, retains, and protects your personal information in connection with your membership, the club, this website, and our mobile applications."
+</script>
+
+@nolayout
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    @include('site/head', { title, description, path, siteUrl })
+  </head>
+
+  <body>
+    @include('site/nav', { navLinks, current: path })
+
+    <main>
+      <section class="page-head">
+        <div class="shell">
+          <nav class="crumbs" aria-label="Breadcrumb">
+            <a data-stx-link href="/">Home</a>
+            <span aria-hidden="true">/</span>
+            <span>Privacy policy</span>
+          </nav>
+          <span class="eyebrow">Effective 1 March 2025</span>
+          <h1>Privacy policy</h1>
+          <p>{{ description }}</p>
+        </div>
+      </section>
+
+      <section class="section shell">
+        <div class="prose">
+      <p>Trifit LLC and the family of companies operating under the Trifit LLC brand (referred to herein as “TRIFIT, TRIFIT LA or TRIFIT Club &amp; Studios,” “we,” or “us”) are providing this notice (this “Policy”) to describe our collection, use, disclosure, retention, and protection of your personal information in connection with, if applicable and/or whenever applicable, your TRIFIT LA Membership, use of the TRIFIT LA facilities, website and mobile applications, including any content or information provided as part of these services (collectively referred to herein as the “Services”). We created this Policy to give you confidence as you visit and use the Services and demonstrate our commitment to fair information practices and privacy protection.</p>
+      <p>By accessing, browsing, downloading, using, or registering for our Services, you are accepting the terms of this Policy and our Terms of Service, and you are consenting to our collection, use, disclosure, retention, and protection of your personal information as described in this Policy. If you do not provide the information we require, we may not be able to provide all of our Services to you.</p>
+      <h2>Personal Information</h2>
+      <p>“Personal information” is information that can be associated with a specific person and could be used to identify that specific person whether from that data or from that data and other information that we have or are likely to have access to. We do not consider personal information to include information that has been made anonymous or aggregated so that it can no longer be used to identify a specific person, whether in combination with other information or otherwise.</p>
+      <h2>Effective Date and Changes to Policy</h2>
+      <p>This Policy is effective as of March 1, 2025, and will remain in effect except with respect to any of its provisions that are changed in the future, in which case the changes will become effective on the date they are posted on the Services, or we otherwise notify you of the changes. We reserve the right to change this Policy at any time. Changes, modifications, additions, or deletions will be effective immediately upon posting to the Services. Your continued use of the Services after we post any such modifications will constitute your acknowledgment of the modified policy and your agreement to abide and be bound by the modified policy.</p>
+      <h2>Information We May Collect</h2>
+      <p>We collect, process, and retain personal information from you and any devices (including mobile devices) you may use when you use our Services, including when you inquire about or register for a free trial or membership, complete online surveys, or provide us with information on a web form, update or add information to your account, subscribe to our mailing lists, link your social media profiles and accounts to the Services, or otherwise correspond with us regarding the Services.</p>
+      <p>We may collect two basic types of information through the Services: “personal information” and “non-personal information.”</p>
+      <p>The personal information we collect includes the following:</p>
+      <ul>
+        <li>Identifying information such as your name, address, telephone number, email address, and other contact information;</li>
+        <li>Information that you provide or that is connected to your membership, including your username, password, membership number and photos used for your profile, health-related information, training data (including, without limitation, calories burned, distance traveled, and heart rate), workout routines, text, audio, images, videos, and any information you authorize us to import or export to or from select social networking and other websites operated by third parties;</li>
+        <li>Financial information (such as credit card numbers, bank information, billing address, and goods and services you purchase from us);</li>
+        <li>Other information that we are required or authorized by applicable law to collect and process to authenticate or identify you or to verify information we have collected;</li>
+        <li>Information we receive from the devices you use (such as device IDs, device type, etc.);</li>
+        <li>Information about how you use the Services and other products and services we provide, such as classes or training sessions you book through the Services</li>
+        <li>Geographic information and computer and connection information, such as statistics on your page views, traffic to and from the Services, and referral URL and location data, if enabled (including without limitation, GPS coordinates traveled, cellular tower identifications, Wi-Fi access points, altitude and any other information provided by your mobile device or computer).</li>
+      </ul>
+      <p>We also may collect a limited amount of fitness, physical activity, and health-related information from you if you create an account with us or join a TRIFIT LA location. This information (such as whether you are pregnant or suffer from a heart condition, dizziness, high blood pressure, and knee or back problems) helps determine your eligibility to participate in our training programs. If you participate in our virtual training, coaching, or training programs, we may also obtain certain measurements from you, such as height, weight, and age. Your calories burned, distance traveled, and heart rate may be obtained from your mobile device. We also may receive your health, fitness, and medical data from MyZone, Seca, Korr Medical Technologies, or any other data source you choose to participate in and share data with TRIFIT LA.</p>
+      <p>In addition, we may offer third-party applications and products by which you can submit biological and biometric material that can be associated with you personally, such as blood samples to provide health indicators (“Health PI”). These are optional products that you may choose to purchase. If you do so, the disclosure of your Health PI in these circumstances will be solely to the third-party app or service that collects it and provides feedback to you directly. Unless you decide to share your Health PI with us, we will not have access to this Health PI. Accordingly, please carefully review the privacy policies of these third-party service providers to learn how your Health PI will be handled in these situations.</p>
+      <p>You may voluntarily choose to configure third-party apps so that they disclose your health PI to us for the purposes of physical training and conditioning or improving your fitness, or you may choose to share that health PI with us directly. If you decide to enable disclosure of, or share with us, your Health PI, it will be handled per this Privacy Policy.</p>
+      <p>If you give us personal information about someone else, you must do so only with their explicit and prior consent. You have to inform them how we collect, use, disclose, and retain their personal information according to this Policy.</p>
+      <p>Non-personal information is aggregated information, demographic information, IP addresses, and any other information that does not reveal your specific identity. This non-personal information may include “clickstream data” (server address, domain name).</p>
+      <p>We may use clickstream data for traffic analysis or e-commerce analysis of our website to determine which site features are most or least effective or useful to you. We may also use cookies, web beacons, pixel tags, unique identifiers, and similar technologies to deliver or communicate with cookies and gather information about your use of our Services, as well as the other goods and services we provide to enhance your experience. We also may include web beacons in email messages so that we know when you have opened an email message received from us. The click stream data may contain a “Do Not Track” signal or mechanism. The Services does not respond to “Do Not Track” signals or mechanisms. Our business partners may use cookies on our Services. We have no access to or control over these cookies once our business partners have been permitted to set cookies. This Policy covers the use of cookies by us only and does not cover the use of cookies by advertisers or business partners.</p>
+      <p>We also may monitor and record your interactions and activity when utilizing our Services and across our social media, including if you use our chat function for quality assurance to improve your experience and provide personalized advertising. We may use chatbots, which are computer programs that simulate human conversation with a user. The chatbots we use utilize artificial intelligence (AI) techniques, like natural language processing (NLP), to understand user questions and respond automatically. Our third-party vendors providing the technology for these services will have real-time access to this information and access to transcripts for chats.</p>
+      <p>We use third parties' analytic and tracking tools to understand better who is using the Services, how people are using the Services, and how to improve the effectiveness of the Services and their content, and to help those parties serve more targeted advertising to you across the Internet or help us serve more targeted advertising to you. Those third-party companies may use cookies, pixel tags, or other technologies to collect and store certain information, such as time of visit, pages visited, time spent on each page of the Services, device identifiers, type of operating system used, and other website(s) you may have visited. They might combine information they collect from your interaction with our Services with Personal Information they collect from other sources. We do not have access to, nor control over, third parties' use of cookies or other tracking technologies. We use Google Analytics, which is a web analytics tool that helps us understand how users engage with the Services. Like many services, Google Analytics uses first-party cookies to track user interactions, as in our case, where they are used to collect information about how users use our site. This information is used to compile reports and to help us improve our Services. The reports disclose website trends without identifying individual visitors. You can opt out of Google Analytics without affecting how you visit our site – for more information on opting out of being tracked by Google Analytics across all websites you use, visit this Google page:</p>
+      <p>https://tools.google.com/dlpage/gaoptout</p>
+      <p>We employ video surveillance cameras throughout our facilities, except for the restrooms and locker rooms, to monitor activity and enhance our members' personal safety and well-being. By entering our premises or using our services, you consent to the use of such video surveillance.</p>
+      <h2>How We Use Your Information</h2>
+      <p>We will primarily use the personal information you provide and any non-personal information we receive from you to provide, promote, and improve our products and services, including the Services, to contact you about your membership (or interest in membership) and our other goods and services, to provide you customer service, and to detect, prevent, mitigate and investigate fraudulent or illegal activities. We may use and retain your personal information as follows:</p>
+      <h2>Provide, improve, and personalize our Services</h2>
+      <ul>
+        <li>Provide access to and use of products, information, and services you request.</li>
+        <li>Give you access to your membership information, transaction history, internal messages, and other features.</li>
+        <li>Customize, measure, and improve our products and services.</li>
+        <li>Provide other services requested by you as described when we collect the information. We may use the information we have collected about an individual through the Services with information collected offline, whether provided by the individual to a staff member or personal trainer or when completing questionnaires about the individual's health or fitness goals, to provide such individuals with a tailored experience.</li>
+        <li>We may use geo-location information to provide you with location-based services (such as search results and other personalized content).</li>
+        <li>In the event of a merger, reorganization, sale, or other transfer of all or any part of TRIFIT LA, we may transfer any and all personal information we have collected in connection with such transaction. The transferee and its affiliates may use your personal information under the terms of their own privacy policies, which may differ from this Policy.</li>
+        <li>We may periodically send you newsletters, e-mails, or similar communications to respond to your inquiries, assist you with incomplete transactions, inform you about sales and promotions, news about new TRIFIT LA products and services, request your feedback, or provide you with other information or notifications we think may be of interest to you, in accordance with local law. You may stop receiving marketing communications from us at any time by unsubscribing.</li>
+      </ul>
+      <h2>Contact you about your membership and provide you with customer service</h2>
+      <ul>
+        <li>Contact you to notify you regarding your membership, troubleshoot problems with your account, resolve a dispute, collect fees or monies owed, poll your opinions through surveys or questionnaires, or as otherwise necessary to provide you customer service and communicate promotions about our goods and services.</li>
+        <li>We may contact you as necessary to enforce our Terms of Service, applicable laws, and any agreement we may have with you.</li>
+        <li>Prevent, detect, mitigate, and investigate fraud, security breaches, and potentially prohibited or illegal activities.</li>
+        <li>Enforce this Policy, our Terms of Service, or other policies.</li>
+      </ul>
+      <p>For these purposes, we may contact you via email, mobile app, web portal, telephone, postal mail, and/or other available communication means.</p>
+      <p>We retain your personal information as long as it is necessary and relevant to our operations. In addition, we may retain personal information from terminated memberships and prospective members to comply with national laws, prevent fraud, collect any fees owed, resolve disputes, troubleshoot problems, assist with any investigation, enforce our Terms of Service, and take other actions permitted or required by applicable national laws. After it is no longer necessary for us to retain your personal information, we dispose of it securely according to our data retention and deletion policies.</p>
+      <h2>Disclosing Information to Third Parties</h2>
+      <p>We do not sell, trade, or otherwise transfer your personal information to third parties without informing you beforehand. Notwithstanding any other provision of this Policy, we will not share any of your personal health-related information, including your data from the MyZone, Seca, Korr Medical Technologies, or any other data source you choose to participate in and share with TRIFIT LA with others for marketing and advertising purposes. We provide some of our services through contractual arrangements with affiliates, service providers, partners, and other third parties (collectively, “service partners”). Our service partners may use your personal information to operate our Services and to deliver their services (such as to facilitate the processing of payment cards when you pay within our Services with a credit card). These service partners will only use your data to carry out the work as agreed with us and will be required to keep the information confidential. We will encourage our service partners to adopt and post privacy policies. However, the use of your personal information by our service partners is governed by the privacy policies of those service partners and is not subject to our control.</p>
+      <p>The services may now or in the future include interactive forums, chat rooms, message boards, and news groups for posting and exchanging information, ideas, and opinions. Additionally, through the Services, you may post information to third-party services. Please remember that any information disclosed in these areas becomes public, and you should exercise caution when deciding to disclose personal information.</p>
+      <p>Notwithstanding any other provision of this Policy to the contrary, we reserve the right to disclose your personal information to others as we believe is appropriate (a) under applicable law; (b) to comply with legal process; (c) to respond to governmental requests; (d) to enforce our Terms of Service; (e) to protect our operations or those of our partners; (f) to protect the rights, privacy, safety or property of TRIFIT LA, our partners, you or others; and (g) to permit us to pursue available remedies or limit the damages we may sustain.</p>
+      <h2>Protection of Your Information</h2>
+      <p>We use reasonable organizational, technical, and administrative measures to protect personal information under our control. Security measures and tools, such as firewalls, are in place to help protect against loss, misuse, and alteration of the information under our control. Unfortunately, no data transmission over the Internet or data storage system can be guaranteed 100% secure. By using the Services, you expressly acknowledge and agree that we do not make assurances about, or guarantee the security of, any data provided to or received by us through the Services and that any personal information, non-personal information, or other data or information received from you through the Services is provided to us at your own risk, which you expressly assume. The Services are controlled and operated by us from inside the United States and are not intended to subject us or any of our partners to the laws or jurisdiction of any state, country, or territory other than that of the United States. By using the Services and submitting any personal information, visitors from outside acknowledge that the Services are subject to United States law and consent to the transfer of personal information to the United States, which may provide a different level of data security than in their country of residence, and waive any claims that may arise under their own national laws.</p>
+      <h2>Notice Concerning Children</h2>
+      <p>Our websites and mobile applications are general audience websites and mobile applications. We do not direct any of our content specifically to children under 13 years of age. We understand and are committed to respecting the sensitive nature of children's privacy online. If we learn or have reason to suspect that a user is under age 13, we will promptly delete any personal information in that user's account. TRIFIT LA offers membership to individuals at least 18 years of age and, with the written consent of a parent or guardian, to individuals at least 14 years of age.</p>
+      <h2>California Residents</h2>
+      <p>State consumer privacy laws may provide their residents with additional rights regarding our use of their personal information. To learn more about California residents' privacy rights, please see our PRIVACY NOTICE FOR CALIFORNIA RESIDENTS below.</p>
+      <h2>Disclaimers</h2>
+      <p>All the information on the Services is published in good faith and for general information purposes only. We do not make any warranties about this information's completeness, reliability, and accuracy. Any action you take upon the information found through our Services is strictly at your own risk, and we will not be liable for any losses and damages in connection with using our Services.</p>
+      <p>You must promptly notify us if your username or password is lost, stolen, or used without permission.</p>
+      <p>Through our Services, you can visit other websites by following hyperlinks to these sites. While we strive to provide only links to useful and ethical websites, we have no control over the content and nature of these sites, and the links to other websites do not imply a recommendation for all the content found on these sites.</p>
+      <p>You can verify your contact information is accurate, complete, and current and modify your privacy preferences (including opting out of receiving specific types of communications) by logging in to your account and going to your account preferences page. For other personal information, we will use commercially reasonable efforts to provide you with access so you can request that we correct inaccurate data or delete data if we are not required to retain it by law or for legitimate business purposes. We may decline to process requests that we deem unreasonable, repetitive, require technical modifications, jeopardize the privacy of others, are impractical, or for which access is not otherwise required by applicable law.</p>
+      <p>Please also be aware that when you leave our website, other sites may have different privacy policies and terms beyond our control. This Policy does not extend to anything that is inherent in the operation of the Internet and, therefore, beyond our control and is not to be applied in any manner contrary to applicable law or governmental regulation. This Policy only applies to information collected through the Services. This Policy does not apply to any information we may collect from you in any place other than the Services.</p>
+      <h2>Questions or Comments</h2>
+      <p>If you have any questions or comments about our Services or this Policy, please send an email to contact@trifitla.com. You may also contact us by writing to 2425 Colorado Ave Ste B100, Santa Monica, CA 90404.</p>
+      <h2>PRIVACY STATEMENT-CALIFORNIA</h2>
+      <p>This PRIVACY NOTICE FOR CALIFORNIA RESIDENTS supplements the information contained in the general Privacy Statement above (collectively, “we,” “us,” or “our”) and applies solely to visitors, users, and others who reside in the State of California (“consumers” or “you”). We adopt this notice to comply with the California Consumer Privacy Act of 2018 as amended by the California Privacy Rights Act of 2020 (“CCPA”) and other California privacy laws. Any terms defined in the CCPA have the same meaning when used in this notice. This Privacy Statement for California residents is intended to set forth disclosures and rights that are different from or in addition to those already provided in our general Privacy Policy.</p>
+      <h2>Information We Collect</h2>
+      <p>We collect information that identifies, relates to, describes, references, is capable of being associated with, or could reasonably be linked, directly or indirectly, with a particular consumer or device (“personal information”). In particular, we have collected the following categories of personal information from consumers within the last twelve (12) months:</p>
+      <p>Category</p>
+      <p>Examples</p>
+      <p>Collected</p>
+      <p>A. Identifiers.</p>
+      <p>A real name, alias, postal address, unique personal identifier, online identifier, Internet Protocol address, email address, account name, Social Security number, driver's license number, passport number, or other similar identifiers.</p>
+      <p>Yes</p>
+      <p>B. Personal information categories listed in the California Customer Records statute (Cal. Civ. Code § 1798.80(e)).</p>
+      <p>A name, signature, Social Security number, physical characteristics or description, address, telephone number, passport number, driver's license or state identification card number, insurance policy number, education, employment, employment history, bank account number, credit card number, debit card number, or any other financial information, medical information, or health insurance information.</p>
+      <p>Some personal information included in this category may overlap with other categories.</p>
+      <p>Yes</p>
+      <p>C. Protected classification characteristics under California or federal law.</p>
+      <p>Age (40 years or older), race, color, ancestry, national origin, citizenship, religion or creed, marital status, medical condition, physical or mental disability, sex (including gender, gender identity, gender expression, pregnancy or childbirth, and related medical conditions), sexual orientation, veteran or military status, genetic information (including familial genetic information).</p>
+      <p>Yes</p>
+      <p>D. Commercial information.</p>
+      <p>Records of personal property, products or services purchased, obtained, or considered, or other purchasing or consuming histories or tendencies.</p>
+      <p>Yes</p>
+      <p>E. Biometric information.</p>
+      <p>Genetic, physiological, behavioral, and biological characteristics or activity patterns used to extract a template or other identifier or identifying information, such as fingerprints, faceprints, voiceprints, iris or retina scans, keystroke, gait, or other physical patterns, and sleep, health, or exercise data.</p>
+      <p>Yes</p>
+      <p>F. Internet or other similar network activity.</p>
+      <p>Browsing history, search history, and information on a consumer's interaction with a website, application, or advertisement.</p>
+      <p>Yes</p>
+      <p>G. Geolocation data.</p>
+      <p>Physical location or movements.</p>
+      <p>Yes</p>
+      <p>H. Sensory data.</p>
+      <p>Audio, electronic, visual, thermal, olfactory, or similar information.</p>
+      <p>No</p>
+      <p>I. Professional or employment-related information.</p>
+      <p>Current or past job history or performance evaluations.</p>
+      <p>Yes</p>
+      <p>J. Non-public education information (per the Family Educational Rights and Privacy Act (20 U.S.C. Section 1232g, 34 C.F.R. Part 99)).</p>
+      <p>Education records directly related to a student maintained by an educational institution or party acting on its behalf, such as grades, transcripts, class lists, student schedules, student identification codes, student financial information, or student disciplinary records.</p>
+      <p>No</p>
+      <p>K. Inferences drawn from other personal information.</p>
+      <p>Profile reflecting a person's preferences, characteristics, psychological trends, predispositions, behavior, attitudes, intelligence, abilities, and aptitudes.</p>
+      <p>Yes</p>
+      <p>L. Sensitive Personal Information.</p>
+      <p>Sensitive personal information” means: (1) personal information that reveals (A) a consumer's social security, driver's license, state identification card, or passport number; (B) a consumer's account log-in, financial account, debit card, or credit card number in combination with any required security or access code, password, or credentials allowing access to an account; (C) a consumer's precise geolocation; (D) a consumer's racial or ethnic origin, religious or philosophical beliefs, or union membership; (E) the contents of a consumer's mall, email and text messages, unless the business is the intended recipient of the communication; (F) a consumer's genetic data; and (2)(A) the processing of biometric information for the purpose of uniquely identifying a consumer; (B) personal information collected and analyzed concerning a consumer's health; or (C) personal information collected and analyzed concerning a consumer's sex life or sexual orientation.</p>
+      <p>Yes</p>
+      <p>Personal information does not include:</p>
+      <ul>
+        <li>Publicly available information from government records.</li>
+        <li>Information excluded from the CCPA's scope, like:</li>
+        <li>health or medical information covered by the Health Insurance Portability and Accountability Act of 1996 (HIPAA) and the California Confidentiality of Medical Information Act (CMIA) or clinical trial data;</li>
+        <li>Personal information covered by certain sector-specific privacy laws, including the Fair Credit Reporting Act (FRCA), the Gramm-Leach-Bliley Act (GLBA) or California Financial Information Privacy Act (FIPA), and the Driver's Privacy Protection Act of 1994.</li>
+      </ul>
+      <h2>Sharing Personal Information</h2>
+      <p>We may disclose your personal information to a third party for a business purpose. When we disclose personal information for a business purpose, we enter a contract that describes the purpose and requires the recipient to both keep that personal information confidential and not use it for any purpose except performing the contract.</p>
+      <p>In the preceding twelve (12) months, we have disclosed the following categories of personal information for a business purpose:</p>
+      <p>We disclose your personal information for a business purpose to the following categories of third parties:</p>
+      <ul>
+        <li>Our affiliates.</li>
+        <li>Service providers.</li>
+      </ul>
+      <p>We do not sell or share your personal information with third parties and receive payments for it. However, given the way that the CCPA defines a “sale” or “sharing” of personal information, some of our uses of your personal information, for example, with third-party platforms that collect our customer's information and help us with our marketing and retargeting purposes, would be considered a “sale” or “share” that gives rise to opt-out rights (discussed further below).</p>
+      <h2>Your Rights and Choices</h2>
+      <p>The CCPA provides consumers (California residents) with specific rights regarding their personal information. This section describes your CCPA rights and explains how to exercise those rights.</p>
+      <h2>Access to Specific Information and Data Portability Rights</h2>
+      <p>You have the right to request that we disclose certain information to you about our collection and use of your personal information over the past 12 months. Once we receive and confirm your verifiable consumer request, we will disclose to you the following:</p>
+      <ul>
+        <li>The categories of personal information we collected about you.</li>
+        <li>The categories of sources for the personal information we collected about you.</li>
+        <li>Our business or commercial purpose for collecting or selling that personal information.</li>
+        <li>The categories of third parties with whom we share that personal information.</li>
+        <li>The specific pieces of personal information we collected about you (also called a data portability request).</li>
+        <li>If we sold or disclosed your personal information for a business purpose, two separate lists disclosing:</li>
+        <li>sales, identifying the personal information categories that each category of recipient purchased; and</li>
+        <li>disclosures for a business purpose, identifying the personal information categories that each category of recipient obtained.</li>
+      </ul>
+      <h2>Deletion Request Rights</h2>
+      <p>You have the right to request that we delete any of your personal information that we collect from you and retain, subject to certain exceptions. Once we receive and confirm your verifiable consumer request, we will delete (and direct our service providers to delete) your personal information from our records, unless an exception applies.</p>
+      <p>We may deny your deletion request if retaining the information is necessary for us or our service providers to:</p>
+      <ul>
+        <li>Complete the transaction for which we collected the personal information, provide a good or service that you requested, take actions reasonably anticipated within the context of our ongoing business relationship with you, or otherwise perform our contract with you.</li>
+        <li>Detect security incidents, protect against malicious, deceptive, fraudulent, or illegal activity, or prosecute those responsible for such activities.</li>
+        <li>3. Debug products to identify and repair errors that impair existing intended functionality.</li>
+        <li>Exercise free speech, ensure the right of another consumer to exercise their free speech rights, or exercise another right provided for by law.</li>
+        <li>Comply with the California Electronic Communications Privacy Act (Cal. Penal Code § 1546 seq.).</li>
+        <li>Engage in public or peer-reviewed scientific, historical, or statistical research in the public interest that adheres to all other applicable ethics and privacy laws when the information's deletion may likely render impossible or seriously impair the research's achievement if you previously provided informed consent.</li>
+        <li>Enable solely internal uses that are reasonably aligned with consumer expectations based on your relationship with us.</li>
+        <li>Comply with a legal obligation.</li>
+        <li>Make other internal and lawful uses of that information that are compatible with the context in which you provided it.</li>
+      </ul>
+      <h2>Right to Correct</h2>
+      <p>You have a right to correct data that we hold about you that is inaccurate.</p>
+      <h2>Right to Limit Use of Sensitive Personal Information</h2>
+      <p>You have the right to limit our use of your sensitive personal information to that use which is necessary to perform the services or provide the goods reasonably expected by an average consumer who requests such goods or services as well as other specified, legitimate business purposes. “Sensitive personal information” is defined above. Any of the above information that is already publicly available is not considered to be sensitive personal information.</p>
+      <p>Please note that we only use “sensitive personal information” to perform services or provide goods to customers who request such goods or services in the first place, i.e., order fulfillment, or to protect the security and integrity of our site and operations. These uses are permitted under the CPRA and are not uses that consumers may limit or restrict. We confirm that we will not use any “sensitive personal information” in a manner that the CPRA allows California consumers to restrict.</p>
+      <h2>Exercising Access, Data Portability, Correction and Deletion Rights</h2>
+      <p>To exercise the access, data portability, correction, and deletion rights described above, please submit a verifiable consumer request to us by either:</p>
+      <ul>
+        <li>Email – contact@trifitla.com</li>
+      </ul>
+      <p>Only you or a person registered with the California Secretary of State that you authorize to act on your behalf may make a verifiable consumer request related to your personal information. You may also make a verifiable consumer request on behalf of your minor child.</p>
+      <p>You may only make a verifiable consumer request for access or data portability twice within a 12-month period. The verifiable consumer request must:</p>
+      <ul>
+        <li>Provide sufficient information that allows us to reasonably verify you are the person about whom we collected personal information or an authorized representative.</li>
+        <li>Describe your request with sufficient detail that allows us to properly understand, evaluate, and respond to it.</li>
+      </ul>
+      <p>We cannot respond to your request or provide you with personal information if we cannot verify your identity or authority to make the request and confirm the personal information relates to you. Making a verifiable consumer request does not require you to create an account with us. We will only use personal information provided in a verifiable consumer request to verify the requestor's identity or authority to make the request.</p>
+      <h2>Response Timing and Format</h2>
+      <p>We endeavor to respond to a verifiable consumer request within 45 days of its receipt. If we require more time (up to 90 days), we will inform you of the reason and extension period in writing. If you have an account with us, we will deliver our written response to that account email or via our web form. If you do not have an account with us, we will deliver our written response electronically at your option. Any disclosures we provide will only cover the 12-month period preceding the verifiable consumer request's receipt. The response we provide will also explain the reasons we cannot comply with a request, if applicable. For data portability requests, we will select a format to provide your personal information that is readily usable and should allow you to transmit the information from one entity to another entity without hindrance.</p>
+      <p>We do not charge a fee to process or respond to your verifiable consumer request unless it is excessive, repetitive, or manifestly unfounded. If we determine that the request warrants a fee, we will tell you why we made that decision and provide you with a cost estimate before completing your request.</p>
+      <p>Personal Information Sales and Sharing Opt-Out and Opt-In Rights and Limitation of Use of Sensitive Personal Information Rights</p>
+      <p>If you are age 16 or older, you have the right to direct us to not sell or share your personal information or limit the use of your sensitive personal information at any time (the “right to opt-out”). We do not sell or share the personal information of consumers we actually know are less than 16 years old unless we receive affirmative authorization (the “right to opt-in”) from either the consumer who is between 13 and 15 years old or the parent or guardian of a consumer less than 13 years old. Consumers who opt-in to personal information sales or sharing may opt out of future sales at any time.</p>
+      <p>Please know, however, that we do not collect the personal information of anyone who we know is under the age of 14 years old in the first place.</p>
+      <p>To exercise the right to opt out or limit the use of your sensitive personal information, you (or your authorized representative) may submit a request to us by sending a request to: contact@trifitla.com.</p>
+      <p>Once you make a request, we will wait at least twelve (12) months before asking you to reauthorize personal information sales or sharing. However, you may change your mind and opt back into personal information sales or sharing at any time by sending us an email at contact@trifitla.com.</p>
+      <p>For opt-out requests, we endeavor to respond to a verifiable consumer request within 15 days of its receipt. If you have an account with us, we will deliver our written response to that account email or via our web form. If you do not have an account with us, we will deliver our written response electronically.</p>
+      <h2>Non-Discrimination</h2>
+      <p>We will not discriminate against you for exercising any of your CCPA rights. Unless permitted by the CCPA, we will not:</p>
+      <ul>
+        <li>Deny you goods or services.</li>
+        <li>Charge you different prices or rates for goods or services, including through granting discounts or other benefits, or imposing penalties.</li>
+        <li>Provide you with a different level or quality of goods or services.</li>
+        <li>Suggest that you may receive a different price or rate for goods or services or a different level or quality of goods or services.</li>
+      </ul>
+      <h2>Other California Privacy Rights</h2>
+      <p>California's “Shine the Light” law (Civil Code Section § 1798.83) permits users of our website who are California residents to request certain information regarding our disclosure of personal information to third parties for their direct marketing purposes. To make such a request, please send us a written request to the following address: 2425 Colorado Ave Ste B100, Santa Monica, CA 90404</p>
+        </div>
+
+        <div class="callout measure">
+          <div>
+            <h3>Questions about this policy?</h3>
+            <p>Call the club on {{ club.phone }} or email {{ club.email }} and we will talk you through it.</p>
+          </div>
+          <div>
+            <a data-stx-link class="btn btn--ghost" href="/contact">Contact us</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    @include('site/footer', { club, hours, footerColumns, legalLinks })
+  </body>
+</html>

@@ -1,0 +1,217 @@
+<script server>
+/*
+ * Contact.
+ *
+ * Contact details, the member policies people actually search for (freeze,
+ * cancellation, reservations, parking), and the FAQ. The policies are here
+ * verbatim rather than paraphrased, because they are the terms of an
+ * agreement and paraphrasing them would be worse than useless.
+ */
+
+import { club, clubJsonLd, footerColumns, hours, legalLinks, navLinks, siteUrl } from '../site/club'
+
+const path = '/contact'
+const title = 'Contact us - TRIFIT LA'
+const description = 'Reach TRIFIT LA in Santa Monica on 310-829-2227 or contact@trifitla.com. Membership questions, tours, freeze and cancellation requests, and answers to the questions we get most.'
+
+const faqs = [
+  {
+    q: 'How do I schedule a tour?',
+    a: [`Call us on ${club.phone} to schedule a same-day visit. We would love to show you around the club and tell you more about what we have to offer.`],
+  },
+  {
+    q: 'What are your hours?',
+    a: ['Monday to Thursday, 6 am to 9 pm. Friday, 6 am to 8 pm. Saturday and Sunday, 7:30 am to 6 pm.'],
+  },
+  {
+    q: 'Do I need a reservation for the gym, classes, pool, or courts?',
+    a: [
+      'No reservations are needed for the gym. Classes are open drop-in, but a few cap by space. Tickets for those go out at the front desk 30 minutes before the class starts; check the class descriptions on the calendar to see which ones have a capacity. Classes with no capacity noted are open drop-in.',
+      'A pool lane, swim workout place, squash court, or tennis court can be reserved online through your member portal. Pool lane and squash court reservations open seven days in advance; tennis opens three days in advance. The west court is available to members and the general public for open play — coaching is not permitted there. The east court is reserved for registered tennis pros only.',
+    ],
+  },
+  {
+    q: 'Where do I park?',
+    a: [
+      'Underground garage parking is free for up to three hours per visit, with a one-time purchase of a parking card for members. Non-member guests and day pass visitors can have their parking ticket validated at the front desk.',
+      'Access to the Colorado Center parking garage is on the south side of the campus off Colorado Ave near Cloverfield Blvd, at 2401 Colorado.',
+    ],
+  },
+  {
+    q: 'How do I register?',
+    a: ['You can sign up for a month-to-month membership online or in person at the front desk. Guest visitors register at the desk and acknowledge a release of liability. On your first visit, please bring a valid photo ID to complete your registration.'],
+  },
+  {
+    q: 'What is your freeze policy?',
+    a: [
+      'If you need to pause your membership, you can place your account on freeze at a fee of $25 a month in lieu of your regular dues, for up to three months per calendar year.',
+      'Freezes start at the top of the month on the 1st, in line with our standard billing cycle. Freeze requests must be submitted by the 25th of the month to be processed for the following calendar month.',
+    ],
+  },
+  {
+    q: 'What is your cancellation policy?',
+    a: [
+      'Memberships are month to month with no annual contract. Monthly billing is assessed on the 1st of every month for the month ahead.',
+      'After completing your first 60 days of membership, your membership agreement may be cancelled at any time by submitting your cancellation online via your member portal. On submitting a cancellation, you will be required to make one final payment for the following month\'s invoice.',
+      `If you need any help processing a cancellation, call ${club.phone} or email ${club.email}.`,
+    ],
+  },
+]
+</script>
+
+@nolayout
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    @include('site/head', {
+      title,
+      description,
+      path,
+      siteUrl,
+      image: '/images/trifit/lobby.jpg',
+      jsonLd: clubJsonLd(),
+    })
+  </head>
+
+  <body>
+    @include('site/nav', { navLinks, current: path })
+
+    <main>
+      <section class="page-head">
+        <div class="shell">
+          <nav class="crumbs" aria-label="Breadcrumb">
+            <a data-stx-link href="/">Home</a>
+            <span aria-hidden="true">/</span>
+            <span>Contact us</span>
+          </nav>
+          <span class="eyebrow">We answer the phone</span>
+          <h1>Talk to someone who <em>works</em> here.</h1>
+          <p>There is no call centre. The number below rings the front desk of the club, and whoever picks it up can usually sort out whatever you are calling about.</p>
+          <div class="hero-cta">
+            <a class="btn btn--primary" href="{{ club.phoneHref }}">Call {{ club.phone }}</a>
+            <a class="btn btn--ghost" href="mailto:{{ club.email }}">Email us</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section shell" aria-labelledby="details-heading">
+        <h2 id="details-heading" class="sr-only">Contact details</h2>
+
+        <div class="info-panel">
+          <div class="info-card rise">
+            <h3>Address</h3>
+            <address>{{ club.street }}<br>{{ club.city }}</address>
+          </div>
+          <div class="info-card rise">
+            <h3>Phone</h3>
+            <p><a href="{{ club.phoneHref }}">{{ club.phone }}</a></p>
+          </div>
+          <div class="info-card rise">
+            <h3>Email</h3>
+            <p><a href="mailto:{{ club.email }}">{{ club.email }}</a></p>
+          </div>
+          <div class="info-card rise">
+            <h3>Hours</h3>
+            <p>
+              @foreach (hours as row)
+                {{ row.short }}: {{ row.time }}<br>
+              @endforeach
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Member admin ──────────────────────────────────────────── -->
+      <section class="section band" id="policies" aria-labelledby="policies-heading">
+        <div class="shell">
+          <div class="section-head rise">
+            <h2 id="policies-heading">Need help with your membership?</h2>
+            <p>The four requests we get most, and exactly what to do about each one.</p>
+          </div>
+
+          <div class="grid grid--2">
+            <article class="card rise">
+              <div class="card-body">
+                <h3>Cancellation requests</h3>
+                <p>After completing your first 60 days of membership, your agreement may be cancelled at any time by submitting your cancellation online via your member portal. On submitting a cancellation you will be required to make one final payment for the following month's invoice.</p>
+                <p>If you need any assistance processing your cancellation request, call {{ club.phone }} or email {{ club.email }}.</p>
+                <div class="card-foot">
+                  <a class="btn btn--ghost btn--sm" href="{{ club.memberPortal }}" rel="noopener">Open the member portal</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="card rise">
+              <div class="card-body">
+                <h3>Freeze requests</h3>
+                <p>Freeze requests must be submitted by the 25th of the month to be processed for the following calendar month. Confirmation of receipt is sent by email reply, followed by confirmation of processing.</p>
+                <p>If you have not received confirmation of processing two days before the end of the month, please follow up by phone and email to confirm.</p>
+                <div class="card-foot">
+                  <a class="btn btn--ghost btn--sm" href="mailto:{{ club.email }}?subject=Freeze%20request">Email a freeze request</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="card rise">
+              <div class="card-body">
+                <h3>Schedule a tour</h3>
+                <p>To schedule a tour, contact us on {{ club.phone }} ahead of your visit. Same-day slots are usually available.</p>
+                <div class="card-foot">
+                  <a data-stx-link class="btn btn--ghost btn--sm" href="/visit-us">Plan your visit</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="card rise">
+              <div class="card-body">
+                <h3>Membership inquiries</h3>
+                <p>For general membership questions, call {{ club.phone }} or email {{ club.email }} and we will get back to you.</p>
+                <div class="card-foot">
+                  <a data-stx-link class="btn btn--ghost btn--sm" href="/membership">See the plans</a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── FAQ ───────────────────────────────────────────────────── -->
+      <section class="section shell" id="faq" aria-labelledby="faq-heading">
+        <div class="section-head rise">
+          <h2 id="faq-heading">Frequently asked questions</h2>
+          <p>If yours is not here, the front desk has heard it before. Call and ask.</p>
+        </div>
+
+        <div class="faq rise">
+          @foreach (faqs as item)
+            <details>
+              <summary>{{ item.q }}</summary>
+              <div class="faq-answer">
+                @foreach (item.a as para)
+                  <p>{{ para }}</p>
+                @endforeach
+              </div>
+            </details>
+          @endforeach
+        </div>
+      </section>
+
+      <section class="section--tight shell">
+        <div class="closer rise">
+          <div>
+            <h2>Still easier to just come in.</h2>
+          </div>
+          <div>
+            <p>{{ club.street }}, {{ club.cityShort }}. Three hours of parking on us.</p>
+            <div class="hero-cta">
+              <a data-stx-link class="btn btn--primary" href="/visit-us">Visit us</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    @include('site/footer', { club, hours, footerColumns, legalLinks })
+  </body>
+</html>

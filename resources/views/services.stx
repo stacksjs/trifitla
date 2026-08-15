@@ -1,0 +1,147 @@
+<script server>
+/*
+ * Services.
+ *
+ * Add-ons that sit alongside a membership: coaching, biometric testing, and
+ * sports performance. Every published price is on the page, including the
+ * retest and add-on rates, because a testing service whose price you have to
+ * phone for is a service people do not buy.
+ */
+
+import { club, clubJsonLd, footerColumns, hours, legalLinks, navLinks, siteUrl } from '../site/club'
+import { serviceGroups, services } from '../site/services'
+
+const path = '/services'
+const title = 'Services - TRIFIT LA'
+const description = 'Private training, strength and conditioning, swim instruction, endurance training plans, VO₂ max and metabolic testing, body composition, and swim stroke analysis in Santa Monica.'
+
+const byGroup = serviceGroups.map(group => ({
+  ...group,
+  items: services.filter(s => s.group === group.match),
+}))
+</script>
+
+@nolayout
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    @include('site/head', {
+      title,
+      description,
+      path,
+      siteUrl,
+      image: '/images/trifit/vo2-max.jpg',
+      jsonLd: clubJsonLd(),
+    })
+  </head>
+
+  <body>
+    @include('site/nav', { navLinks, current: path })
+
+    <main>
+      <section class="page-head">
+        <div class="shell">
+          <nav class="crumbs" aria-label="Breadcrumb">
+            <a data-stx-link href="/">Home</a>
+            <span aria-hidden="true">/</span>
+            <span>Services</span>
+          </nav>
+          <span class="eyebrow">Add-on services</span>
+          <h1>Coaching that starts with <em>data</em>.</h1>
+          <p>Exercise physiologists write the plan, and exercise scientists on staff test where you actually are before they do. Every service below is available to members and to non-members alike.</p>
+          <div class="hero-cta">
+            <a data-stx-link class="btn btn--primary" href="/contact">Ask about a service</a>
+            <a class="btn btn--ghost" href="#testing">Testing and prices</a>
+          </div>
+        </div>
+      </section>
+
+      @foreach (byGroup as group)
+        <section class="section {{ group.id === 'testing' ? 'band' : '' }}" id="{{ group.id }}" aria-labelledby="{{ group.id }}-heading">
+          <div class="shell">
+            <div class="section-head rise">
+              <h2 id="{{ group.id }}-heading">{{ group.name }}</h2>
+              <p>{{ group.lede }}</p>
+            </div>
+
+            <div class="grid grid--2">
+              @foreach (group.items as item)
+                <article class="card rise" id="{{ item.slug }}">
+                  <div class="card-media">
+                    <img src="{{ item.image }}" alt="{{ item.alt }}" width="1200" height="750" loading="lazy" decoding="async">
+                  </div>
+                  <div class="card-body">
+                    <h3>{{ item.name }}</h3>
+                    <p>{{ item.summary }}</p>
+                    @foreach (item.detail as para)
+                      <p>{{ para }}</p>
+                    @endforeach
+                    @if (item.priceLine)
+                      <div class="card-price">
+                        <b>{{ item.priceLine }}</b>
+                      </div>
+                    @endif
+                  </div>
+                </article>
+              @endforeach
+            </div>
+          </div>
+        </section>
+      @endforeach
+
+      <!-- ── How it works ──────────────────────────────────────────── -->
+      <section class="section shell" aria-labelledby="how-heading">
+        <div class="section-head rise">
+          <h2 id="how-heading">How it works</h2>
+          <p>Four steps, and the first one is a conversation rather than a sale.</p>
+        </div>
+
+        <div class="steps rise">
+          <div>
+            <h3>Tell us what you are training for</h3>
+            <p>A race, a return from injury, a body composition goal, or simply feeling better at 50 than you did at 40. The answer changes the plan.</p>
+          </div>
+          <div>
+            <h3>Get assessed</h3>
+            <p>Every programme starts with a personalised assessment. If numbers matter for your goal, that is where the testing services come in.</p>
+          </div>
+          <div>
+            <h3>Train the plan</h3>
+            <p>In person with a trainer, on a weekly plan delivered by spreadsheet or TrainingPeaks, or a combination of the two.</p>
+          </div>
+          <div>
+            <h3>Retest and adjust</h3>
+            <p>VO₂ max carries an annual retest rate for a reason: the plan should change when your fitness does.</p>
+          </div>
+        </div>
+
+        <div class="callout rise">
+          <div>
+            <h3>Not sure which one you need?</h3>
+            <p>Call the front desk and describe what you are trying to do. We will tell you which service fits, and we will tell you when the answer is none of them.</p>
+          </div>
+          <div>
+            <a class="btn btn--primary" href="{{ club.phoneHref }}">Call {{ club.phone }}</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section--tight shell">
+        <div class="closer rise">
+          <div>
+            <h2>Measured beats guessed, every time.</h2>
+          </div>
+          <div>
+            <p>Book a test, or come in for a tour and see the lab and the floor first.</p>
+            <div class="hero-cta">
+              <a data-stx-link class="btn btn--primary" href="/visit-us">Book a tour</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    @include('site/footer', { club, hours, footerColumns, legalLinks })
+  </body>
+</html>

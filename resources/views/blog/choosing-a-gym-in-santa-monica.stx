@@ -1,0 +1,172 @@
+<script server>
+/*
+ * Blog post. The body is the club's own writing, ported across; everything
+ * around it — the header, the meta line, the neighbours at the foot — is
+ * derived from the shared post index so no fact is stated twice.
+ */
+
+import { articleJsonLd, neighbours, posts } from '../../site/blog'
+import { club, footerColumns, hours, legalLinks, navLinks, siteUrl } from '../../site/club'
+
+const slug = 'choosing-a-gym-in-santa-monica'
+const post = posts.find(p => p.slug === slug)
+const { prev, next } = neighbours(slug)
+const path = `/blog/${slug}`
+</script>
+
+@nolayout
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    @include('site/head', {
+      title: `${post.title} - TRIFIT LA`,
+      description: post.excerpt,
+      path,
+      siteUrl,
+      image: post.image,
+      ogType: 'article',
+      jsonLd: articleJsonLd(post, siteUrl),
+    })
+  </head>
+
+  <body>
+    @include('site/nav', { navLinks, current: '/blog' })
+
+    <main>
+      <article>
+        <header class="page-head">
+          <div class="shell">
+            <nav class="crumbs" aria-label="Breadcrumb">
+              <a data-stx-link href="/">Home</a>
+              <span aria-hidden="true">/</span>
+              <a data-stx-link href="/blog">Blog</a>
+              <span aria-hidden="true">/</span>
+              <span>{{ post.topic }}</span>
+            </nav>
+            <span class="eyebrow">{{ post.topic }}</span>
+            <h1>{{ post.title }}</h1>
+            <div class="article-meta">
+              <time datetime="{{ post.date }}">{{ post.dateLabel }}</time>
+              <span>{{ post.minutes }} minute read</span>
+              <span>TRIFIT LA</span>
+            </div>
+          </div>
+        </header>
+
+        <div class="section shell">
+          <figure class="prose-figure post-hero">
+            <img src="{{ post.image }}" alt="{{ post.alt }}" width="1400" height="933" fetchpriority="high" decoding="async">
+          </figure>
+
+          <div class="prose">
+      <p>Santa Monica has no shortage of gyms, studios, and classes. The hard part isn't finding a place to work out — it's finding the place you'll actually stick with.</p>
+      <p>If you've ever joined a gym with big intentions and then slowly stopped going, you're not alone. Most people don't fail because they “lack motivation.” They fail because the gym choice doesn't match their real life: schedule, stress, experience level, injuries, or the kind of coaching they actually need.</p>
+      <p>This guide is a simple checklist to help you choose the right gym in Santa Monica — without getting sold to, overwhelmed, or locked into something you'll regret.</p>
+      <h2>Quick checklist (jump to what you care about)</h2>
+      <ul>
+        <li>Coaching vs. “figure it out yourself”</li>
+        <li>Crowds, equipment, and wait time</li>
+        <li>A plan that produces results (not random workouts)</li>
+        <li>Schedule that fits real life</li>
+        <li>Community that doesn't feel intimidating</li>
+        <li>Recovery + longevity (especially if you sit a lot)</li>
+        <li>Cost, value, and what you're actually paying for</li>
+      </ul>
+      <h2>1) Coaching vs. “figure it out yourself”</h2>
+      <p><strong>Here's the truth:</strong> most gyms sell access to equipment — not outcomes. If you're new, busy, or coming back after time off, the biggest difference-maker is coaching.</p>
+      <ul>
+        <li><strong>If you want fat loss:</strong> you need progressive strength training + conditioning + accountability.</li>
+        <li><strong>If you want strength:</strong> you need a plan (sets, reps, progression), not “whatever feels hard today.”</li>
+        <li><strong>If you want consistency:</strong> you need structure that reduces decision fatigue.</li>
+      </ul>
+      <h2>2) Crowds, equipment, and wait time</h2>
+      <p>One of the most common Santa Monica gym complaints is simple: it's crowded. People ask about squat racks, benches, and whether the gym “has enough equipment” — because waiting kills momentum. If you tour a gym, visit during the time you'd actually go (before work, lunch, after work) and look for:</p>
+      <ul>
+        <li>How many people are waiting for racks/benches?</li>
+        <li>Is there space to train without bumping into people?</li>
+        <li>Do you feel rushed or stressed just being there?</li>
+      </ul>
+      <h2>3) A plan that produces results (not random workouts)</h2>
+      <p>Results come from progression. The best programs answer:</p>
+      <ul>
+        <li>What are we improving this month?</li>
+        <li>How do we track it (strength, measurements, performance, consistency)?</li>
+        <li>What's the plan when life gets hectic?</li>
+      </ul>
+      <p>If the “program” is just a whiteboard of the day with no context, you're relying on willpower. That's not a strategy.</p>
+      <h2>4) A schedule that fits real life</h2>
+      <p><strong>Santa Monica life is full:</strong> work, commute, social plans, family, and everything in between. Pick a gym model you can repeat:</p>
+      <ul>
+        <li><strong>Small group training:</strong> coached, efficient, consistent times.</li>
+        <li><strong>Personal training:</strong> fully customized, best for specific goals or constraints.</li>
+        <li><strong>Open gym:</strong> flexible, but requires self-direction and a plan.</li>
+      </ul>
+      <h2>5) Community that doesn't feel intimidating</h2>
+      <p>People stick with fitness when they feel like they belong. Local discussions about gyms often highlight “nice people,” “not too crowded,” and a welcoming vibe — because comfort matters. Choose the room where you can be a beginner (or restart) without feeling judged.</p>
+      <h2>6) Recovery + longevity (especially if you sit a lot)</h2>
+      <p>If you're a desk-worker, runner, or someone with tight hips/shoulders, your gym should build you up — not beat you down. Look for programming that includes:</p>
+      <ul>
+        <li>Warm-ups that actually prepare joints and tissue</li>
+        <li>Strength work for posture and stability</li>
+        <li>Mobility and recovery options (even if simple)</li>
+      </ul>
+      <h2>7) Cost, value, and what you're actually paying for</h2>
+      <p>Santa Monica gyms range widely in price, and “more expensive” doesn't always mean “better for you.” Ask:</p>
+      <ul>
+        <li>Does the membership include coaching, or is it extra?</li>
+        <li>Are you paying for amenities you won't use?</li>
+        <li>Is parking convenient (and free), or a daily hassle?</li>
+      </ul>
+      <p>The best value is the place you'll use consistently — because consistency is what changes your body.</p>
+      <h2>FAQ: quick answers before you join</h2>
+      <h3>What if I have “zero experience” working out?</h3>
+      <p>Then prioritize coaching or personal training. A great coach gives you a plan, teaches form, and helps you progress safely — so you don't waste months guessing.</p>
+      <h3>What if I want results but hate the “hardcore gym” vibe?</h3>
+      <p>Look for a community-first gym, like TRIFIT LA, who are locally-owned, where people train seriously without taking themselves too seriously. You should feel supported, not inspected.</p>
+      <h3>What's better: personal training or group fitness classes?</h3>
+      <p>Personal training is best if you want maximum customization or have constraints (injury history, specific goals, time). Group Fitness Classes are great if you want coaching + energy + efficiency at a lower cost per session.</p>
+      <h2>Want help choosing the right next step?</h2>
+      <p>If you're exploring gyms in Santa Monica and want a clear plan (without pressure), TRIFIT LA offers coaching-focused training designed for real people with real schedules.</p>
+      <p><strong>Try this:</strong> book a visit, ask questions, and get a simple starting plan you can actually follow.</p>
+      <p>Visit TRIFIT LA</p>
+      <p><strong>Tip:</strong> When you tour any gym, go during the exact time you'd train. The “vibe at 11am” and the “vibe at 6pm” can be totally different.</p>
+          </div>
+
+          <nav class="post-nav" aria-label="More posts">
+            @if (prev)
+              <a data-stx-link href="/blog/{{ prev.slug }}">
+                <span>Older</span>
+                <b>{{ prev.title }}</b>
+              </a>
+            @else
+              <span></span>
+            @endif
+            @if (next)
+              <a data-stx-link class="is-next" href="/blog/{{ next.slug }}">
+                <span>Newer</span>
+                <b>{{ next.title }}</b>
+              </a>
+            @endif
+          </nav>
+        </div>
+      </article>
+
+      <section class="section--tight shell">
+        <div class="closer">
+          <div>
+            <h2>Come and see the club for yourself.</h2>
+          </div>
+          <div>
+            <p>Call ahead for a tour, or try everything for a day with a $39 day pass.</p>
+            <div class="hero-cta">
+              <a data-stx-link class="btn btn--primary" href="/visit-us">Book a tour</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    @include('site/footer', { club, hours, footerColumns, legalLinks })
+  </body>
+</html>

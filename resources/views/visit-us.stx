@@ -1,0 +1,204 @@
+<script server>
+/*
+ * Visit us.
+ *
+ * The page whose only job is getting someone through the door. Hours,
+ * parking (which is the single most common question), what happens on a
+ * first visit, and the phone number in more than one place.
+ */
+
+import { club, clubJsonLd, footerColumns, hours, legalLinks, navLinks, siteUrl } from '../site/club'
+
+const path = '/visit-us'
+const title = 'Visit us - TRIFIT LA'
+const description = 'Book a tour of TRIFIT LA at 2425 Colorado Ave, Santa Monica. Same-day tours, $39 day passes, 3 hours of free validated parking in the Colorado Center garage.'
+
+const interests = [
+  'Weights and cardio',
+  'Group classes',
+  'Personal training',
+  'Swim instruction',
+  'Triathlon coaching',
+  'Squash and tennis',
+  'Recovery and testing',
+]
+</script>
+
+@nolayout
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    @include('site/head', {
+      title,
+      description,
+      path,
+      siteUrl,
+      image: '/images/trifit/exterior.jpg',
+      jsonLd: clubJsonLd(),
+    })
+  </head>
+
+  <body>
+    @include('site/nav', { navLinks, current: path })
+
+    <main>
+      <section class="page-head">
+        <div class="shell">
+          <nav class="crumbs" aria-label="Breadcrumb">
+            <a data-stx-link href="/">Home</a>
+            <span aria-hidden="true">/</span>
+            <span>Visit us</span>
+          </nav>
+          <span class="eyebrow">Same-day tours</span>
+          <h1>Come and <em>see</em> it.</h1>
+          <p>Walk in for a tour, or call ahead and we will have someone free to show you around. If you would rather just use the place, a day pass is $39 and covers everything a member gets that day.</p>
+          <div class="hero-cta">
+            <a class="btn btn--primary" href="{{ club.phoneHref }}">Call {{ club.phone }}</a>
+            <a class="btn btn--ghost" href="mailto:{{ club.email }}">Email us</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── The essentials ────────────────────────────────────────── -->
+      <section class="section shell" id="learn-more" aria-labelledby="essentials-heading">
+        <h2 id="essentials-heading" class="sr-only">Where we are and when we are open</h2>
+
+        <div class="info-panel">
+          <div class="info-card rise">
+            <h3>Address</h3>
+            <address>
+              {{ club.street }}<br>
+              {{ club.city }}
+            </address>
+          </div>
+          <div class="info-card rise">
+            <h3>Phone</h3>
+            <p><a href="{{ club.phoneHref }}">{{ club.phone }}</a></p>
+          </div>
+          <div class="info-card rise">
+            <h3>Email</h3>
+            <p><a href="mailto:{{ club.email }}">{{ club.email }}</a></p>
+          </div>
+          <div class="info-card rise">
+            <h3>Hours</h3>
+            <p>
+              @foreach (hours as row)
+                {{ row.short }}: {{ row.time }}<br>
+              @endforeach
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── First visit ───────────────────────────────────────────── -->
+      <section class="section band" aria-labelledby="first-visit-heading">
+        <div class="shell">
+          <div class="split split--reverse">
+            <div class="split-media rise">
+              <img src="/images/trifit/exterior.jpg" alt="The exterior of TRIFIT LA at Colorado Center in Santa Monica" width="1400" height="1505" loading="lazy" decoding="async">
+            </div>
+            <div class="rise">
+              <div class="section-head">
+                <h2 id="first-visit-heading">Your first visit</h2>
+                <p>Nothing to prepare beyond photo ID. Here is how it goes.</p>
+              </div>
+
+              <div class="steps">
+                <div>
+                  <h3>Park in the Colorado Center garage</h3>
+                  <p>Underground parking is free for up to three hours per visit. The garage entrance is on the south side of the campus off Colorado Ave near Cloverfield Blvd, at 2401 Colorado. Bring your ticket to the front desk and we will validate it.</p>
+                </div>
+                <div>
+                  <h3>Check in at the front desk</h3>
+                  <p>Guests register at the desk and acknowledge a release of liability. Bring a valid photo ID to complete your registration.</p>
+                </div>
+                <div>
+                  <h3>Get shown around</h3>
+                  <p>Tell us what you are interested in and we will walk you through the parts of the club that actually matter to you rather than all 29,000 square feet of it.</p>
+                </div>
+                <div>
+                  <h3>Use the place</h3>
+                  <p>A day pass gets you the gym floor, the pool, the squash courts, the recovery suite, and any class running that day.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── What are you here for ─────────────────────────────────── -->
+      <section class="section shell" aria-labelledby="interests-heading">
+        <div class="section-head rise">
+          <h2 id="interests-heading">Tell us what you are after</h2>
+          <p>Call or email and mention any of these, and we will point you at the right coach, class, or room rather than giving you the general tour.</p>
+        </div>
+
+        <div class="also">
+          @foreach (interests as interest)
+            <span class="chip">{{ interest }}</span>
+          @endforeach
+        </div>
+
+        <div class="callout rise">
+          <div>
+            <h3>Booking a tour</h3>
+            <p>Call {{ club.phone }} ahead of your visit and we can usually arrange a same-day slot. We would love to show you around and tell you more about what we have to offer.</p>
+          </div>
+          <div>
+            <a class="btn btn--primary" href="{{ club.phoneHref }}">Call the club</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Getting here ──────────────────────────────────────────── -->
+      <section class="section band" aria-labelledby="directions-heading">
+        <div class="shell">
+          <div class="section-head rise">
+            <h2 id="directions-heading">Getting here</h2>
+            <p>We are inside Colorado Center, a few minutes from the 10 and walking distance from the Expo Line at 26th Street / Bergamot.</p>
+          </div>
+
+          <div class="grid grid--2">
+            <article class="card rise">
+              <div class="card-media">
+                <img src="/images/trifit/parking.jpg" alt="The Colorado Center parking garage" width="1147" height="1529" loading="lazy" decoding="async">
+              </div>
+              <div class="card-body">
+                <h3>Parking</h3>
+                <p>Up to three hours free per visit in the secured underground garage. Members buy a one-time electronic parking badge for $29; non-member guests and day pass visitors have their ticket validated at the front desk.</p>
+                <p>Garage access is on the south side of the campus off Colorado Ave near Cloverfield Blvd, at 2401 Colorado.</p>
+              </div>
+            </article>
+            <article class="card rise">
+              <div class="card-media">
+                <img src="/images/trifit/lobby.jpg" alt="The lobby at TRIFIT LA" width="1400" height="825" loading="lazy" decoding="async">
+              </div>
+              <div class="card-body">
+                <h3>Finding us inside</h3>
+                <p>We are Suite B100. Come down into the club and the front desk is straight ahead, under the mural.</p>
+                <p>Coffee, tea, and infused water are in the lobby, and yes, you can help yourself while you wait.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section--tight shell">
+        <div class="closer rise">
+          <div>
+            <h2>We would rather show you than tell you.</h2>
+          </div>
+          <div>
+            <p>Same-day tours most days. Or just turn up with $39 and a photo ID.</p>
+            <div class="hero-cta">
+              <a class="btn btn--primary" href="{{ club.phoneHref }}">Call {{ club.phone }}</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    @include('site/footer', { club, hours, footerColumns, legalLinks })
+  </body>
+</html>

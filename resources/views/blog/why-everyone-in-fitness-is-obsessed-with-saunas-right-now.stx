@@ -1,0 +1,183 @@
+<script server>
+/*
+ * Blog post. The body is the club's own writing, ported across; everything
+ * around it — the header, the meta line, the neighbours at the foot — is
+ * derived from the shared post index so no fact is stated twice.
+ */
+
+import { articleJsonLd, neighbours, posts } from '../../site/blog'
+import { club, footerColumns, hours, legalLinks, navLinks, siteUrl } from '../../site/club'
+
+const slug = 'why-everyone-in-fitness-is-obsessed-with-saunas-right-now'
+const post = posts.find(p => p.slug === slug)
+const { prev, next } = neighbours(slug)
+const path = `/blog/${slug}`
+</script>
+
+@nolayout
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    @include('site/head', {
+      title: `${post.title} - TRIFIT LA`,
+      description: post.excerpt,
+      path,
+      siteUrl,
+      image: post.image,
+      ogType: 'article',
+      jsonLd: articleJsonLd(post, siteUrl),
+    })
+  </head>
+
+  <body>
+    @include('site/nav', { navLinks, current: '/blog' })
+
+    <main>
+      <article>
+        <header class="page-head">
+          <div class="shell">
+            <nav class="crumbs" aria-label="Breadcrumb">
+              <a data-stx-link href="/">Home</a>
+              <span aria-hidden="true">/</span>
+              <a data-stx-link href="/blog">Blog</a>
+              <span aria-hidden="true">/</span>
+              <span>{{ post.topic }}</span>
+            </nav>
+            <span class="eyebrow">{{ post.topic }}</span>
+            <h1>{{ post.title }}</h1>
+            <div class="article-meta">
+              <time datetime="{{ post.date }}">{{ post.dateLabel }}</time>
+              <span>{{ post.minutes }} minute read</span>
+              <span>TRIFIT LA</span>
+            </div>
+          </div>
+        </header>
+
+        <div class="section shell">
+          <figure class="prose-figure post-hero">
+            <img src="{{ post.image }}" alt="{{ post.alt }}" width="1400" height="933" fetchpriority="high" decoding="async">
+          </figure>
+
+          <div class="prose">
+      <h2>Why Saunas Became So Popular</h2>
+      <p>Walk into almost any high-end gym, wellness club, or recovery studio in Los Angeles right now and you'll notice the same thing: everyone is talking about saunas.</p>
+      <p>From athletes and trainers to entrepreneurs and influencers, saunas have become one of the biggest trends in fitness and recovery culture. Social media is filled with people sweating through infrared sessions, pairing sauna use with cold plunges, and claiming benefits ranging from faster recovery to better sleep and fat loss.</p>
+      <p>The rise of wellness podcasts, recovery studios, wearable fitness tech, cold plunges, and biohacking has pushed sauna use into the mainstream. But the real reason people are interested is simple: fitness culture is shifting. People are no longer focused only on intense workouts. Recovery, stress management, sleep quality, and longevity are now major parts of the conversation.</p>
+      <p>The Real Benefits of Sauna Use Saunas are not miracle fat-burning machines, but they can be a valuable recovery tool when used correctly.</p>
+      <p>Heat exposure may help increase blood flow, relax muscles, reduce stiffness, and support recovery after intense training sessions. For people who train consistently, recovery matters because your body improves between workouts, not just during the workout itself.</p>
+      <p>Saunas may also help with stress reduction and sleep quality. Many people use sauna sessions as a way to slow down, disconnect, and give their nervous system a break after a long workday or hard training session.</p>
+      <p>There are also different types of heat experiences. Traditional saunas use dry heat, steam rooms use moist heat, and infrared saunas use infrared light to heat the body directly. Each can support relaxation and recovery, but the best option depends on personal preference and tolerance.</p>
+      <p>What Saunas Can and Can't Do The biggest myth around sauna use is that sweating equals fat loss. While you may see the number on the scale drop after a sauna session, that is mostly water weight — not body fat.</p>
+      <p>Real fat loss still comes from consistent training, proper nutrition, sleep, hydration, and long-term habits. Saunas can support your wellness routine, but they cannot replace exercise or healthy eating.</p>
+      <p>At TRIFIT LA, we view saunas as one part of a complete fitness and recovery system. They can help with relaxation, recovery, and consistency, but the foundation is still smart training, accountability, and sustainable habits.</p>
+      <p>The goal is not to chase every trend. It is to build a routine that helps you feel stronger, healthier, and more energized long term. And sometimes, that includes taking 15 minutes to unplug, recover, and sweat a little.</p>
+      <h2>Sauna vs. Steam Room: What's the Difference?</h2>
+      <p>A lot of people use the terms interchangeably, but saunas and steam rooms create heat very differently.</p>
+      <h3>Traditional Sauna</h3>
+      <p>Traditional saunas use dry heat with very low humidity. Temperatures are usually much higher, often between 150–195°F.</p>
+      <ul>
+        <li>Increased circulation</li>
+        <li>Muscle relaxation</li>
+        <li>Post-workout recovery</li>
+        <li>Stress reduction</li>
+      </ul>
+      <h3>Steam Room</h3>
+      <p>Steam rooms use moist heat with nearly 100% humidity at lower temperatures.</p>
+      <ul>
+        <li>Breathing comfort</li>
+        <li>Skin hydration</li>
+        <li>Relaxation</li>
+        <li>Congestion relief</li>
+      </ul>
+      <h3>Infrared Sauna</h3>
+      <p>Infrared saunas have become especially trendy in the fitness world. Instead of heating the air around you, they use infrared light to heat the body directly.</p>
+      <p>Many users report:</p>
+      <ul>
+        <li>Relaxation</li>
+        <li>Recovery support</li>
+        <li>Longer comfortable sessions</li>
+        <li>A deeper sweat response</li>
+      </ul>
+      <h2>The Real Benefits of Sauna Use</h2>
+      <p>Saunas are not miracle fat-burning machines, but they can provide legitimate wellness and recovery benefits.</p>
+      <h3>Improved Recovery</h3>
+      <p>Heat exposure may help increase blood flow and relax muscles after intense training sessions. Many athletes use saunas to reduce stiffness and support recovery between workouts.</p>
+      <h3>Stress Reduction</h3>
+      <p>One of the biggest reasons people love saunas is simple: they help people slow down.</p>
+      <p>Heat exposure can help the nervous system relax, especially after long workdays or hard training sessions.</p>
+      <h3>Better Sleep</h3>
+      <p>Many sauna users notice improved sleep quality, especially when sessions are done in the evening.</p>
+      <h2>The Biggest Myth: “Saunas Burn Fat”</h2>
+      <p>This is probably the most misunderstood part of the sauna craze.</p>
+      <p>Yes, you might lose a few pounds after a long sauna session — but that's primarily water weight, not body fat.</p>
+      <p>Sweating more does not equal more fat loss.</p>
+      <p>Real fat loss still comes from:</p>
+      <ul>
+        <li>Proper nutrition</li>
+        <li>Consistent training</li>
+        <li>Quality sleep</li>
+        <li>Recovery</li>
+        <li>Long-term healthy habits</li>
+      </ul>
+      <h2>Are Saunas Worth It?</h2>
+      <p>For many people, yes.</p>
+      <p>If used consistently and safely, saunas can be an excellent tool for:</p>
+      <ul>
+        <li>Recovery</li>
+        <li>Relaxation</li>
+        <li>Stress management</li>
+        <li>Building healthier routines</li>
+      </ul>
+      <p>The key word is tool.</p>
+      <p>The people getting the best results from saunas are usually the same people already focused on:</p>
+      <ul>
+        <li>Strength training</li>
+        <li>Mobility</li>
+        <li>Hydration</li>
+        <li>Proper nutrition</li>
+        <li>Consistency</li>
+      </ul>
+      <h2>How We View Recovery at TRIFIT LA</h2>
+      <p>At TRIFIT LA, we focus on sustainable fitness and long-term performance — not shortcuts.</p>
+      <p>Saunas, steam rooms, mobility work, sleep, hydration, and stress management all play a role in helping your body perform at a higher level. But no recovery tool can outwork inconsistent habits.</p>
+      <p>The goal isn't to chase trends. It's to build a system that helps you feel stronger, healthier, and more energized long term.</p>
+          </div>
+
+          <nav class="post-nav" aria-label="More posts">
+            @if (prev)
+              <a data-stx-link href="/blog/{{ prev.slug }}">
+                <span>Older</span>
+                <b>{{ prev.title }}</b>
+              </a>
+            @else
+              <span></span>
+            @endif
+            @if (next)
+              <a data-stx-link class="is-next" href="/blog/{{ next.slug }}">
+                <span>Newer</span>
+                <b>{{ next.title }}</b>
+              </a>
+            @endif
+          </nav>
+        </div>
+      </article>
+
+      <section class="section--tight shell">
+        <div class="closer">
+          <div>
+            <h2>Come and see the club for yourself.</h2>
+          </div>
+          <div>
+            <p>Call ahead for a tour, or try everything for a day with a $39 day pass.</p>
+            <div class="hero-cta">
+              <a data-stx-link class="btn btn--primary" href="/visit-us">Book a tour</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    @include('site/footer', { club, hours, footerColumns, legalLinks })
+  </body>
+</html>

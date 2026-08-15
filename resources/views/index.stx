@@ -5,56 +5,20 @@
  * Every number, price, class name, hour and address on this page comes from
  * trifitla.com. Nothing here is invented: no fabricated testimonials, no made
  * up statistics, no placeholder partner logos.
+ *
+ * The page is now a doorway rather than the whole site: each section states
+ * its case and hands off to the page that carries the detail. Shared data —
+ * the club, the classes, the plans — is imported so a price or a class time
+ * is written down in exactly one place.
  */
 
-const appName = 'TRIFIT LA'
-const siteUrl = 'https://trifitla.com'
-const siteDescription = 'A 29,000 square foot club in Santa Monica: 25-yard lap pool, tennis, squash, strength, recovery, and coaching, six times voted Santa Monica\'s Most Loved Gym.'
+import { featuredClasses, schedule, weeklySessionCount } from '../site/classes'
+import { awardYears, club, clubJsonLd, footerColumns, hours, included, legalLinks, navLinks, siteUrl } from '../site/club'
+import { plans } from '../site/membership'
 
-const club = {
-  street: '2425 Colorado Ave Ste B100',
-  city: 'Santa Monica, CA 90404',
-  phone: '310-829-2227',
-  phoneHref: 'tel:+13108292227',
-  email: 'contact@trifitla.com',
-}
-
-// Structured data, built as a string so the @-prefixed schema.org keys never
-// reach the stx directive scanner. Emitted raw in the head with {!! jsonLd !!}.
-const jsonLd = JSON.stringify({
-  '@context': 'https://schema.org',
-  '@type': 'HealthAndBeautyBusiness',
-  '@id': `${siteUrl}/#club`,
-  name: appName,
-  url: `${siteUrl}/`,
-  telephone: club.phone,
-  email: club.email,
-  address: {
-    '@type': 'PostalAddress',
-    streetAddress: club.street,
-    addressLocality: 'Santa Monica',
-    addressRegion: 'CA',
-    postalCode: '90404',
-    addressCountry: 'US',
-  },
-  openingHoursSpecification: [
-    { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday'], opens: '06:00', closes: '21:00' },
-    { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Friday'], opens: '06:00', closes: '20:00' },
-    { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Saturday', 'Sunday'], opens: '07:30', closes: '18:00' },
-  ],
-})
-
-const navLinks = [
-  { label: 'Facility', url: '#facility' },
-  { label: 'Classes', url: '#classes' },
-  { label: 'Coaching', url: '#coaching' },
-  { label: 'Membership', url: '#membership' },
-  { label: 'Visit', url: '#visit' },
-]
-
-// Real accolade, real years. This is the page's social proof, which is why
-// there is no invented testimonial anywhere below.
-const awardYears = ['2019', '2020', '2023', '2024', '2025', '2026']
+const path = '/'
+const title = 'TRIFIT LA - Santa Monica\'s most loved gym'
+const description = 'A 29,000 square foot family-owned club in Santa Monica: 25-yard lap pool, tennis, squash, strength, recovery, and coaching, six times voted Santa Monica\'s Most Loved Gym.'
 
 /*
  * Facility bento. Six items, six cells, no filler tile. Sizes are assigned in
@@ -70,9 +34,10 @@ const facility = [
   },
   {
     area: 'recovery',
-    tone: 'tint',
     title: 'Recovery',
     text: 'Cold plunge, sauna, steam room, and massage recovery pods.',
+    image: '/images/trifit/cold-plunge.jpg',
+    alt: 'The cold plunge in the recovery suite at TRIFIT LA',
   },
   {
     area: 'squash',
@@ -103,1121 +68,41 @@ const facility = [
   },
 ]
 
-/*
- * Class rail. Eight classes carry a photo; the remaining eight are listed as
- * text below the rail so all sixteen are on the page without a sixteen-row
- * list.
- */
-const classes = [
-  { name: 'Boxing', where: 'Group Ex Room', image: '/images/trifit/Boxing.jpg', alt: 'Heavy bags in the boxing area at TRIFIT LA' },
-  { name: 'Cycling', where: 'Cycling Studio', image: '/images/trifit/Cycling.jpg', alt: 'The cycling studio at TRIFIT LA' },
-  { name: 'HIIT', where: 'Group Ex Room', image: '/images/trifit/HIIT.jpg', alt: 'A HIIT class in progress at TRIFIT LA' },
-  { name: 'TRX', where: 'Training Zone', image: '/images/trifit/TRX.jpg', alt: 'TRX straps set up for a suspension training class' },
-  { name: 'Vinyasa Flow', where: 'Yoga Studio', image: '/images/trifit/Yoga-Trifit.jpg', alt: 'A yoga class in the TRIFIT LA yoga studio' },
-  { name: 'Strength and Conditioning', where: 'Training Zone', image: '/images/trifit/Strength-Conditioning-resize.jpg', alt: 'Members lifting on the strength floor' },
-  { name: 'Swim Workout', where: 'Lap Pool', image: '/images/trifit/Indoor-Classes.jpg', alt: 'A coached class in the indoor pool area' },
-  { name: 'Ocean Swim', where: 'Santa Monica beach', image: '/images/trifit/Outdoor-Classes.jpg', alt: 'An outdoor class session near the beach' },
-]
-
-const alsoOnSchedule = ['Breathwork', 'Destress Yoga', 'Functional Training', 'Iyengar Yoga', 'Kinstretch', 'Meditation', 'Squash Round Robin', 'Swim Workout']
-
 // Real services offered by the on-staff exercise scientists.
 const testing = [
-  { title: 'VO2 Max', text: 'How much oxygen you actually use at effort, measured rather than estimated.' },
+  { title: 'VO₂ max', text: 'How much oxygen you actually use at effort, measured rather than estimated.' },
   { title: 'Resting metabolic rate', text: 'What your body burns at rest, so nutrition targets start from a real number.' },
   { title: 'Body composition', text: 'Lean mass and fat mass tracked over time, not a single bathroom-scale reading.' },
 ]
 
-/*
- * Membership. Prices, fees, and terms are exactly as published.
- */
-const plans = [
-  {
-    id: 'community',
-    featured: true,
-    name: 'Community',
-    price: '$189',
-    period: 'per month',
-    note: 'Month to month, 60-day minimum.',
-    lines: ['Full facility access', 'Unlimited classes', 'Free 3-hour validated parking', '$99 initiation fee', '$39 amenities fee every six months'],
-    cta: 'Join us',
-  },
-  {
-    id: 'tenant',
-    name: 'Tenant and Corporate',
-    price: '$179',
-    period: 'per month',
-    note: 'Colorado Center tenants, select corporate groups, and families. Bring your employee badge on the first visit.',
-    lines: ['Everything in Community', '$99 initiation fee', '$39 amenities fee every six months'],
-    cta: 'Join us',
-  },
-  {
-    id: 'direct',
-    name: 'Corporate Direct Pay',
-    price: 'Custom',
-    period: 'billed to your company',
-    note: 'Your company pays a discounted rate directly to TRIFIT LA.',
-    lines: ['No initiation fee', 'No amenities fee at signup, due annually on January 1', 'Full facility access and unlimited classes'],
-    cta: 'Contact us',
-  },
-]
+// The eight classes not carried on the photo rail, listed by name so all
+// sixteen are on the page without a sixteen-row list.
+const railNames = new Set(featuredClasses.map(c => c.name))
+const alsoOnSchedule = [...new Set(schedule.flatMap(day => day.slots.map(slot => slot.name)))]
+  .filter(name => !railNames.has(name))
+  .sort()
 
-const hours = [
-  { days: 'Monday to Thursday', time: '6 am to 9 pm' },
-  { days: 'Friday', time: '6 am to 8 pm' },
-  { days: 'Saturday and Sunday', time: '7:30 am to 6 pm' },
-]
-
-const included = [
-  'Premium locker rooms',
-  'Coffee, tea, and infused water in the lobby',
-  'Wi-Fi throughout the club',
-  'Retail store',
-  '3 hours of free validated parking',
-  'Exercise physiologists on staff',
-]
+const years = new Date().getFullYear() - club.since
 </script>
+
+@nolayout
 
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="{{ siteDescription }}">
-    <title>TRIFIT LA - Santa Monica's most loved gym</title>
-
-    <link rel="canonical" href="https://trifitla.com/">
-    <meta name="color-scheme" content="light dark">
-    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-    <meta name="theme-color" content="#080c0a" media="(prefers-color-scheme: dark)">
-
-    <meta property="og:type" content="website">
-    <meta property="og:site_name" content="TRIFIT LA">
-    <meta property="og:url" content="https://trifitla.com/">
-    <meta property="og:title" content="TRIFIT LA - Santa Monica's most loved gym">
-    <meta property="og:description" content="{{ siteDescription }}">
-    <meta property="og:image" content="https://trifitla.com/images/trifit/WEB-55.jpg">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="TRIFIT LA - Santa Monica's most loved gym">
-    <meta name="twitter:description" content="{{ siteDescription }}">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Geist:wght@400;500;600&display=swap">
+    @include('site/head', {
+      title,
+      description,
+      path,
+      siteUrl,
+      image: '/images/trifit/WEB-55.jpg',
+      jsonLd: clubJsonLd(),
+    })
     <link rel="preload" as="image" href="/images/trifit/untitled-shoot-270.jpg" fetchpriority="high">
-
-    <script type="application/ld+json">{!! jsonLd !!}</script>
-
-    <script>
-      /*
-       * Theme, applied before first paint so the page never flashes the wrong
-       * one. Light is the default: only a visitor who has explicitly chosen
-       * dark gets dark. The `dark` class is kept in sync with the attribute so
-       * a framework-level guard cannot leave the two disagreeing.
-       */
-      ;(function () {
-        const ok = function (t) { return t === 'light' || t === 'dark' }
-
-        // ?theme=dark is an override for previews and screenshots. It never
-        // persists, so it cannot quietly become someone's saved preference.
-        let query = ''
-        try { query = new URLSearchParams(location.search).get('theme') || '' }
-        catch {}
-
-        let saved = ''
-        try { saved = localStorage.getItem('trifit-theme') || '' }
-        catch {}
-
-        const theme = ok(query) ? query : (ok(saved) ? saved : 'light')
-        const root = document.documentElement
-        root.setAttribute('data-theme', theme)
-        root.classList.toggle('dark', theme === 'dark')
-
-        window.trifitTheme = function (next) {
-          if (!ok(next))
-            return
-          try { localStorage.setItem('trifit-theme', next) }
-          catch {}
-          root.setAttribute('data-theme', next)
-          root.classList.toggle('dark', next === 'dark')
-          const btn = document.querySelector('.theme-switch')
-          if (btn) {
-            btn.setAttribute('aria-pressed', String(next === 'dark'))
-            btn.setAttribute('aria-label', next === 'dark' ? 'Switch to light theme' : 'Switch to dark theme')
-          }
-        }
-
-        window.trifitThemeToggle = function () {
-          window.trifitTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark')
-        }
-      })()
-    </script>
-
-    <style>
-      /*
-       * TRIFIT LA design system.
-       *
-       * Palette: one accent, the TRIFIT green (#5dd37c), used identically in
-       * both themes. Neutrals are a cool green-leaning grey, never warm beige.
-       * Text on green is always the near-black ink, which clears WCAG AA by a
-       * wide margin in both modes.
-       *
-       * Shape rule, applied everywhere and nowhere else: interactive controls
-       * (buttons, chips, the theme switch) are full pill; panels, cards, and
-       * media are 16px; nothing else has a radius.
-       *
-       * Type roles: Outfit carries display and headings, Geist carries body
-       * and small print. Two families, no third.
-       */
-
-      :root,
-      :root[data-theme='light'] {
-        color-scheme: light;
-        --bg: #ffffff;
-        --surface: #f3f7f4;
-        --surface-2: #e7efe9;
-        --text: #0b140f;
-        --muted: #55635b;
-        --accent: #5dd37c;
-        --accent-quiet: #d9f4e1;
-        --accent-ink: #0b140f;
-        --accent-text: #0a7440;
-        --ink-rgb: 11, 20, 15;
-        --accent-rgb: 93, 211, 124;
-        --line: rgba(11, 20, 15, 0.10);
-        --line-strong: rgba(11, 20, 15, 0.20);
-        --nav-bg: rgba(255, 255, 255, 0.82);
-        --shadow: 0 24px 60px rgba(11, 20, 15, 0.10);
-        --scrim: rgba(6, 12, 9, 0.55);
-        --ink-tile: #0b140f;
-        --on-ink-tile: #f4f8f6;
-        --on-ink-tile-muted: rgba(244, 248, 246, 0.72);
-      }
-
-      :root[data-theme='dark'] {
-        color-scheme: dark;
-        --bg: #080c0a;
-        --surface: #101613;
-        --surface-2: #17201b;
-        --text: #e9f0eb;
-        --muted: #96a79c;
-        --accent: #5dd37c;
-        --accent-quiet: #16291d;
-        --accent-ink: #06120a;
-        --accent-text: #7ce096;
-        --ink-rgb: 233, 240, 235;
-        --accent-rgb: 93, 211, 124;
-        --line: rgba(233, 240, 235, 0.10);
-        --line-strong: rgba(233, 240, 235, 0.22);
-        --nav-bg: rgba(8, 12, 10, 0.80);
-        --shadow: 0 28px 70px rgba(0, 0, 0, 0.5);
-        --scrim: rgba(4, 8, 6, 0.62);
-        --ink-tile: #24352c;
-        --on-ink-tile: #eef5f0;
-        --on-ink-tile-muted: rgba(238, 245, 240, 0.72);
-      }
-
-      :root {
-        --font-display: "Outfit", system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
-        --font-body: "Geist", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-        --radius: 16px;
-        --shell: 1320px;
-        --gutter: clamp(1.25rem, 4vw, 3rem);
-      }
-
-      * { box-sizing: border-box; }
-
-      /* `clip`, not `hidden`: overflow-x: hidden on html/body turns the body
-        into a scroll container, which silently kills the sticky navigation. */
-      html {
-        background: var(--bg);
-        overflow-x: clip;
-        scroll-behavior: smooth;
-        scroll-padding-top: 5.5rem;
-      }
-
-      body {
-        min-width: 320px;
-        margin: 0;
-        overflow-x: clip;
-        color: var(--text);
-        background: var(--bg);
-        font-family: var(--font-body);
-        font-size: 1rem;
-        line-height: 1.6;
-        -webkit-font-smoothing: antialiased;
-      }
-
-      a { color: inherit; text-decoration: none; }
-      img { display: block; max-width: 100%; }
-
-      h1, h2, h3, h4 {
-        margin: 0;
-        font-family: var(--font-display);
-        font-weight: 700;
-        letter-spacing: -0.025em;
-        line-height: 1.05;
-      }
-
-      p { margin: 0; }
-
-      .shell {
-        width: 100%;
-        max-width: var(--shell);
-        margin: 0 auto;
-        padding-inline: var(--gutter);
-      }
-
-      .section { padding-block: clamp(4.5rem, 9vw, 8rem); }
-      .section--tight { padding-block: clamp(3rem, 6vw, 5rem); }
-
-      /* Measure is set in rem, not ch: `ch` resolves against the wrapper's own
-        16px body size, which would squeeze a 52px headline into a 370px column. */
-      .section-head { max-width: 40rem; }
-
-      .section-head h2 {
-        font-size: clamp(2rem, 4.2vw, 3.125rem);
-      }
-
-      .section-head p {
-        margin-top: 1rem;
-        color: var(--muted);
-        font-size: 1.0625rem;
-        max-width: 34rem;
-      }
-
-      /* ── Buttons ──────────────────────────────────────────────────── */
-
-      .btn {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.5rem;
-        white-space: nowrap;
-        padding: 0.8rem 1.5rem;
-        border: 1px solid transparent;
-        border-radius: 999px;
-        font-family: var(--font-display);
-        font-size: 0.9375rem;
-        font-weight: 600;
-        letter-spacing: 0.01em;
-        cursor: pointer;
-        transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1), background 0.18s ease, border-color 0.18s ease;
-      }
-
-      /* Feedback: the control acknowledges the press physically. */
-      .btn:active { transform: scale(0.975); }
-
-      .btn:focus-visible {
-        outline: 2px solid var(--accent-text);
-        outline-offset: 3px;
-      }
-
-      .btn--primary {
-        background: var(--accent);
-        color: var(--accent-ink);
-      }
-
-      .btn--primary:hover { background: #4bc46c; }
-
-      .btn--ghost {
-        border-color: var(--line-strong);
-        color: var(--text);
-        background: transparent;
-      }
-
-      .btn--ghost:hover {
-        border-color: var(--text);
-        background: rgba(var(--ink-rgb), 0.04);
-      }
-
-      /* Over photography the ghost button needs its own scrim to stay legible. */
-      .btn--ondark {
-        border-color: rgba(255, 255, 255, 0.55);
-        color: #ffffff;
-        background: rgba(6, 12, 9, 0.35);
-        backdrop-filter: blur(6px);
-      }
-
-      .btn--ondark:hover { background: rgba(6, 12, 9, 0.55); }
-
-      .btn--sm { padding: 0.55rem 1.1rem; font-size: 0.875rem; }
-
-      /* ── Navigation ───────────────────────────────────────────────── */
-
-      .nav {
-        position: sticky;
-        top: 0;
-        z-index: 40;
-        border-bottom: 1px solid var(--line);
-        background: var(--nav-bg);
-        backdrop-filter: blur(14px);
-      }
-
-      .nav-inner {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 1.5rem;
-        height: 72px;
-      }
-
-      .brand { display: inline-flex; align-items: center; }
-
-      /* The wordmark ships as a white PNG. In light mode it is knocked to ink
-        with a filter so one asset serves both themes. */
-      .brand img {
-        width: 132px;
-        height: auto;
-        filter: brightness(0);
-      }
-
-      :root[data-theme='dark'] .brand img { filter: none; }
-
-      .nav-links {
-        display: none;
-        gap: 1.75rem;
-        font-size: 0.9375rem;
-        font-weight: 500;
-      }
-
-      .nav-links a {
-        position: relative;
-        color: var(--muted);
-        transition: color 0.18s ease;
-      }
-
-      .nav-links a:hover { color: var(--text); }
-
-      .nav-actions { display: flex; align-items: center; gap: 0.6rem; }
-
-      /* Below 1024px the inline links do not fit on one line, so they move
-        into a disclosure. Native <details>, so it is keyboard operable and
-        needs no script. */
-      .nav-menu { position: relative; }
-      .nav-menu summary { list-style: none; }
-      .nav-menu summary::-webkit-details-marker { display: none; }
-
-      .nav-menu summary {
-        display: grid;
-        place-items: center;
-        width: 38px;
-        height: 38px;
-        border: 1px solid var(--line-strong);
-        border-radius: 999px;
-        color: var(--text);
-        cursor: pointer;
-      }
-
-      .nav-menu summary:hover { background: rgba(var(--ink-rgb), 0.07); }
-
-      .nav-menu summary:focus-visible {
-        outline: 2px solid var(--accent-text);
-        outline-offset: 2px;
-      }
-
-      .nav-menu summary svg { width: 18px; height: 18px; }
-      .nav-menu[open] summary .icon-open { display: none; }
-      .nav-menu:not([open]) summary .icon-close { display: none; }
-
-      .nav-menu-panel {
-        position: absolute;
-        top: calc(100% + 0.6rem);
-        right: 0;
-        z-index: 50;
-        display: grid;
-        gap: 0.35rem;
-        min-width: 190px;
-        padding: 0.6rem;
-        border: 1px solid var(--line);
-        border-radius: var(--radius);
-        background: var(--bg);
-        box-shadow: var(--shadow);
-      }
-
-      .nav-menu-panel a {
-        padding: 0.55rem 0.75rem;
-        border-radius: 999px;
-        font-size: 0.9375rem;
-        font-weight: 500;
-      }
-
-      .nav-menu-panel a:hover { background: var(--surface); }
-
-      @media (min-width: 1024px) {
-        .nav-menu { display: none; }
-      }
-
-      .theme-switch {
-        display: grid;
-        place-items: center;
-        width: 38px;
-        height: 38px;
-        padding: 0;
-        border: 1px solid var(--line-strong);
-        border-radius: 999px;
-        color: var(--text);
-        background: transparent;
-        cursor: pointer;
-        transition: background 0.18s ease, transform 0.18s ease;
-      }
-
-      .theme-switch:hover { background: rgba(var(--ink-rgb), 0.07); }
-      .theme-switch:active { transform: scale(0.94); }
-
-      .theme-switch:focus-visible {
-        outline: 2px solid var(--accent-text);
-        outline-offset: 2px;
-      }
-
-      .theme-switch svg { width: 17px; height: 17px; }
-      .theme-switch .icon-moon { display: none; }
-      :root[data-theme='dark'] .theme-switch .icon-sun { display: none; }
-      :root[data-theme='dark'] .theme-switch .icon-moon { display: block; }
-
-      @media (min-width: 1024px) {
-        .nav-links { display: flex; }
-      }
-
-      /* ── Hero: asymmetric split, text left, photograph right ──────── */
-
-      .hero { padding-top: clamp(3rem, 6vw, 5rem); padding-bottom: clamp(3rem, 6vw, 5rem); }
-
-      .hero-grid {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: clamp(2rem, 4vw, 3.5rem);
-        align-items: center;
-      }
-
-      /* Scale is planned against the photograph beside it: at this size the
-        headline holds two lines and the CTAs stay above the fold. */
-      .hero-title {
-        font-size: clamp(2.5rem, 5.4vw, 4.25rem);
-        font-weight: 800;
-        letter-spacing: -0.035em;
-      }
-
-      .hero-title em {
-        font-style: italic;
-        color: var(--accent-text);
-        /* Italic descender clearance for the g in "training". */
-        line-height: 1.1;
-        padding-bottom: 0.08em;
-      }
-
-      .hero-sub {
-        margin-top: 1.35rem;
-        max-width: 32rem;
-        color: var(--muted);
-        font-size: clamp(1.0625rem, 1.5vw, 1.1875rem);
-      }
-
-      .hero-cta {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.75rem;
-        margin-top: 2rem;
-      }
-
-      .hero-media {
-        position: relative;
-        overflow: hidden;
-        border-radius: var(--radius);
-        box-shadow: var(--shadow);
-        aspect-ratio: 4 / 5;
-      }
-
-      .hero-media img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: 58% center;
-      }
-
-      @media (min-width: 900px) {
-        .hero-grid { grid-template-columns: 1.05fr 0.95fr; }
-        /* Capped so the whole hero, CTAs included, clears a 900px viewport. */
-        .hero-media { aspect-ratio: 4 / 5; max-height: 560px; }
-      }
-
-      /* ── Award strip ──────────────────────────────────────────────── */
-
-      .awards {
-        border-block: 1px solid var(--line);
-        background: var(--surface);
-      }
-
-      .awards-inner {
-        display: grid;
-        gap: 1.5rem;
-        padding-block: clamp(2rem, 4vw, 2.75rem);
-        align-items: center;
-      }
-
-      .awards-label {
-        font-family: var(--font-display);
-        font-size: clamp(1.125rem, 2vw, 1.5rem);
-        font-weight: 700;
-        max-width: 22ch;
-      }
-
-      .awards-label span { color: var(--accent-text); }
-
-      .awards-years {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.6rem 1.75rem;
-      }
-
-      .awards-years b {
-        font-family: var(--font-display);
-        font-size: clamp(1.5rem, 3vw, 2.25rem);
-        font-weight: 700;
-        letter-spacing: -0.03em;
-        color: var(--text);
-      }
-
-      @media (min-width: 860px) {
-        .awards-inner { grid-template-columns: auto 1fr; gap: 3rem; }
-        .awards-years { justify-content: flex-end; }
-      }
-
-      /* ── Facility bento ───────────────────────────────────────────── */
-
-      .bento {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 1rem;
-        margin-top: clamp(2.5rem, 5vw, 3.5rem);
-      }
-
-      .tile {
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-        overflow: hidden;
-        min-height: 260px;
-        padding: 1.5rem;
-        border: 1px solid var(--line);
-        border-radius: var(--radius);
-        background: var(--surface);
-      }
-
-      .tile img {
-        position: absolute;
-        inset: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        z-index: 0;
-      }
-
-      /* Photographic tiles get a scrim heavy enough that white captions clear
-        AA even over the brightest frames (the squash walls, the tennis sky). */
-      .tile--photo::after {
-        position: absolute;
-        inset: 0;
-        z-index: 1;
-        content: "";
-        background: linear-gradient(180deg, rgba(4, 8, 6, 0) 22%, rgba(4, 8, 6, 0.5) 58%, rgba(4, 8, 6, 0.88) 100%);
-      }
-
-      .tile--photo .tile-body { color: #ffffff; }
-      .tile--photo .tile-body p { color: rgba(255, 255, 255, 0.86); }
-
-      .tile--tint {
-        background: var(--accent-quiet);
-        border-color: transparent;
-      }
-
-      /* One solid ink tile so the grid is not four photographs and two pale
-        panels. It keeps its own text color rather than borrowing the theme's. */
-      .tile--ink {
-        background: var(--ink-tile);
-        border-color: transparent;
-      }
-
-      .tile--ink .tile-body { color: var(--on-ink-tile); }
-      .tile--ink .tile-body p { color: var(--on-ink-tile-muted); }
-
-      .tile-body { position: relative; z-index: 2; }
-
-      .tile-body h3 {
-        font-size: clamp(1.25rem, 2vw, 1.625rem);
-      }
-
-      .tile-body p {
-        margin-top: 0.5rem;
-        max-width: 34ch;
-        color: var(--muted);
-        font-size: 0.9375rem;
-      }
-
-      @media (min-width: 900px) {
-        .bento {
-          grid-template-columns: repeat(12, 1fr);
-          grid-auto-rows: 220px;
-        }
-        .tile { min-height: 0; }
-        .tile--pool { grid-column: span 7; grid-row: span 2; }
-        .tile--recovery { grid-column: span 5; }
-        .tile--squash { grid-column: span 5; }
-        .tile--strength { grid-column: span 5; }
-        .tile--tennis { grid-column: span 4; }
-        .tile--studios { grid-column: span 3; }
-      }
-
-      /* ── Class rail: horizontal scroll-snap ───────────────────────── */
-
-      .classes { background: var(--surface); border-block: 1px solid var(--line); }
-
-      .rail {
-        display: grid;
-        grid-auto-flow: column;
-        grid-auto-columns: minmax(230px, 74vw);
-        gap: 1rem;
-        margin-top: clamp(2rem, 4vw, 3rem);
-        /* The rail bleeds to the viewport edge, but its first card lines up
-          with the shell, and scroll-padding keeps snapping off the edge. */
-        padding-inline: max(var(--gutter), calc((100% - var(--shell)) / 2 + var(--gutter)));
-        scroll-padding-left: max(var(--gutter), calc((100% - var(--shell)) / 2 + var(--gutter)));
-        padding-bottom: 0.5rem;
-        overflow-x: auto;
-        scroll-snap-type: x mandatory;
-        scrollbar-width: thin;
-        overscroll-behavior-x: contain;
-      }
-
-      .rail > * { scroll-snap-align: start; }
-
-      .class-card {
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-        overflow: hidden;
-        aspect-ratio: 3 / 4;
-        padding: 1.25rem;
-        border-radius: var(--radius);
-        color: #ffffff;
-        background: var(--surface-2);
-      }
-
-      .class-card img {
-        position: absolute;
-        inset: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-      }
-
-      /* Feedback: the card lifts its image a touch on hover so the rail reads
-        as something you can move through. */
-      .class-card:hover img { transform: scale(1.05); }
-
-      .class-card::after {
-        position: absolute;
-        inset: 0;
-        content: "";
-        background: linear-gradient(180deg, rgba(4, 8, 6, 0) 28%, rgba(4, 8, 6, 0.5) 60%, rgba(4, 8, 6, 0.9) 100%);
-      }
-
-      .class-card-body { position: relative; z-index: 1; }
-
-      .class-card-body h3 { font-size: 1.25rem; }
-
-      .class-card-body p {
-        margin-top: 0.2rem;
-        color: rgba(255, 255, 255, 0.82);
-        font-size: 0.875rem;
-      }
-
-      .also {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.5rem;
-        margin-top: 2rem;
-      }
-
-      .chip {
-        padding: 0.4rem 0.9rem;
-        border: 1px solid var(--line-strong);
-        border-radius: 999px;
-        font-size: 0.875rem;
-        color: var(--muted);
-      }
-
-      .also-note {
-        margin-top: 1rem;
-        color: var(--muted);
-        font-size: 0.9375rem;
-      }
-
-      @media (min-width: 720px) {
-        .rail { grid-auto-columns: minmax(250px, 1fr); }
-        .rail { scroll-snap-type: x proximity; }
-      }
-
-      /* ── Coaching: photograph and text, two columns ───────────────── */
-
-      .split {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: clamp(2rem, 4vw, 4rem);
-        align-items: center;
-      }
-
-      .split-media {
-        overflow: hidden;
-        border-radius: var(--radius);
-        aspect-ratio: 4 / 3;
-      }
-
-      .split-media img { width: 100%; height: 100%; object-fit: cover; }
-
-      .testing { margin-top: 2.25rem; display: grid; gap: 0; }
-
-      .testing div {
-        padding-block: 1.15rem;
-        border-top: 1px solid var(--line);
-      }
-
-      .testing div:last-child { border-bottom: 1px solid var(--line); }
-
-      .testing h3 {
-        font-size: 1.0625rem;
-        font-family: var(--font-display);
-        font-weight: 600;
-        letter-spacing: -0.01em;
-      }
-
-      .testing p { margin-top: 0.3rem; color: var(--muted); font-size: 0.9375rem; max-width: 48ch; }
-
-      @media (min-width: 900px) {
-        /* The prose column is always the wider one, whichever side it sits on,
-          and the photograph fills the row rather than floating in it. */
-        .split { grid-template-columns: 0.95fr 1.05fr; align-items: stretch; }
-        .split--reverse { grid-template-columns: 1.05fr 0.95fr; }
-        .split--reverse .split-media { order: 2; }
-        .split-media { aspect-ratio: auto; min-height: 27rem; }
-      }
-
-      /* ── Membership ───────────────────────────────────────────────── */
-
-      .plans {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 1rem;
-        margin-top: clamp(2.5rem, 5vw, 3.5rem);
-        align-items: stretch;
-      }
-
-      .plan {
-        display: flex;
-        flex-direction: column;
-        padding: clamp(1.5rem, 2.5vw, 2.25rem);
-        border: 1px solid var(--line);
-        border-radius: var(--radius);
-        background: var(--surface);
-      }
-
-      .plan--featured {
-        border-color: transparent;
-        background: var(--accent-quiet);
-      }
-
-      .plan h3 {
-        font-size: 1.125rem;
-        font-weight: 600;
-        letter-spacing: 0;
-      }
-
-      /* Stacked, so a word price ("Custom") and a number price ("$189") share
-        one layout and the qualifier never wraps beside the figure. */
-      .plan-price {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.15rem;
-        margin-top: 1rem;
-        font-family: var(--font-display);
-      }
-
-      .plan-price b {
-        font-size: clamp(2.25rem, 4vw, 3rem);
-        font-weight: 700;
-        letter-spacing: -0.035em;
-      }
-
-      .plan-price span { color: var(--muted); font-size: 0.9375rem; font-family: var(--font-body); }
-
-      .plan-note { margin-top: 0.75rem; color: var(--muted); font-size: 0.9375rem; }
-
-      .plan ul {
-        margin: 1.5rem 0 0;
-        padding: 0;
-        list-style: none;
-        display: grid;
-        gap: 0.6rem;
-      }
-
-      .plan li {
-        display: flex;
-        gap: 0.6rem;
-        align-items: flex-start;
-        font-size: 0.9375rem;
-        color: var(--text);
-      }
-
-      .plan li svg { flex: none; width: 16px; height: 16px; margin-top: 0.25rem; color: var(--accent-text); }
-
-      .plan .btn { margin-top: auto; align-self: flex-start; }
-
-      .plan-foot { margin-top: 1.75rem; }
-
-      @media (min-width: 940px) {
-        .plans { grid-template-columns: 1.25fr 1fr 1fr; }
-      }
-
-      .daypass {
-        display: grid;
-        gap: 1.25rem;
-        margin-top: 1rem;
-        padding: clamp(1.5rem, 2.5vw, 2rem);
-        border: 1px solid var(--line);
-        border-radius: var(--radius);
-      }
-
-      .daypass h3 { font-size: 1.125rem; font-weight: 600; letter-spacing: 0; }
-      .daypass p { color: var(--muted); font-size: 0.9375rem; max-width: 62ch; margin-top: 0.4rem; }
-
-      @media (min-width: 800px) {
-        .daypass { grid-template-columns: 1fr 1fr; }
-      }
-
-      /* ── Visit ────────────────────────────────────────────────────── */
-
-      .visit { background: var(--surface); border-top: 1px solid var(--line); }
-
-      .hours {
-        margin-top: 1.75rem;
-        display: grid;
-        gap: 0;
-      }
-
-      .hours div {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        gap: 0.5rem 1.5rem;
-        padding-block: 0.85rem;
-        border-bottom: 1px solid var(--line);
-        font-size: 0.9375rem;
-      }
-
-      .hours dt { color: var(--muted); }
-      .hours dd { margin: 0; font-weight: 500; }
-
-      .contact-lines { margin-top: 1.75rem; display: grid; gap: 0.4rem; font-size: 1rem; }
-      .contact-lines a { color: var(--accent-text); font-weight: 500; }
-      .contact-lines a:hover { text-decoration: underline; }
-
-      .included {
-        margin: 2rem 0 0;
-        padding: 0;
-        list-style: none;
-        display: grid;
-        gap: 0.55rem;
-        grid-template-columns: 1fr;
-      }
-
-      .included li {
-        display: flex;
-        gap: 0.6rem;
-        align-items: flex-start;
-        color: var(--muted);
-        font-size: 0.9375rem;
-      }
-
-      .included li svg { flex: none; width: 16px; height: 16px; margin-top: 0.25rem; color: var(--accent-text); }
-
-      @media (min-width: 620px) {
-        .included { grid-template-columns: 1fr 1fr; }
-      }
-
-      /* ── Closing call to action ───────────────────────────────────── */
-
-      .closer {
-        border-radius: var(--radius);
-        background: var(--accent);
-        color: var(--accent-ink);
-        padding: clamp(2.5rem, 6vw, 4.5rem);
-        display: grid;
-        gap: 1.5rem;
-        align-items: end;
-      }
-
-      .closer h2 {
-        font-size: clamp(2rem, 4.5vw, 3.25rem);
-        max-width: 18ch;
-      }
-
-      .closer p { max-width: 40ch; color: rgba(11, 20, 15, 0.72); }
-
-      .closer .btn--primary {
-        background: var(--accent-ink);
-        color: #ffffff;
-      }
-
-      .closer .btn--primary:hover { background: #16221b; }
-
-      @media (min-width: 900px) {
-        .closer { grid-template-columns: 1.2fr 0.8fr; }
-      }
-
-      /* ── Footer ───────────────────────────────────────────────────── */
-
-      .footer { border-top: 1px solid var(--line); padding-block: clamp(3rem, 5vw, 4rem); }
-
-      .footer-grid {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 2.5rem;
-      }
-
-      .footer h4 {
-        font-size: 0.9375rem;
-        font-weight: 600;
-        letter-spacing: 0;
-        margin-bottom: 0.85rem;
-      }
-
-      .footer-links { display: grid; gap: 0.5rem; font-size: 0.9375rem; color: var(--muted); }
-      .footer-links a:hover { color: var(--text); }
-
-      .footer address { font-style: normal; color: var(--muted); font-size: 0.9375rem; line-height: 1.7; }
-      .footer address a { color: var(--accent-text); }
-
-      .footer-bottom {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        gap: 1rem;
-        margin-top: 3rem;
-        padding-top: 1.5rem;
-        border-top: 1px solid var(--line);
-        color: var(--muted);
-        font-size: 0.875rem;
-      }
-
-      @media (min-width: 760px) {
-        .footer-grid { grid-template-columns: 1.4fr 1fr 1fr 1.2fr; }
-      }
-
-      /* ── Motion ───────────────────────────────────────────────────── */
-      /*
-       * Two motions only, both motivated. The hero rises once on load to
-       * establish reading order. Sections rise as they enter the viewport so
-       * the page reveals in the order it should be read. Transform and opacity
-       * only; everything collapses to static under reduced motion.
-       */
-
-      @keyframes rise-in {
-        from { opacity: 0; transform: translateY(22px); }
-        to { opacity: 1; transform: none; }
-      }
-
-      .hero-animate > * {
-        animation: rise-in 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
-      }
-
-      .hero-animate > *:nth-child(2) { animation-delay: 0.07s; }
-      .hero-animate > *:nth-child(3) { animation-delay: 0.14s; }
-
-      .rise {
-        animation: rise-in 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
-        animation-timeline: view();
-        animation-range: entry 0% entry 40%;
-      }
-
-      @supports not (animation-timeline: view()) {
-        .rise { animation: none; }
-      }
-
-      @media (prefers-reduced-motion: reduce) {
-        html { scroll-behavior: auto; }
-        .hero-animate > *,
-        .rise { animation: none; }
-        .class-card img,
-        .btn,
-        .theme-switch { transition: none; }
-        .class-card:hover img { transform: none; }
-        .btn:active,
-        .theme-switch:active { transform: none; }
-      }
-
-      /* Screen-reader only helper for the visually hidden section labels. */
-      .sr-only {
-        position: absolute;
-        width: 1px;
-        height: 1px;
-        padding: 0;
-        margin: -1px;
-        overflow: hidden;
-        clip: rect(0, 0, 0, 0);
-        white-space: nowrap;
-        border: 0;
-      }
-    </style>
   </head>
 
   <body>
-    <!-- ── Navigation ──────────────────────────────────────────────── -->
-    <header class="nav">
-      <div class="shell nav-inner">
-        <a class="brand" href="/" aria-label="TRIFIT LA, home">
-          <img src="/images/trifit/TRIFIT_LOGOS_white_horizontal.png" alt="TRIFIT LA" width="132" height="25">
-        </a>
-
-        <nav class="nav-links" aria-label="Primary">
-          @foreach (navLinks as link)
-            <a href="{{ link.url }}">{{ link.label }}</a>
-          @endforeach
-        </nav>
-
-        <div class="nav-actions">
-          <button type="button" class="theme-switch" aria-pressed="false" aria-label="Switch to dark theme" onclick="trifitThemeToggle()">
-            <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true">
-              <circle cx="12" cy="12" r="4.2" />
-              <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.2 5.2l1.4 1.4M17.4 17.4l1.4 1.4M18.8 5.2l-1.4 1.4M6.6 17.4l-1.4 1.4" />
-            </svg>
-            <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M20 14.2A8.2 8.2 0 0 1 9.8 4a8.4 8.4 0 1 0 10.2 10.2Z" />
-            </svg>
-          </button>
-          <a class="btn btn--primary btn--sm" href="#membership">Join us</a>
-
-          <details class="nav-menu">
-            <summary role="button" aria-label="Open the menu">
-              <svg class="icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
-                <path d="M4 7h16M4 12h16M4 17h16" />
-              </svg>
-              <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
-                <path d="M6 6l12 12M18 6L6 18" />
-              </svg>
-            </summary>
-            <nav class="nav-menu-panel" aria-label="Primary, compact">
-              @foreach (navLinks as link)
-                <a href="{{ link.url }}" onclick="this.closest('details').open = false">{{ link.label }}</a>
-              @endforeach
-            </nav>
-          </details>
-        </div>
-      </div>
-    </header>
+    @include('site/nav', { navLinks, current: path })
 
     <main>
       <!-- ── Hero ──────────────────────────────────────────────────── -->
@@ -1225,10 +110,10 @@ const included = [
         <div class="hero-grid">
           <div class="hero-animate">
             <h1 class="hero-title">One roof.<br>Every way to <em>train</em>.</h1>
-            <p class="hero-sub">Pool, tennis, squash, strength, recovery, and coaching across 29,000 square feet on Colorado Ave.</p>
+            <p class="hero-sub">Pool, tennis, squash, strength, recovery, and coaching across {{ club.squareFeet }} square feet on Colorado Ave. Family owned in Santa Monica for {{ years }} years.</p>
             <div class="hero-cta">
-              <a class="btn btn--primary" href="#membership">Join us</a>
-              <a class="btn btn--ghost" href="#visit">Book a tour</a>
+              <a data-stx-link class="btn btn--primary" href="/membership">Join us</a>
+              <a data-stx-link class="btn btn--ghost" href="/visit-us">Book a tour</a>
             </div>
           </div>
 
@@ -1277,6 +162,10 @@ const included = [
             </article>
           @endforeach
         </div>
+
+        <div class="hero-cta">
+          <a data-stx-link class="btn btn--ghost" href="/benefits">Every amenity, in detail</a>
+        </div>
       </section>
 
       <!-- ── Classes ───────────────────────────────────────────────── -->
@@ -1284,19 +173,19 @@ const included = [
         <div class="shell">
           <div class="section-head rise">
             <h2 id="classes-heading">Sixteen classes, one schedule.</h2>
-            <p>Indoors and out, from 6 am starts to evening sessions, all of it included in every membership.</p>
+            <p>{{ weeklySessionCount }} coached sessions a week, indoors and out, from 6 am starts to evening sessions. All of it included in every membership.</p>
           </div>
         </div>
 
         <div class="rail" role="region" aria-label="Class types" tabindex="0">
-          @foreach (classes as item)
-            <article class="class-card">
+          @foreach (featuredClasses as item)
+            <a data-stx-link class="class-card" href="/classes#{{ item.slug }}">
               <img src="{{ item.image }}" alt="{{ item.alt }}" width="1200" height="800" loading="lazy" decoding="async">
               <div class="class-card-body">
                 <h3>{{ item.name }}</h3>
                 <p>{{ item.where }}</p>
               </div>
-            </article>
+            </a>
           @endforeach
         </div>
 
@@ -1307,6 +196,10 @@ const included = [
             @endforeach
           </div>
           <p class="also-note">Ocean Swim is free and open to the public, Fridays at 6:30 am from May through September.</p>
+          <div class="hero-cta">
+            <a data-stx-link class="btn btn--primary" href="/classes">See the full week</a>
+            <a data-stx-link class="btn btn--ghost" href="/events">Events</a>
+          </div>
         </div>
       </section>
 
@@ -1315,10 +208,10 @@ const included = [
         <div class="split split--reverse">
           <div class="split-media rise">
             <img
-              src="/images/trifit/coaching.jpg"
-              alt="A TRIFIT LA coach correcting a member's shoulder press form"
-              width="1536"
-              height="1024"
+              src="/images/trifit/vo2-max.jpg"
+              alt="A VO₂ max test underway with an exercise scientist at TRIFIT LA"
+              width="1400"
+              height="1470"
               loading="lazy"
               decoding="async"
             >
@@ -1337,6 +230,37 @@ const included = [
                   <p>{{ item.text }}</p>
                 </div>
               @endforeach
+            </div>
+
+            <div class="hero-cta">
+              <a data-stx-link class="btn btn--ghost" href="/services">Services and prices</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Family owned ──────────────────────────────────────────── -->
+      <section class="section band" aria-labelledby="family-heading">
+        <div class="shell split">
+          <div class="split-media rise">
+            <img
+              src="/images/trifit/Trifit_Family.jpg"
+              alt="Gina and Bernard Baski with their two sons and their Rottweiler, Banksy"
+              width="819"
+              height="937"
+              loading="lazy"
+              decoding="async"
+            >
+          </div>
+
+          <div class="rise">
+            <div class="section-head">
+              <h2 id="family-heading">Santa Monica's largest independent, family-owned club.</h2>
+              <p>No head office in another state and no regional manager. Gina and Bernard Baski have run TRIFIT LA since {{ club.since }}, and they are usually in the building.</p>
+            </div>
+            <p class="note">In {{ years }} years we have created local jobs, hosted some of LA County's largest free outdoor workouts, and supported local fitness clubs, races, and nonprofits.</p>
+            <div class="hero-cta">
+              <a data-stx-link class="btn btn--ghost" href="/about">Our story and the team</a>
             </div>
           </div>
         </div>
@@ -1367,7 +291,7 @@ const included = [
                 @endforeach
               </ul>
               <div class="plan-foot">
-                <a class="btn btn--primary btn--sm" href="#visit">{{ plan.cta }}</a>
+                <a data-stx-link class="btn btn--primary btn--sm" href="{{ plan.ctaUrl }}">{{ plan.cta }}</a>
               </div>
             </article>
           @endforeach
@@ -1429,6 +353,10 @@ const included = [
                 </li>
               @endforeach
             </ul>
+
+            <div class="hero-cta">
+              <a data-stx-link class="btn btn--primary" href="/visit-us">Plan your visit</a>
+            </div>
           </div>
         </div>
       </section>
@@ -1442,63 +370,13 @@ const included = [
           <div>
             <p>Month to month, with a 60-day minimum. No year-long contract to sign.</p>
             <div class="hero-cta">
-              <a class="btn btn--primary" href="#membership">Join us</a>
+              <a data-stx-link class="btn btn--primary" href="/membership">Join us</a>
             </div>
           </div>
         </div>
       </section>
     </main>
 
-    <!-- ── Footer ──────────────────────────────────────────────────── -->
-    <footer class="footer">
-      <div class="shell">
-        <div class="footer-grid">
-          <div>
-            <a class="brand" href="/" aria-label="TRIFIT LA, home">
-              <img src="/images/trifit/TRIFIT_LOGOS_white_horizontal.png" alt="TRIFIT LA" width="132" height="25">
-            </a>
-            <address>
-              {{ club.street }}<br>
-              {{ club.city }}<br>
-              <a href="{{ club.phoneHref }}">{{ club.phone }}</a><br>
-              <a href="mailto:{{ club.email }}">{{ club.email }}</a>
-            </address>
-          </div>
-
-          <div>
-            <h4>The club</h4>
-            <div class="footer-links">
-              <a href="#facility">Facility</a>
-              <a href="#classes">Classes</a>
-              <a href="#coaching">Coaching</a>
-              <a href="#membership">Membership</a>
-            </div>
-          </div>
-
-          <div>
-            <h4>Visit</h4>
-            <div class="footer-links">
-              <a href="#visit">Hours and location</a>
-              <a href="#membership">Day pass</a>
-              <a href="{{ club.phoneHref }}">Call the front desk</a>
-            </div>
-          </div>
-
-          <div>
-            <h4>Hours</h4>
-            <div class="footer-links">
-              @foreach (hours as row)
-                <span>{{ row.days }}, {{ row.time }}</span>
-              @endforeach
-            </div>
-          </div>
-        </div>
-
-        <div class="footer-bottom">
-          <span>&copy; 2026 TRIFIT LA. All rights reserved.</span>
-          <span>{{ club.street }}, Santa Monica</span>
-        </div>
-      </div>
-    </footer>
+    @include('site/footer', { club, hours, footerColumns, legalLinks })
   </body>
 </html>

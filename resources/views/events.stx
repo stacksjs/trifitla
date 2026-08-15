@@ -1,0 +1,156 @@
+<script server>
+/*
+ * Events.
+ *
+ * Six recurring events, each with its real day, time, place, and price. The
+ * ocean swim is the headline because it is free, it is open to the public,
+ * and it is the thing the club is known for outside its own membership.
+ */
+
+import { club, clubJsonLd, footerColumns, hours, legalLinks, navLinks, siteUrl } from '../site/club'
+import { events } from '../site/membership'
+
+const path = '/events'
+const title = 'Events - TRIFIT LA'
+const description = 'Recurring events at TRIFIT LA in Santa Monica: the free Friday ocean swim at Tower 26, Tuesday coached runs, squash round robins, strength and conditioning, meditation, and breathwork.'
+
+const [featured, ...others] = events
+const publicEvents = events.filter(e => e.publicWelcome)
+</script>
+
+@nolayout
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    @include('site/head', {
+      title,
+      description,
+      path,
+      siteUrl,
+      image: '/images/trifit/ocean-swim.jpg',
+      jsonLd: clubJsonLd(),
+    })
+  </head>
+
+  <body>
+    @include('site/nav', { navLinks, current: path })
+
+    <main>
+      <section class="page-head">
+        <div class="shell">
+          <nav class="crumbs" aria-label="Breadcrumb">
+            <a data-stx-link href="/">Home</a>
+            <span aria-hidden="true">/</span>
+            <span>Events</span>
+          </nav>
+          <span class="eyebrow">{{ publicEvents.length }} open to the public</span>
+          <h1>The club, <em>outside</em> the club.</h1>
+          <p>Six recurring events across the week. Some are in the building, some are on the sand at 6:30 in the morning, and the best one costs nothing whether you are a member or not.</p>
+          <div class="hero-cta">
+            <a class="btn btn--primary" href="#{{ featured.slug }}">The ocean swim</a>
+            <a data-stx-link class="btn btn--ghost" href="/classes">Weekly class schedule</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Featured: the ocean swim ──────────────────────────────── -->
+      <section class="section shell" id="{{ featured.slug }}" aria-labelledby="featured-heading">
+        <div class="split split--reverse">
+          <div class="split-media rise">
+            <img src="{{ featured.image }}" alt="{{ featured.alt }}" width="1400" height="933" fetchpriority="high" decoding="async">
+          </div>
+          <div class="rise">
+            <span class="eyebrow">{{ featured.season }}</span>
+            <div class="section-head">
+              <h2 id="featured-heading">{{ featured.name }}</h2>
+              <p>{{ featured.summary }}</p>
+            </div>
+
+            <dl class="hours">
+              <div><dt>When</dt><dd>{{ featured.when }}</dd></div>
+              <div><dt>Where</dt><dd>{{ featured.where }}</dd></div>
+              <div><dt>Cost</dt><dd>{{ featured.price }}</dd></div>
+            </dl>
+
+            @foreach (featured.detail as para)
+              <p class="note">{{ para }}</p>
+            @endforeach
+
+            <div class="hero-cta">
+              <a class="btn btn--primary" href="{{ club.phoneHref }}">Call {{ club.phone }}</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── The rest ──────────────────────────────────────────────── -->
+      <section class="section band" aria-labelledby="all-events-heading">
+        <div class="shell">
+          <div class="section-head rise">
+            <h2 id="all-events-heading">Every week, on the calendar</h2>
+            <p>Nothing here needs booking. Turn up, and if it is your first time say so at the desk — someone will point you at the right room.</p>
+          </div>
+
+          <div class="grid grid--2">
+            @foreach (others as item)
+              <article class="card rise" id="{{ item.slug }}">
+                <div class="card-media">
+                  <img src="{{ item.image }}" alt="{{ item.alt }}" width="1200" height="750" loading="lazy" decoding="async">
+                </div>
+                <div class="card-body">
+                  <h3>{{ item.name }}</h3>
+                  <div class="card-meta">
+                    <span>{{ item.when }}</span>
+                  </div>
+                  <p>{{ item.summary }}</p>
+                  @foreach (item.detail as para)
+                    <p>{{ para }}</p>
+                  @endforeach
+                  <div class="card-price">
+                    <b>{{ item.price }}</b>
+                    <span>{{ item.where }}</span>
+                  </div>
+                </div>
+              </article>
+            @endforeach
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Community ─────────────────────────────────────────────── -->
+      <section class="section shell" aria-labelledby="community-heading">
+        <div class="split">
+          <div class="split-media rise">
+            <img src="/images/trifit/better-together.jpg" alt="Members training together at a TRIFIT LA community session" width="1400" height="933" loading="lazy" decoding="async">
+          </div>
+          <div class="rise">
+            <div class="section-head">
+              <h2 id="community-heading">One-off events, too.</h2>
+              <p>Over twenty years in Santa Monica we have hosted some of LA County's largest free outdoor workouts, and we back local fitness clubs, races, and nonprofits. Recent ones include a free March Madness basketball day at Colorado Center Park.</p>
+            </div>
+            <div class="hero-cta">
+              <a data-stx-link class="btn btn--ghost" href="/blog">Read what we have run</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section--tight shell">
+        <div class="closer rise">
+          <div>
+            <h2>Everything here is included with membership.</h2>
+          </div>
+          <div>
+            <p>Except the ocean swim, which is free to everyone, member or not.</p>
+            <div class="hero-cta">
+              <a data-stx-link class="btn btn--primary" href="/membership">See plans</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    @include('site/footer', { club, hours, footerColumns, legalLinks })
+  </body>
+</html>

@@ -1,0 +1,157 @@
+<script server>
+/*
+ * Blog post. The body is the club's own writing, ported across; everything
+ * around it — the header, the meta line, the neighbours at the foot — is
+ * derived from the shared post index so no fact is stated twice.
+ */
+
+import { articleJsonLd, neighbours, posts } from '../../site/blog'
+import { club, footerColumns, hours, legalLinks, navLinks, siteUrl } from '../../site/club'
+
+const slug = 'hyrox-training-in-santa-monica'
+const post = posts.find(p => p.slug === slug)
+const { prev, next } = neighbours(slug)
+const path = `/blog/${slug}`
+</script>
+
+@nolayout
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    @include('site/head', {
+      title: `${post.title} - TRIFIT LA`,
+      description: post.excerpt,
+      path,
+      siteUrl,
+      image: post.image,
+      ogType: 'article',
+      jsonLd: articleJsonLd(post, siteUrl),
+    })
+  </head>
+
+  <body>
+    @include('site/nav', { navLinks, current: '/blog' })
+
+    <main>
+      <article>
+        <header class="page-head">
+          <div class="shell">
+            <nav class="crumbs" aria-label="Breadcrumb">
+              <a data-stx-link href="/">Home</a>
+              <span aria-hidden="true">/</span>
+              <a data-stx-link href="/blog">Blog</a>
+              <span aria-hidden="true">/</span>
+              <span>{{ post.topic }}</span>
+            </nav>
+            <span class="eyebrow">{{ post.topic }}</span>
+            <h1>{{ post.title }}</h1>
+            <div class="article-meta">
+              <time datetime="{{ post.date }}">{{ post.dateLabel }}</time>
+              <span>{{ post.minutes }} minute read</span>
+              <span>TRIFIT LA</span>
+            </div>
+          </div>
+        </header>
+
+        <div class="section shell">
+          <figure class="prose-figure post-hero">
+            <img src="{{ post.image }}" alt="{{ post.alt }}" width="1400" height="933" fetchpriority="high" decoding="async">
+          </figure>
+
+          <div class="prose">
+      <p>HYROX is one of the fastest-growing fitness competitions in the world — and it's rapidly gaining traction among athletes and everyday fitness enthusiasts in Santa Monica.</p>
+      <p><strong>If you've searched:</strong> “HYROX training near me” “How to train for HYROX” “HYROX gym in Santa Monica”</p>
+      <p>You're likely looking for a facility that can support both endurance and strength training in one place.</p>
+      <h2>What Is HYROX?</h2>
+      <p>HYROX is an indoor hybrid fitness race combining 8 x 1km runs with functional workout stations. Every race follows the same format, making it measurable and competitive worldwide.</p>
+      <p>The race includes:</p>
+      <ul>
+        <li>8 x 1 km runs</li>
+        <li>SkiErg</li>
+        <li>Sled push</li>
+        <li>Sled pull</li>
+        <li>Burpee broad jumps</li>
+        <li>Rowing</li>
+        <li>Farmer's carry</li>
+        <li>Sandbag lunges</li>
+        <li>Wall balls</li>
+      </ul>
+      <p>It's a true test of endurance, strength, power, and mental toughness — making it ideal for anyone who wants more than just a typical gym routine.</p>
+      <p>Preparing for HYROX requires strategic training. It's not just about running more miles or lifting heavier weights — it's about combining both intelligently.</p>
+      <h2>1. Build Your Aerobic Engine</h2>
+      <p>Because you'll run 8 total kilometers during the race, endurance is critical. Training should include:</p>
+      <ul>
+        <li>Zone 2 aerobic conditioning</li>
+        <li>Tempo runs</li>
+        <li>Interval training</li>
+        <li>Row and SkiErg conditioning sessions</li>
+      </ul>
+      <h2>2. Develop Functional Strength</h2>
+      <p>HYROX demands real-world, repeatable strength. Key focus areas include:</p>
+      <ul>
+        <li>Heavy sled pushes and pulls</li>
+        <li>Grip strength for farmer's carries</li>
+        <li>Lower-body stamina for lunges and wall balls</li>
+        <li>Total-body power for rowing and burpees</li>
+      </ul>
+      <h2>3. Train Under Fatigue</h2>
+      <p>The most challenging part of HYROX is transitioning from a hard run directly into a strength movement.</p>
+      <p>Example hybrid sessions:</p>
+      <ul>
+        <li>1 km run → sled push intervals</li>
+        <li>Row → wall balls</li>
+        <li>Burpee broad jumps → farmer's carries</li>
+      </ul>
+      <p>This style of training builds durability, efficiency, and race-day confidence.</p>
+      <p>Training for HYROX requires space, equipment availability, and the ability to move seamlessly between cardio and strength stations. Not every gym can support that.</p>
+      <p>At TRIFIT LA, members have access to:</p>
+      <ul>
+        <li>Open turf for sled pushes and pulls</li>
+        <li>Full free-weight area for progressive strength training</li>
+        <li>Rowers, SkiErgs, treadmills, and bikes</li>
+        <li>Functional training space for hybrid circuits</li>
+        <li>A high-energy, performance-focused environment</li>
+      </ul>
+      <p>You get the versatility of a large gym with the energy of a local Santa Monica fitness community.</p>
+      <p>Whether you're preparing for your first HYROX or aiming to improve your race time, TRIFIT LA provides everything you need in one place.</p>
+      <p>Ready to start training for HYROX in Santa Monica? Come tour TRIFIT LA and begin building your strength, endurance, and competitive edge today.</p>
+          </div>
+
+          <nav class="post-nav" aria-label="More posts">
+            @if (prev)
+              <a data-stx-link href="/blog/{{ prev.slug }}">
+                <span>Older</span>
+                <b>{{ prev.title }}</b>
+              </a>
+            @else
+              <span></span>
+            @endif
+            @if (next)
+              <a data-stx-link class="is-next" href="/blog/{{ next.slug }}">
+                <span>Newer</span>
+                <b>{{ next.title }}</b>
+              </a>
+            @endif
+          </nav>
+        </div>
+      </article>
+
+      <section class="section--tight shell">
+        <div class="closer">
+          <div>
+            <h2>Come and see the club for yourself.</h2>
+          </div>
+          <div>
+            <p>Call ahead for a tour, or try everything for a day with a $39 day pass.</p>
+            <div class="hero-cta">
+              <a data-stx-link class="btn btn--primary" href="/visit-us">Book a tour</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    @include('site/footer', { club, hours, footerColumns, legalLinks })
+  </body>
+</html>
