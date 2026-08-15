@@ -6,6 +6,12 @@ import type { StxOptions as UiOptions } from '@stacksjs/stx'
  */
 
 export default {
+  // The origin sitemap.xml and robots.txt are written against. Without it the
+  // build falls back to http://localhost and ships a sitemap no crawler can
+  // use. This is the canonical host per config/cloud.ts — trifit.stacksjs.com
+  // and both www variants 301 here.
+  site: { url: 'https://trifitla.stacksjs.com' },
+
   // Pin template topology to the application resources directory. This keeps
   // component, layout and partial resolution stable for CLI, dev and build
   // processes instead of asking each process to infer the same root.
@@ -44,4 +50,4 @@ export default {
   // the sitemap.
   defaultViews: true,
 // `plugins` landed in stx after the pinned @stacksjs/stx types — widen until the dep updates.
-} satisfies UiOptions & { plugins?: string[], defaultViews?: boolean | string[] }
+} satisfies UiOptions & { plugins?: string[], defaultViews?: boolean | string[], site?: { url: string } }

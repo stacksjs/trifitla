@@ -24,31 +24,32 @@ const config: LintConfig = {
       'strict-lint': 0,
       'unmanaged-timer': 0,
 
+      // Cleared: every internal anchor across the site now carries
+      // data-stx-link, so the router owns navigation everywhere.
+      'plain-internal-anchor': 0,
+
       // config/ui.ts sets none of strict/root/pagesDir. Pinning root+pagesDir
       // changes how stx resolves topology, so it wants its own dev+build pass
       // rather than being swept in with a lint change.
-      'stx-config-keys': 3,
+      'stx-config-keys': 2,
 
-      // The marketing and desktop shells still own their DOCTYPE. Blocked on
-      // stacksjs/stx#1798 (generateDocumentShell htmlAttrs) - without it,
-      // removing the shell drops the class the landing-page tokens are scoped to.
-      'doctype-no-nolayout': 5,
+      // The email template, the desktop shell, and the two PDF partials own
+      // their own DOCTYPE. Every marketing page now declares @nolayout, which
+      // is what the rule is actually asking for; these four are not pages.
+      'doctype-no-nolayout': 4,
 
-      // Two templates still carry a <style> block; the destination is
-      // config/crosswind.ts preflights.
-      'style-block': 2,
+      // coming-soon.stx still carries a <style> block; the destination is
+      // config/crosswind.ts preflights. The marketing pages now share
+      // public/css/site.css instead of inlining the design system per page.
+      'style-block': 1,
 
       // coming-soon.stx and index.stx are still imperative.
       'dom-guard': 3,
 
-      // Mostly the desktop demo components, plus pre-hydration display:none
-      // whose sanctioned form is a :class with literal branches.
-      'inline-style-attr': 49,
-
-      // One unrouted <a href="/"> left (index.stx's brand link). Anchors
-      // carrying data-stx-link or data-no-router are not counted: both already
-      // declare what they are.
-      'plain-internal-anchor': 1,
+      // The desktop demo components, plus pre-hydration display:none whose
+      // sanctioned form is a :class with literal branches. The marketing pages
+      // carry none: their one-off spacing lives in site.css utilities.
+      'inline-style-attr': 46,
     },
   },
 }

@@ -3,6 +3,9 @@
 # prices and hours competing with the real site in search results would be
 # worse than useless to anyone looking for the gym.
 #
-# The page's <link rel="canonical"> already points at https://trifitla.com/.
+# Disallow is the protection here. Pages canonicalise to their own address on
+# this host rather than to trifitla.com: the preview has pages the live site
+# does not (its blog posts live under /blog/, not at the root), so pointing
+# every canonical at a live URL would claim equivalences that are not true.
 User-agent: *
 Disallow: /
