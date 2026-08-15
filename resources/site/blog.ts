@@ -20,12 +20,22 @@ export interface Post {
   /** Rough read time in minutes, rounded from the word count. */
   minutes: number
   topic: string
+  /**
+   * Shorter headline for the social card, where the measure is three lines.
+   *
+   * The card ellipsises anything longer, which is honest but reads as a
+   * clipped headline. A title written for the space beats a title trimmed to
+   * it, so the handful of posts whose names run long carry one. Everything
+   * else uses `title`.
+   */
+  cardTitle?: string
 }
 
 export const posts: Post[] = [
   {
     slug: 'why-everyone-in-fitness-is-obsessed-with-saunas-right-now',
     title: 'Why everyone in fitness is obsessed with saunas right now',
+    cardTitle: 'Why everyone is obsessed with saunas',
     date: '2026-05-19',
     dateLabel: '19 May 2026',
     topic: 'Recovery',
@@ -37,6 +47,7 @@ export const posts: Post[] = [
   {
     slug: 'how-to-maintain-muscle-while-using-glp-1-weight-loss-medications',
     title: 'How to maintain muscle while using GLP-1 weight loss medications',
+    cardTitle: 'Keeping muscle on GLP-1',
     date: '2026-05-06',
     dateLabel: '6 May 2026',
     topic: 'Training',
@@ -70,6 +81,7 @@ export const posts: Post[] = [
   {
     slug: 'personal-training-vs-group-fitness',
     title: 'Personal training vs group fitness: which one gets better results?',
+    cardTitle: 'Personal training vs group fitness',
     date: '2026-04-02',
     dateLabel: '2 April 2026',
     topic: 'Training',
@@ -92,6 +104,7 @@ export const posts: Post[] = [
   {
     slug: 'ai-workouts-vs-personal-training',
     title: 'AI workouts vs personal training: what technology cannot replace',
+    cardTitle: 'AI workouts vs personal training',
     date: '2026-03-12',
     dateLabel: '12 March 2026',
     topic: 'Training',
@@ -114,6 +127,7 @@ export const posts: Post[] = [
   {
     slug: 'hyrox-training-in-santa-monica',
     title: 'HYROX training in Santa Monica: what it is and why it is exploding',
+    cardTitle: 'HYROX training in Santa Monica',
     date: '2026-02-19',
     dateLabel: '19 February 2026',
     topic: 'Training',
@@ -125,6 +139,7 @@ export const posts: Post[] = [
   {
     slug: 'the-power-of-the-seca-medical-body-composition-machine',
     title: 'The power of the seca medical body composition machine',
+    cardTitle: 'The seca body composition machine',
     date: '2026-02-05',
     dateLabel: '5 February 2026',
     topic: 'Testing',
@@ -136,6 +151,7 @@ export const posts: Post[] = [
   {
     slug: 'new-year-new-goals-2026-workout-motivation-guide',
     title: 'New year, new goals: your 2026 workout motivation guide',
+    cardTitle: 'New year, new goals',
     date: '2026-01-02',
     dateLabel: '2 January 2026',
     topic: 'Training',
@@ -158,6 +174,7 @@ export const posts: Post[] = [
   {
     slug: 'vo2-max-the-number-one-indicator-of-health-and-longevity',
     title: 'VO₂ max: the number one indicator of your health and longevity',
+    cardTitle: 'VO₂ max, and why it predicts so much',
     date: '2025-11-06',
     dateLabel: '6 November 2025',
     topic: 'Testing',

@@ -6,6 +6,7 @@
  */
 
 import { articleJsonLd, neighbours, posts } from '../../site/blog'
+import { cardFor, cardHeight, cardType, cardWidth } from '../../site/social'
 import { club, footerColumns, hours, legalLinks, navLinks, siteUrl } from '../../site/club'
 
 const slug = 'new-year-new-goals-2026-workout-motivation-guide'
@@ -24,7 +25,11 @@ const path = `/blog/${slug}`
       description: post.excerpt,
       path,
       siteUrl,
-      image: post.image,
+      card: cardFor(path),
+      cardType,
+      cardWidth,
+      cardHeight,
+      cardAlt: post.title,
       ogType: 'article',
       jsonLd: articleJsonLd(post, siteUrl),
     })

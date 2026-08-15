@@ -8,6 +8,7 @@
  * card, because finding one of them out later is how people end up angry.
  */
 
+import { cardFor, cardHeight, cardType, cardWidth } from '../site/social'
 import { club, clubJsonLd, footerColumns, hours, included, legalLinks, navLinks, siteUrl } from '../site/club'
 import { feeNotes, passes, plans } from '../site/membership'
 
@@ -26,7 +27,10 @@ const description = 'Month-to-month membership from $189 at TRIFIT LA in Santa M
       description,
       path,
       siteUrl,
-      image: '/images/trifit/weight-deck.jpg',
+      card: cardFor(path),
+      cardType,
+      cardWidth,
+      cardHeight,
       jsonLd: clubJsonLd(),
     })
   </head>

@@ -6,6 +6,7 @@
  */
 
 import { postsByDate } from '../site/blog'
+import { cardFor, cardHeight, cardType, cardWidth } from '../site/social'
 import { club, footerColumns, hours, legalLinks, navLinks, siteUrl } from '../site/club'
 
 const path = '/blog'
@@ -26,7 +27,10 @@ const topics = [...new Set(postsByDate.map(p => p.topic))]
       description,
       path,
       siteUrl,
-      image: lead.image,
+      card: cardFor(path),
+      cardType,
+      cardWidth,
+      cardHeight,
     })
   </head>
 

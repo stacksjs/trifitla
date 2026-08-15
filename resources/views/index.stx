@@ -13,6 +13,7 @@
  */
 
 import { featuredClasses, schedule, weeklySessionCount } from '../site/classes'
+import { cardFor, cardHeight, cardType, cardWidth } from '../site/social'
 import { awardYears, club, clubJsonLd, footerColumns, hours, included, legalLinks, navLinks, siteUrl } from '../site/club'
 import { plans } from '../site/membership'
 
@@ -95,7 +96,10 @@ const years = new Date().getFullYear() - club.since
       description,
       path,
       siteUrl,
-      image: '/images/trifit/WEB-55.jpg',
+      card: cardFor(path),
+      cardType,
+      cardWidth,
+      cardHeight,
       jsonLd: clubJsonLd(),
     })
     <link rel="preload" as="image" href="/images/trifit/untitled-shoot-270.jpg" fetchpriority="high">

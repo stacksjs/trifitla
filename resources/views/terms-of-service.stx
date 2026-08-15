@@ -5,6 +5,7 @@
  * broken.
  */
 
+import { cardFor, cardHeight, cardType, cardWidth } from '../site/social'
 import { club, footerColumns, hours, legalLinks, navLinks, siteUrl } from '../site/club'
 
 const path = '/terms-of-service'
@@ -17,7 +18,7 @@ const description = "The rules, cancellation rights, and terms that apply to a T
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    @include('site/head', { title, description, path, siteUrl })
+    @include('site/head', { title, description, path, siteUrl, card: cardFor(path), cardType, cardWidth, cardHeight })
   </head>
 
   <body>

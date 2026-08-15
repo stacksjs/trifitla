@@ -16,16 +16,33 @@
 <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#080c0a" media="(prefers-color-scheme: dark)">
 
+{{--
+  The preview image is the page's own generated card, from
+  `buddy generate:images --social`. Pages pass `card` (and `cardAlt`); both
+  fall back to the club's card, so a new page previews as TRIFIT LA rather
+  than as a bare link while its own card is still being written.
+
+  Dimensions are declared because Slack, Discord and iMessage reserve the
+  space before the image arrives — without them the preview reflows once it
+  lands, or is skipped for being unmeasurable.
+--}}
 <meta property="og:type" content="{{ ogType || 'website' }}">
 <meta property="og:site_name" content="TRIFIT LA">
+<meta property="og:locale" content="en_US">
 <meta property="og:url" content="{{ siteUrl }}{{ path }}">
 <meta property="og:title" content="{{ title }}">
 <meta property="og:description" content="{{ description }}">
-<meta property="og:image" content="{{ siteUrl }}{{ image || '/images/trifit/WEB-55.jpg' }}">
+<meta property="og:image" content="{{ siteUrl }}{{ card }}">
+<meta property="og:image:secure_url" content="{{ siteUrl }}{{ card }}">
+<meta property="og:image:type" content="{{ cardType }}">
+<meta property="og:image:width" content="{{ cardWidth }}">
+<meta property="og:image:height" content="{{ cardHeight }}">
+<meta property="og:image:alt" content="{{ cardAlt || title }}">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{{ title }}">
 <meta name="twitter:description" content="{{ description }}">
-<meta name="twitter:image" content="{{ siteUrl }}{{ image || '/images/trifit/WEB-55.jpg' }}">
+<meta name="twitter:image" content="{{ siteUrl }}{{ card }}">
+<meta name="twitter:image:alt" content="{{ cardAlt || title }}">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

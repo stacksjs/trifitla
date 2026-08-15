@@ -7,6 +7,7 @@
  * the weight floor because that is how the club is actually used.
  */
 
+import { cardFor, cardHeight, cardType, cardWidth } from '../site/social'
 import { club, clubJsonLd, footerColumns, hours, included, legalLinks, navLinks, siteUrl } from '../site/club'
 import { amenityGroups } from '../site/membership'
 
@@ -27,7 +28,10 @@ const amenityCount = amenityGroups.reduce((n, g) => n + g.items.length, 0)
       description,
       path,
       siteUrl,
-      image: '/images/trifit/trifit-indoors-Pools.jpg',
+      card: cardFor(path),
+      cardType,
+      cardWidth,
+      cardHeight,
       jsonLd: clubJsonLd(),
     })
   </head>

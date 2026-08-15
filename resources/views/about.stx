@@ -9,6 +9,7 @@
  * stock photograph of a smiling stranger anywhere on it.
  */
 
+import { cardFor, cardHeight, cardType, cardWidth } from '../site/social'
 import { awardYears, club, clubJsonLd, footerColumns, hours, legalLinks, navLinks, siteUrl } from '../site/club'
 import { founders, team } from '../site/team'
 
@@ -29,7 +30,10 @@ const years = new Date().getFullYear() - club.since
       description,
       path,
       siteUrl,
-      image: '/images/trifit/Trifit_Family.jpg',
+      card: cardFor(path),
+      cardType,
+      cardWidth,
+      cardHeight,
       jsonLd: clubJsonLd(),
     })
   </head>
