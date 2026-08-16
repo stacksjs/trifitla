@@ -68,24 +68,16 @@ export default {
     shadow: { blur: 60, offsetY: 24, color: '#00000066' },
   },
 
-  // `brand` is deliberately unset: the mark already says the name, and
-  // setting both prints it twice. `markPlate` is section-only, so it lives
-  // under `social` below.
+  // The wordmark ships white, which is what a dark card wants, so nothing is
+  // painted behind it. `brand` is deliberately unset: the mark already says
+  // the name, and setting both prints it twice.
   mark: 'public/images/trifit/TRIFIT_LOGOS_white_horizontal.png',
+  markPlate: false,
 
   social: {
     enabled: true,
     outputDir: 'public/social',
     publicPath: '/social',
-    // The wordmark ships white, which is what a dark card wants, so nothing
-    // is painted behind it. Without this the default white plate goes down
-    // and hides the mark completely.
-    markPlate: false,
-    // Repeated from the top level because @stacksjs/image's `themed()`
-    // inherits background, color, mutedColor, device, brand and mark into a
-    // section but not `accent` — so declared only above, the eyebrow came out
-    // in the library's default orange rather than the TRIFIT green.
-    accent: '#5dd37c',
     // The `og` preset is the primary card and keeps the bare filename. The
     // others exist because some consumers reserve a taller slot than 1.91:1
     // and letterbox a wide card into it.
