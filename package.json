@@ -96,6 +96,7 @@
     "better-dx": "^0.2.17"
   },
   "overrides": {
-    "pickier": "^0.1.51"
+    "pickier": "^0.1.51",
+    "ts-images": "^0.2.11"
   }
 }
