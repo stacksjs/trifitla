@@ -57,6 +57,26 @@ export const tsCloud: TsCloudConfig = {
   },
 
   infrastructure: {
+    /**
+     * DNS lives on Cloudflare, which is authoritative for the whole
+     * `stacksjs.com` zone — this app owns four names on it, not the zone.
+     *
+     * `domain` is the zone apex rather than this app's host: it is what tells
+     * ts-cloud where `trifitla.stacksjs.com` lives, instead of leaving it to
+     * guess from the last two labels (which is right here and wrong the moment a
+     * name has a multi-label suffix).
+     *
+     * `records` stays empty on purpose. Reconciliation is upsert-only, so a
+     * record declared here is one this app will publish on EVERY deploy — and the
+     * zone's mail, DKIM and certificate-validation records belong to the zone
+     * owner, not to a tenant. Declaring them here would mean four apps racing to
+     * own the same SPF policy.
+     */
+    dns: {
+      provider: 'cloudflare',
+      domain: 'stacksjs.com',
+    },
+
     compute: {
       instances: 1,
       size: 'small',
@@ -71,6 +91,62 @@ export const tsCloud: TsCloudConfig = {
         // Emits this tenant's own cert units rather than sitting on the box's
         // fallback certificate.
         onDemandTls: true,
+
+        /**
+         * Serve the frontends from Cloudflare's edge.
+         *
+         * `frontedHosts` is left to default, which resolves to the hostnames
+         * THIS app's gateway entries answer for — the four `sites` below, not
+         * the whole box. That distinction matters on a shared box: a hard-coded
+         * list would go stale the moment a site is added here, and a box-wide
+         * one would orange-cloud another tenant's names.
+         *
+         * No `secret`: rpx enforces a single origin-guard header/value for the
+         * entire gateway, so a co-tenant on this box cannot bring its own. If
+         * this app declared one and `stacks` declared another, ts-cloud leaves
+         * THIS app's hosts unguarded rather than guarding them with a value the
+         * gateway would reject — which would reject every request instead. The
+         * origin guard therefore belongs to whoever owns the box.
+         */
+        cdn: {
+          provider: 'cloudflare',
+          cloudflare: {
+            /**
+             * These are ZONE-WIDE, and this app is a tenant on a zone with
+             * roughly twenty other sites — so the set here is deliberately the
+             * subset that is safe for all of them. Every host on the zone is
+             * already HTTPS-only behind a real Let's Encrypt certificate, so
+             * `strict` and `alwaysUseHttps` change nothing for anyone else.
+             *
+             * HSTS is NOT set. `includeSubdomains` on the apex would commit
+             * every name under `stacksjs.com` to HTTPS-only in every visitor's
+             * browser for a year, including names this app has never heard of
+             * and any that are added later without a certificate ready. That is
+             * a zone owner's decision to make once, not a side effect of
+             * deploying a tenant.
+             */
+            settings: {
+              ssl: 'strict',
+              alwaysUseHttps: true,
+              minTlsVersion: '1.2',
+              brotli: true,
+              http3: true,
+            },
+            cache: {
+              // Build output is fingerprinted, so the bytes at a URL never
+              // change and a long edge TTL is free.
+              assetEdgeTtl: 2592000,
+              // HTML carries the references to those fingerprinted files.
+              // Caching it as long would pin visitors to a stale release.
+              documentEdgeTtl: 3600,
+            },
+            // Purge the edge for these hosts at the end of every deploy, so a
+            // release is visible immediately rather than after the document TTL
+            // lapses. This is the default; it is spelled out because it is the
+            // thing most likely to be turned off by accident.
+            purgeOnDeploy: true,
+          },
+        },
       },
     },
   },

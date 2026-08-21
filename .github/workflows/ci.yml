@@ -299,6 +299,17 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_DEFAULT_REGION: us-east-1
+          # Cloudflare fronts the four public hostnames (see the `cdn` block in
+          # config/cloud.ts). Without this token the deploy still succeeds and
+          # still publishes DNS — it just silently skips proxying, the zone
+          # settings, the cache rules and, most visibly, the edge purge, so a
+          # release would sit behind a stale cached document for an hour.
+          #
+          # buddy also picks its DNS provider from the zone's live nameservers,
+          # so this is what takes over from the AWS pair above once stacksjs.com
+          # is delegated to Cloudflare. Both are kept during the changeover.
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           # .env.production is committed encrypted; this decrypts it, and the
           # APP_KEY inside it is what the running services are given.
           DOTENV_PRIVATE_KEY_PRODUCTION: ${{ secrets.DOTENV_PRIVATE_KEY_PRODUCTION }}
