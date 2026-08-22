@@ -145,6 +145,13 @@ export const tsCloud: TsCloudConfig = {
               minTlsVersion: '1.2',
               brotli: true,
               http3: true,
+              // Cloudflare turns this on for new zones and it rewrites the HTML
+              // the origin sent: `mailto:` links become spans a script decodes.
+              // This site's primary call to action is emailing the club, and
+              // through the edge those links had silently become
+              // JavaScript-dependent. Delivery is the CDN's job; editing the
+              // document is not.
+              emailObfuscation: false,
             },
             cache: {
               // Build output is fingerprinted, so the bytes at a URL never
