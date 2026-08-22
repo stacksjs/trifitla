@@ -21,7 +21,7 @@ jobs:
           fetch-depth: 0
 
       - name: Setup Pantry
-        uses: pantry-pm/pantry/packages/action@485c7b102fe14f8af00b57441a13dc3daa1505e7 # v0.10.39
+        uses: pantry-pm/pantry/packages/action@9e7391f612ba5d28ec66c872de791e4fbf24f8dd # v0.11.38
         with:
           install: 'false'
 
@@ -37,6 +37,6 @@ jobs:
         run: bun install
 
       - name: Create GitHub Release
-        uses: stacksjs/action-releaser@v1.2.9
+        uses: stacksjs/action-releaser@v1.2.11
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
