@@ -95,11 +95,24 @@ export const tsCloud: TsCloudConfig = {
         /**
          * Serve the frontends from Cloudflare's edge.
          *
-         * `frontedHosts` is left to default, which resolves to the hostnames
-         * THIS app's gateway entries answer for — the four `sites` below, not
-         * the whole box. That distinction matters on a shared box: a hard-coded
-         * list would go stale the moment a site is added here, and a box-wide
-         * one would orange-cloud another tenant's names.
+         * `frontedHosts` is listed rather than defaulted, and the two names
+         * missing from it are the point. Cloudflare terminates TLS at the edge,
+         * so a proxied host needs an edge certificate covering its name — and
+         * Universal SSL (the free plan's certificate) issues exactly the apex
+         * plus ONE wildcard level: `stacksjs.com` and `*.stacksjs.com`.
+         *
+         * `trifitla.stacksjs.com` and `trifit.stacksjs.com` sit one label under
+         * the apex, so the wildcard covers them. `www.trifitla.stacksjs.com`
+         * and `www.trifit.stacksjs.com` sit two levels down, which no wildcard
+         * in that certificate matches; they would need
+         * `*.trifitla.stacksjs.com` from Advanced Certificate Manager.
+         *
+         * Proxying them regardless does not degrade gracefully — Cloudflare
+         * answers the handshake with no certificate for the name and the host
+         * stops serving HTTPS entirely, while port 80 still redirects and the
+         * origin stays healthy, so nothing that does not speak TLS notices.
+         * ts-cloud now refuses to proxy an uncovered host, but naming the set
+         * here keeps the redirects DNS-only by intent rather than by rescue.
          *
          * No `secret`: rpx enforces a single origin-guard header/value for the
          * entire gateway, so a co-tenant on this box cannot bring its own. If
@@ -110,6 +123,7 @@ export const tsCloud: TsCloudConfig = {
          */
         cdn: {
           provider: 'cloudflare',
+          frontedHosts: ['trifitla.stacksjs.com', 'trifit.stacksjs.com'],
           cloudflare: {
             /**
              * These are ZONE-WIDE, and this app is a tenant on a zone with
