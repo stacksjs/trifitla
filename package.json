@@ -96,6 +96,11 @@
     "better-dx": "^0.2.22"
   },
   "overrides": {
-    "pickier": "^0.1.56"
+    "pickier": "^0.1.56",
+    "@stacksjs/components": "^0.2.222",
+    "@stacksjs/stx": "^0.2.222",
+    "@stacksjs/ts-cloud": "^0.11.7",
+    "bun-plugin-stx": "^0.2.222",
+    "stx-router": "^0.2.222"
   }
 }

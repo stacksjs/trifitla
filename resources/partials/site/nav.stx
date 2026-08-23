@@ -2,6 +2,14 @@
   Sticky primary navigation. `navLinks` and `current` come from the page;
   `current` is the path of the page being rendered, so the active link can
   mark itself rather than every page hard-coding its own nav.
+
+  `data-stx-active-class` is what keeps that mark honest after the first paint.
+  A client-side navigation swaps only `<main>`, so anything the server stamped
+  out here survives untouched — without it the link the visitor happened to
+  arrive through stays underlined however far they browse. Naming the class
+  hands it to the router, which moves it (and `aria-current`) on every swap.
+  The server-rendered mark stays: it is what the first paint and a JavaScript-
+  less visit rely on.
 --}}
 <header class="nav">
   <div class="shell nav-inner">
@@ -12,9 +20,9 @@
     <nav class="nav-links" aria-label="Primary">
       @foreach (navLinks as link)
         @if (current === link.url)
-          <a data-stx-link href="{{ link.url }}" class="is-current" aria-current="page">{{ link.label }}</a>
+          <a data-stx-link data-stx-active-class="is-current" href="{{ link.url }}" class="is-current" aria-current="page">{{ link.label }}</a>
         @else
-          <a data-stx-link href="{{ link.url }}">{{ link.label }}</a>
+          <a data-stx-link data-stx-active-class="is-current" href="{{ link.url }}">{{ link.label }}</a>
         @endif
       @endforeach
     </nav>
@@ -41,10 +49,20 @@
           </svg>
         </summary>
         <nav class="nav-menu-panel" aria-label="Primary, compact">
+          {{-- Marked the same way as the bar above: `.nav-menu-panel a.is-current`
+               has always been styled, and nothing ever wore it here. --}}
           @foreach (navLinks as link)
-            <a data-stx-link href="{{ link.url }}" onclick="this.closest('details').open = false">{{ link.label }}</a>
+            @if (current === link.url)
+              <a data-stx-link data-stx-active-class="is-current" href="{{ link.url }}" class="is-current" aria-current="page" onclick="this.closest('details').open = false">{{ link.label }}</a>
+            @else
+              <a data-stx-link data-stx-active-class="is-current" href="{{ link.url }}" onclick="this.closest('details').open = false">{{ link.label }}</a>
+            @endif
           @endforeach
-          <a data-stx-link href="/contact" onclick="this.closest('details').open = false">Contact</a>
+          @if (current === '/contact')
+            <a data-stx-link data-stx-active-class="is-current" href="/contact" class="is-current" aria-current="page" onclick="this.closest('details').open = false">Contact</a>
+          @else
+            <a data-stx-link data-stx-active-class="is-current" href="/contact" onclick="this.closest('details').open = false">Contact</a>
+          @endif
         </nav>
       </details>
     </div>
