@@ -73,7 +73,7 @@ const byGroup = serviceGroups.map(group => ({
               @foreach (group.items as item)
                 <article class="card rise" id="{{ item.slug }}">
                   <div class="card-media">
-                    <img src="{{ item.image }}" alt="{{ item.alt }}" width="1200" height="750" loading="lazy" decoding="async">
+                    <StxImage :src="item.image" :alt="item.alt" width="1200" height="750" placeholder="blur" />
                   </div>
                   <div class="card-body">
                     <h3>{{ item.name }}</h3>

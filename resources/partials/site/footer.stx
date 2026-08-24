@@ -6,7 +6,7 @@
     <div class="footer-grid">
       <div>
         <a data-stx-link class="brand" href="/" aria-label="TRIFIT LA, home">
-          <img src="/images/trifit/TRIFIT_LOGOS_white_horizontal.png" alt="TRIFIT LA" width="132" height="25">
+          <StxImage src="/images/trifit/TRIFIT_LOGOS_white_horizontal.png" alt="TRIFIT LA" width="132" height="25" lazy="false" />
         </a>
         <address>
           {{ club.street }}<br>

@@ -69,7 +69,7 @@ const amenityCount = amenityGroups.reduce((n, g) => n + g.items.length, 0)
               @foreach (group.items as item)
                 <article class="card rise">
                   <div class="card-media">
-                    <img src="{{ item.image }}" alt="{{ item.alt }}" width="1200" height="750" loading="lazy" decoding="async">
+                    <StxImage :src="item.image" :alt="item.alt" width="1200" height="750" placeholder="blur" />
                   </div>
                   <div class="card-body">
                     <h3>{{ item.name }}</h3>
@@ -86,7 +86,7 @@ const amenityCount = amenityGroups.reduce((n, g) => n + g.items.length, 0)
       <section class="section shell" aria-labelledby="extras-heading">
         <div class="split">
           <div class="split-media rise">
-            <img src="/images/trifit/retail-store.jpg" alt="The retail store at TRIFIT LA" width="1400" height="1050" loading="lazy" decoding="async">
+            <StxImage src="/images/trifit/retail-store.jpg" alt="The retail store at TRIFIT LA" width="1400" height="1050" placeholder="blur" />
           </div>
           <div class="rise">
             <div class="section-head">

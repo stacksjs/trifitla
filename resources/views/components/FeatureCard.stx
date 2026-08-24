@@ -6,7 +6,7 @@ const image = ''
 
 <article class="area-card">
   <div class="area-icon">
-    <img src="{{ image }}" alt="">
+    <StxImage :src="image" alt="" placeholder="blur" />
   </div>
   <h3>{{ title }}</h3>
   <p>{{ description }}</p>

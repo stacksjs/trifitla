@@ -59,14 +59,7 @@ const years = new Date().getFullYear() - club.since
       <section class="section shell" aria-labelledby="story-heading">
         <div class="split split--reverse">
           <div class="split-media rise">
-            <img
-              src="/images/trifit/Trifit_Family.jpg"
-              alt="Gina and Bernard Baski with their two sons and their Rottweiler, Banksy"
-              width="819"
-              height="937"
-              fetchpriority="high"
-              decoding="async"
-            >
+            <StxImage src="/images/trifit/Trifit_Family.jpg" alt="Gina and Bernard Baski with their two sons and their Rottweiler, Banksy" width="819" height="937" lazy="false" placeholder="blur" fetchpriority="high" />
           </div>
 
           <div class="rise">
@@ -116,7 +109,7 @@ const years = new Date().getFullYear() - club.since
           @foreach (founders as person)
             <article class="person rise">
               <div class="person-media">
-                <img src="{{ person.image }}" alt="{{ person.alt }}" width="560" height="373" loading="lazy" decoding="async">
+                <StxImage :src="person.image" :alt="person.alt" width="560" height="373" placeholder="blur" />
               </div>
               <div class="person-body">
                 <h3>{{ person.name }}</h3>
@@ -140,7 +133,7 @@ const years = new Date().getFullYear() - club.since
             @foreach (team as person)
               <article class="person rise">
                 <div class="person-media">
-                  <img src="{{ person.image }}" alt="{{ person.alt }}" width="560" height="373" loading="lazy" decoding="async">
+                  <StxImage :src="person.image" :alt="person.alt" width="560" height="373" placeholder="blur" />
                 </div>
                 <div class="person-body">
                   <h3>{{ person.name }}</h3>
@@ -167,7 +160,7 @@ const years = new Date().getFullYear() - club.since
       <section class="section shell" aria-labelledby="community-heading">
         <div class="split">
           <div class="split-media rise">
-            <img src="/images/trifit/family-atmosphere.jpg" alt="Members and coaches together on the floor at TRIFIT LA" width="1400" height="933" loading="lazy" decoding="async">
+            <StxImage src="/images/trifit/family-atmosphere.jpg" alt="Members and coaches together on the floor at TRIFIT LA" width="1400" height="933" placeholder="blur" />
           </div>
           <div class="rise">
             <div class="section-head">

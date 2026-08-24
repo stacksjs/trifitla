@@ -146,7 +146,7 @@ const description = 'Month-to-month membership from $189 at TRIFIT LA in Santa M
       <section class="section shell" aria-labelledby="included-heading">
         <div class="split">
           <div class="split-media rise">
-            <img src="/images/trifit/lobby.jpg" alt="The lobby and front desk at TRIFIT LA" width="1400" height="825" loading="lazy" decoding="async">
+            <StxImage src="/images/trifit/lobby.jpg" alt="The lobby and front desk at TRIFIT LA" width="1400" height="825" placeholder="blur" />
           </div>
           <div class="rise">
             <div class="section-head">

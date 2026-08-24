@@ -62,7 +62,7 @@ const publicEvents = events.filter(e => e.publicWelcome)
       <section class="section shell" id="{{ featured.slug }}" aria-labelledby="featured-heading">
         <div class="split split--reverse">
           <div class="split-media rise">
-            <img src="{{ featured.image }}" alt="{{ featured.alt }}" width="1400" height="933" fetchpriority="high" decoding="async">
+            <StxImage :src="featured.image" :alt="featured.alt" width="1400" height="933" lazy="false" placeholder="blur" fetchpriority="high" />
           </div>
           <div class="rise">
             <span class="eyebrow">{{ featured.season }}</span>
@@ -100,7 +100,7 @@ const publicEvents = events.filter(e => e.publicWelcome)
             @foreach (others as item)
               <article class="card rise" id="{{ item.slug }}">
                 <div class="card-media">
-                  <img src="{{ item.image }}" alt="{{ item.alt }}" width="1200" height="750" loading="lazy" decoding="async">
+                  <StxImage :src="item.image" :alt="item.alt" width="1200" height="750" placeholder="blur" />
                 </div>
                 <div class="card-body">
                   <h3>{{ item.name }}</h3>
@@ -126,7 +126,7 @@ const publicEvents = events.filter(e => e.publicWelcome)
       <section class="section shell" aria-labelledby="community-heading">
         <div class="split">
           <div class="split-media rise">
-            <img src="/images/trifit/better-together.jpg" alt="Members training together at a TRIFIT LA community session" width="1400" height="933" loading="lazy" decoding="async">
+            <StxImage src="/images/trifit/better-together.jpg" alt="Members training together at a TRIFIT LA community session" width="1400" height="933" placeholder="blur" />
           </div>
           <div class="rise">
             <div class="section-head">

@@ -61,7 +61,7 @@ const path = `/blog/${slug}`
 
         <div class="section shell">
           <figure class="prose-figure post-hero">
-            <img src="{{ post.image }}" alt="{{ post.alt }}" width="1400" height="933" fetchpriority="high" decoding="async">
+            <StxImage :src="post.image" :alt="post.alt" width="1400" height="933" lazy="false" placeholder="blur" fetchpriority="high" />
           </figure>
 
           <div class="prose">

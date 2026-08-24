@@ -100,7 +100,7 @@ const interests = [
         <div class="shell">
           <div class="split split--reverse">
             <div class="split-media rise">
-              <img src="/images/trifit/exterior.jpg" alt="The exterior of TRIFIT LA at Colorado Center in Santa Monica" width="1400" height="1505" loading="lazy" decoding="async">
+              <StxImage src="/images/trifit/exterior.jpg" alt="The exterior of TRIFIT LA at Colorado Center in Santa Monica" width="1400" height="1505" placeholder="blur" />
             </div>
             <div class="rise">
               <div class="section-head">
@@ -166,7 +166,7 @@ const interests = [
           <div class="grid grid--2">
             <article class="card rise">
               <div class="card-media">
-                <img src="/images/trifit/parking.jpg" alt="The Colorado Center parking garage" width="1147" height="1529" loading="lazy" decoding="async">
+                <StxImage src="/images/trifit/parking.jpg" alt="The Colorado Center parking garage" width="1147" height="1529" placeholder="blur" />
               </div>
               <div class="card-body">
                 <h3>Parking</h3>
@@ -176,7 +176,7 @@ const interests = [
             </article>
             <article class="card rise">
               <div class="card-media">
-                <img src="/images/trifit/lobby.jpg" alt="The lobby at TRIFIT LA" width="1400" height="825" loading="lazy" decoding="async">
+                <StxImage src="/images/trifit/lobby.jpg" alt="The lobby at TRIFIT LA" width="1400" height="825" placeholder="blur" />
               </div>
               <div class="card-body">
                 <h3>Finding us inside</h3>

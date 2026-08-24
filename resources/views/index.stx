@@ -122,14 +122,7 @@ const years = new Date().getFullYear() - club.since
           </div>
 
           <div class="hero-media">
-            <img
-              src="/images/trifit/untitled-shoot-270.jpg"
-              alt="A member on the training floor at TRIFIT LA"
-              width="1200"
-              height="800"
-              fetchpriority="high"
-              decoding="async"
-            >
+            <StxImage src="/images/trifit/untitled-shoot-270.jpg" alt="A member on the training floor at TRIFIT LA" width="1200" height="800" lazy="false" placeholder="blur" fetchpriority="high" />
           </div>
         </div>
       </section>
@@ -157,7 +150,7 @@ const years = new Date().getFullYear() - club.since
           @foreach (facility as item)
             <article class="tile rise tile--{{ item.area }} {{ item.image ? 'tile--photo' : '' }} {{ item.tone === 'tint' ? 'tile--tint' : '' }} {{ item.tone === 'ink' ? 'tile--ink' : '' }}">
               @if (item.image)
-                <img src="{{ item.image }}" alt="{{ item.alt }}" width="1200" height="800" loading="lazy" decoding="async">
+                <StxImage :src="item.image" :alt="item.alt" width="1200" height="800" placeholder="blur" />
               @endif
               <div class="tile-body">
                 <h3>{{ item.title }}</h3>
@@ -184,7 +177,7 @@ const years = new Date().getFullYear() - club.since
         <div class="rail" role="region" aria-label="Class types" tabindex="0">
           @foreach (featuredClasses as item)
             <a data-stx-link class="class-card" href="/classes#{{ item.slug }}">
-              <img src="{{ item.image }}" alt="{{ item.alt }}" width="1200" height="800" loading="lazy" decoding="async">
+              <StxImage :src="item.image" :alt="item.alt" width="1200" height="800" placeholder="blur" />
               <div class="class-card-body">
                 <h3>{{ item.name }}</h3>
                 <p>{{ item.where }}</p>
@@ -211,14 +204,7 @@ const years = new Date().getFullYear() - club.since
       <section class="section shell" id="coaching" aria-labelledby="coaching-heading">
         <div class="split split--reverse">
           <div class="split-media rise">
-            <img
-              src="/images/trifit/vo2-max.jpg"
-              alt="A VO₂ max test underway with an exercise scientist at TRIFIT LA"
-              width="1400"
-              height="1470"
-              loading="lazy"
-              decoding="async"
-            >
+            <StxImage src="/images/trifit/vo2-max.jpg" alt="A VO₂ max test underway with an exercise scientist at TRIFIT LA" width="1400" height="1470" placeholder="blur" />
           </div>
 
           <div class="rise">
@@ -247,14 +233,7 @@ const years = new Date().getFullYear() - club.since
       <section class="section band" aria-labelledby="family-heading">
         <div class="shell split">
           <div class="split-media rise">
-            <img
-              src="/images/trifit/Trifit_Family.jpg"
-              alt="Gina and Bernard Baski with their two sons and their Rottweiler, Banksy"
-              width="819"
-              height="937"
-              loading="lazy"
-              decoding="async"
-            >
+            <StxImage src="/images/trifit/Trifit_Family.jpg" alt="Gina and Bernard Baski with their two sons and their Rottweiler, Banksy" width="819" height="937" placeholder="blur" />
           </div>
 
           <div class="rise">
@@ -317,14 +296,7 @@ const years = new Date().getFullYear() - club.since
       <section class="section visit" id="visit" aria-labelledby="visit-heading">
         <div class="shell split">
           <div class="split-media rise">
-            <img
-              src="/images/trifit/be-humble.jpg"
-              alt="The front desk and training floor at TRIFIT LA"
-              width="1600"
-              height="1066"
-              loading="lazy"
-              decoding="async"
-            >
+            <StxImage src="/images/trifit/be-humble.jpg" alt="The front desk and training floor at TRIFIT LA" width="1600" height="1066" placeholder="blur" />
           </div>
 
           <div class="rise">

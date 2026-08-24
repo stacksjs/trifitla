@@ -130,7 +130,7 @@ const roles = [
         <div class="shell">
           <div class="split split--reverse">
             <div class="split-media rise">
-              <img src="/images/trifit/be-humble.jpg" alt="The front desk and training floor at TRIFIT LA, with the Be Humble Stay Hungry mural" width="1400" height="933" loading="lazy" decoding="async">
+              <StxImage src="/images/trifit/be-humble.jpg" alt="The front desk and training floor at TRIFIT LA, with the Be Humble Stay Hungry mural" width="1400" height="933" placeholder="blur" />
             </div>
             <div class="rise">
               <div class="section-head">
