@@ -96,7 +96,6 @@
     "better-dx": "^0.2.22"
   },
   "overrides": {
-    "//": "pickier is pinned exactly. 0.1.65 adds a no-unused-imports rule that fires on 13 files, 11 of them framework defaults this app only vendors — so a lockfile refresh silently turns CI red on code the app does not own. Unpin once those are fixed upstream in stacks.",
-    "pickier": "0.1.56"
+    "pickier": "^0.1.56"
   }
 }

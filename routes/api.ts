@@ -1,5 +1,3 @@
-import { response, route } from '@stacksjs/router'
-
 /**
  * This file is the entry point for your application's API routes.
  * The routes defined here are automatically registered. Last but
@@ -11,6 +9,10 @@ import { response, route } from '@stacksjs/router'
  *
  * @see https://docs.stacksjs.com/routing
  */
+
+// Import `route` (and `response`) from '@stacksjs/router' when you add the
+// first one. They are not imported up front because an import nothing uses is
+// a lint error, not a hint.
 
 // Your custom routes go here. Nothing yet: the landing page is served by STX
 // from `resources/views/index.stx`, so `/` must stay unclaimed here.
