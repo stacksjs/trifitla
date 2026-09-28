@@ -1,8 +1,11 @@
 import type { AuthenticationCredential } from '@stacksjs/auth'
 import { Action } from '@stacksjs/actions'
 import {
+  Auth,
+  authCookieForBrowserSession,
   consumeWebAuthnChallenge,
   getUserPasskey,
+  resolveBrowserSessionPolicy,
   updatePasskeyCounter,
   verifyAuthenticationResponse,
 } from '@stacksjs/auth'
@@ -48,9 +51,11 @@ export default new Action({
     }
     const publicKey = new Uint8Array(Object.values(jsonParse)).buffer
 
-    // Convert challenge string to Uint8Array. The challenge is stored
-    // as base64url (the same form generateAuthenticationOptions emits).
-    const challengeBytes = Uint8Array.from(atob(expectedChallenge), c => c.charCodeAt(0))
+    // `consumeWebAuthnChallenge` already returns the bytes it stored. This
+    // used to run them through `atob()`, which stringifies a Uint8Array to
+    // "12,34,56..." before decoding it - so the challenge never matched and
+    // passkey authentication could not succeed.
+    const challengeBytes = expectedChallenge
 
     // Derive origin and rpID from app config instead of hardcoding localhost
     const appUrl = config.app?.url || 'http://localhost:3333'
@@ -84,7 +89,27 @@ export default new Action({
         }
       }
 
-      return response.json(verification)
+      const policy = resolveBrowserSessionPolicy(false)
+      const session = await Auth.loginUsingId(user.id as number, {
+        expiresInMinutes: policy.expiresInMinutes,
+        withRefreshToken: policy.withRefreshToken,
+      })
+      if (!session)
+        return response.serverError('Authentication session could not be created')
+
+      return response.json({
+        ...verification,
+        access_token: session.token,
+        refresh_token: session.refreshToken,
+        token_type: 'Bearer',
+        expires_in: session.expiresIn,
+        token: session.token,
+        user: {
+          id: session.user?.id,
+          email: session.user?.email,
+          name: session.user?.name,
+        },
+      }, { headers: { 'Set-Cookie': authCookieForBrowserSession(session.token, session.expiresIn) } })
     }
     catch (error) {
       console.error('Authentication verification failed:', error)

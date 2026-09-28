@@ -1,5 +1,5 @@
 import { Action } from '@stacksjs/actions'
-import { Auth, register } from '@stacksjs/auth'
+import { Auth, authCookieForBrowserSession, register, resolveBrowserSessionPolicy } from '@stacksjs/auth'
 import { dispatch } from '@stacksjs/events'
 import { response } from '@stacksjs/router'
 import { schema } from '@stacksjs/validation'
@@ -12,15 +12,15 @@ export default new Action({
 
   validations: {
     email: {
-      rule: schema.string().email(),
+      rule: schema.string().email().required(),
       message: 'Email must be a valid email address.',
     },
     password: {
-      rule: schema.string().min(PASSWORD_MIN_LENGTH).max(PASSWORD_MAX_LENGTH),
+      rule: schema.string().min(PASSWORD_MIN_LENGTH).max(PASSWORD_MAX_LENGTH).required(),
       message: PASSWORD_POLICY_MESSAGE,
     },
     name: {
-      rule: schema.string().min(2).max(255),
+      rule: schema.string().min(2).max(255).required(),
       message: 'Name must be between 2 and 255 characters.',
     },
   },
@@ -29,8 +29,13 @@ export default new Action({
     const email = request.get('email')
     const password = request.get('password')
     const name = request.get('name')
+    const policy = resolveBrowserSessionPolicy(request.get('remember'))
 
-    const result = await register({ email, password, name })
+    const referralCode = request.get('referralCode')
+    const result = await register(
+      { email, password, name, referralCode: typeof referralCode === 'string' ? referralCode : undefined },
+      { expiresInMinutes: policy.expiresInMinutes, withRefreshToken: policy.withRefreshToken },
+    )
 
     if (result) {
       const user = await Auth.getUserFromToken(result.token)
@@ -40,11 +45,14 @@ export default new Action({
       // — listener errors are caught by the wildcard handler so a flaky
       // welcome email doesn't fail registration. The `to` alias matches
       // the contract SendWelcomeEmail expects.
+      // `to` is what SendWelcomeEmail addresses the mail to, so it has to be
+      // a string; the registering address is the honest fallback if the
+      // freshly-created user could not be read back.
       dispatch('user:registered', {
         id: user?.id,
-        email: user?.email,
+        email: user?.email ?? email,
         name: user?.name,
-        to: user?.email,
+        to: user?.email ?? email,
       })
 
       // Same OAuth2-compatible payload LoginAction returns, so a client can
@@ -53,6 +61,10 @@ export default new Action({
       // were signed out an hour into their first session while every other
       // user refreshed normally (stacksjs/stacks#2212). The legacy `token`
       // alias stays for backward compatibility.
+      // Registering signs the account in, so it is a session-issuing path like
+      // the other three and carries the cookie for the same reason: the very
+      // next thing a server-rendered app does is redirect to an authenticated
+      // page (#2306).
       return response.json({
         access_token: result.token,
         refresh_token: result.refreshToken,
@@ -64,7 +76,7 @@ export default new Action({
           email: user?.email,
           name: user?.name,
         },
-      })
+      }, { headers: { 'Set-Cookie': authCookieForBrowserSession(result.token, result.expiresIn) } })
     }
 
     return response.error('Registration failed')
