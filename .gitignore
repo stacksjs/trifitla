@@ -47,6 +47,11 @@ dist*
 **/database/*.sqlite-wal
 **/database/*.sqlite-shm
 
+# Generated migrations are part of the app. A global `*.sql` ignore (common in
+# ~/.gitignore_global) would otherwise hide them, and CI and the deploy would
+# build a database without them.
+!database/migrations/*.sql
+
 # OS files
 .DS_Store
 .DS_STORE
