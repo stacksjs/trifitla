@@ -102,7 +102,6 @@ const years = new Date().getFullYear() - club.since
       cardHeight,
       jsonLd: clubJsonLd(),
     })
-    <link rel="preload" as="image" href="/images/trifit/untitled-shoot-270.jpg" fetchpriority="high">
   </head>
 
   <body>
