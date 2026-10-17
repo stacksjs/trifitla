@@ -73,11 +73,11 @@
     "stx": "./buddy"
   },
   "dependencies": {
-    "@stacksjs/dtsx": "^0.11.5",
-    "bun-plugin-dtsx": "^0.11.5",
-    "pickier": "^0.1.56",
-    "stacks": "^0.75.17",
-    "ts-pantry": "^0.11.26"
+    "@stacksjs/dtsx": "^0.11.19",
+    "bun-plugin-dtsx": "^0.11.19",
+    "pickier": "^0.1.72",
+    "stacks": "^0.75.203",
+    "ts-pantry": "^0.11.87"
   },
   "workspaces": [
     "storage/framework",
@@ -93,9 +93,9 @@
     "commit-msg": "bun x gitlint --edit \"$1\""
   },
   "devDependencies": {
-    "better-dx": "^0.2.22"
+    "better-dx": "^0.2.38"
   },
   "overrides": {
-    "pickier": "^0.1.56"
+    "pickier": "^0.1.72"
   }
 }
