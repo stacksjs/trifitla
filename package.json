@@ -19,7 +19,7 @@
     "url": "https://github.com/stacksjs/stacks/issues"
   },
   "scripts": {
-    "build:reset": "rm -rf node_modules pantry.lock && bun install && ./buddy generate:types && ./buddy lint:fix",
+    "build:reset": "rm -rf node_modules && bun install && ./buddy generate:types && ./buddy lint:fix",
     "buddy": "./buddy",
     "stacks": "./buddy",
     "setup": "./bootstrap",
@@ -76,7 +76,7 @@
     "@stacksjs/dtsx": "^0.11.5",
     "bun-plugin-dtsx": "^0.11.5",
     "pickier": "^0.1.56",
-    "stacks": "^0.75.17",
+    "stacks": "^0.75.463",
     "ts-pantry": "^0.11.26"
   },
   "workspaces": [
