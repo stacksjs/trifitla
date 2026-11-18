@@ -5,14 +5,14 @@
     "": {
       "name": "trifitla",
       "dependencies": {
-        "@stacksjs/dtsx": "^0.11.5",
-        "bun-plugin-dtsx": "^0.11.5",
-        "pickier": "^0.1.56",
-        "stacks": "^0.75.628",
-        "ts-pantry": "^0.11.26",
+        "@stacksjs/dtsx": "^0.11.36",
+        "bun-plugin-dtsx": "^0.11.38",
+        "pickier": "^0.1.94",
+        "stacks": "^0.75.630",
+        "ts-pantry": "^0.11.212",
       },
       "devDependencies": {
-        "better-dx": "^0.2.22",
+        "better-dx": "^0.2.40",
       },
     },
     "storage/framework": {
@@ -23,12 +23,12 @@
       "name": "hello-world-fx",
       "version": "0.70.359",
       "devDependencies": {
-        "stacks": "^0.75.628",
+        "stacks": "^0.75.630",
       },
     },
   },
   "overrides": {
-    "pickier": "^0.1.56",
+    "pickier": "^0.1.94",
   },
   "packages": {
     "@babel/helper-string-parser": ["@babel/helper-string-parser@8.1.2", "", {}, "sha512-TRz5Z0MgfIfWqwEIq/pCpUpEXQxUt2Ig2ZbxG3SdmhSbHMAFFYGOix0kI4JLV371/TA+qWnQ4xWHPWjojkyRFA=="],
